@@ -1,23 +1,22 @@
 /*
-   Lead developer: Andrew Tridgell
- 
-   Authors:    Doug Weibel, Jose Julio, Jordi Munoz, Jason Short, Randy Mackay, Pat Hickey, John Arne Birkeland, Olivier Adler, Amilcar Lucas, Gregory Fletcher, Paul Riseborough, Brandon Jones, Jon Challinger, Tom Pittenger
-   Thanks to:  Chris Anderson, Michael Oborne, Paul Mather, Bill Premerlani, James Cohen, JB from rotorFX, Automatik, Fefenin, Peter Meister, Remzibi, Yury Smirnov, Sandro Benigno, Max Levine, Roberto Navoni, Lorenz Meier, Yury MonZon
+首席开发人员：Andrew Tridgell
 
-   Please contribute your ideas! See http://dev.ardupilot.org for details
+   作者：道格·韦伯（Doug Weibel），何塞·朱利奥（Jose Julio），乔迪·穆尼兹（Jordi Munoz），杰森·肖特（Jason Short），
+   兰迪·麦凯（Randy Mackay），帕特·希基（Pic Hickey），约翰·阿恩·伯克兰（John Arne Birkeland），奥利维尔·阿德勒（Alicar Lucas），
+   格里高里·弗莱彻（Gregory Fletcher），保罗·里斯伯勒（Paul Riseborough），布兰登·琼斯（Bondon Jones），
+   乔恩·查林格（Jon Challinger），汤姆·皮滕格（Tom Pittenger）
+   感谢：克里斯·安德森（Chris Anderson），迈克尔·奥本（Michael Oborne），保罗·马瑟（Paul Mather），比尔·普雷梅拉尼（Bill Premerlani），
+   詹姆斯·科恩（James Cohen），rotorFX的JB，Automatik，Fefenin，彼得·迈斯特（Peter Meister），雷姆比比，尤里·斯米尔诺夫（Yurry Smirnov），
+   桑德罗·贝尼尼奥（Sandro Benigno），马克斯·莱文（Robert Levine），罗伯托·纳沃尼（Roberto Navoni），洛伦兹·迈耶（Lorenz Meier），
+   尤里·蒙赞（Yury MonZon）
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+   请贡献您的想法！有关详细信息，请参见http://dev.ardupilot.org。
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+   该程序是免费软件：您可以根据自由软件基金会发布的GNU通用公共许可证的条款（许可证的版本3）或（根据您的选择）任何更高版本来重新分发和/或修改它。
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   分发该程序是希望它会有用，但是没有任何保证；甚至没有对适销性或特定用途适用性的暗示保证。有关更多详细信息，请参见GNU通用公共许可证。
+
+   您应该已经与该程序一起收到了GNU通用公共许可证的副本。如果不是，请参见<http://www.gnu.org/licenses/>。
  */
 
 #include "Plane.h"
@@ -29,6 +28,7 @@
   scheduler table - all regular tasks are listed here, along with how
   often they should be called (in Hz) and the maximum time
   they are expected to take (in microseconds)
+  调度程序表-此处列出了所有常规任务，以及应调用它们的频率（以Hz为单位）以及预计将花费的最长时间（以微秒为单位）
  */
 const AP_Scheduler::Task Plane::scheduler_tasks[] = {
                            // Units:   Hz      us
@@ -85,7 +85,7 @@ const AP_Scheduler::Task Plane::scheduler_tasks[] = {
     SCHED_TASK(parachute_check,        10,    200),
 #if AP_TERRAIN_AVAILABLE
     SCHED_TASK_CLASS(AP_Terrain, &plane.terrain, update, 10, 200),
-#endif // AP_TERRAIN_AVAILABLE
+#endif // AP_TERRAIN_AVAILABLE	可提供AP地形
     SCHED_TASK(update_is_flying_5Hz,    5,    100),
 #if LOGGING_ENABLED == ENABLED
     SCHED_TASK_CLASS(AP_Logger, &plane.logger, periodic_tasks, 50, 400),
@@ -113,6 +113,7 @@ constexpr int8_t Plane::_failsafe_priorities[7];
 void Plane::setup() 
 {
     // load the default values of variables listed in var_info[]
+	// 加载var_info []中列出的变量的默认值
     AP_Param::setup_sketch_defaults();
 
     rssi.init();
@@ -120,6 +121,7 @@ void Plane::setup()
     init_ardupilot();
 
     // initialise the main loop scheduler
+    // 初始化主循环调度程序
     scheduler.init(&scheduler_tasks[0], ARRAY_SIZE(scheduler_tasks), MASK_LOG_PM);
 }
 
@@ -130,6 +132,7 @@ void Plane::loop()
 }
 
 // update AHRS system
+// 更新AHRS系统
 void Plane::ahrs_update()
 {
     arming.update_soft_armed();
@@ -137,6 +140,7 @@ void Plane::ahrs_update()
 #if HIL_SUPPORT
     if (g.hil_mode == 1) {
         // update hil before AHRS update
+    	// 在AHRS更新之前更新hil
         gcs().update_receive();
     }
 #endif
@@ -148,6 +152,7 @@ void Plane::ahrs_update()
     }
 
     // calculate a scaled roll limit based on current pitch
+    // 根据当前螺距计算缩放的滚动限制
     roll_limit_cd = aparm.roll_limit_cd;
     pitch_limit_min_cd = aparm.pitch_limit_min_cd;
 
@@ -159,18 +164,22 @@ void Plane::ahrs_update()
     // updated the summed gyro used for ground steering and
     // auto-takeoff. Dot product of DCM.c with gyro vector gives earth
     // frame yaw rate
+    // 更新了用于地面转向和自动起飞的总陀螺仪。 DCM.c与陀螺矢量的点积给出地球框架偏航率
     steer_state.locked_course_err += ahrs.get_yaw_rate_earth() * G_Dt;
     steer_state.locked_course_err = wrap_PI(steer_state.locked_course_err);
 
     // check if we have had a yaw reset from the EKF
+    // 检查我们是否已经从EKF进行了偏航复位
     quadplane.check_yaw_reset();
 
     // update inertial_nav for quadplane
+    // 更新惯性导航为四翼飞机
     quadplane.inertial_nav.update();
 }
 
 /*
   update 50Hz speed/height controller
+  更新50Hz速度/高度控制器
  */
 void Plane::update_speed_height(void)
 {
@@ -178,6 +187,7 @@ void Plane::update_speed_height(void)
 	    // Call TECS 50Hz update. Note that we call this regardless of
 	    // throttle suppressed, as this needs to be running for
 	    // takeoff detection
+    	// 调用TECS 50Hz更新。 请注意，无论油门是否被抑制，我们都将其称为“起飞”，因为它需要运行以进行起飞检测
         SpdHgt_Controller->update_50hz();
     }
 
@@ -190,6 +200,7 @@ void Plane::update_speed_height(void)
 
 /*
   read and update compass
+  读取和更新指南针
  */
 void Plane::update_compass(void)
 {
@@ -200,6 +211,7 @@ void Plane::update_compass(void)
 
 /*
   do 10Hz logging
+  进行10Hz记录
  */
 void Plane::update_logging1(void)
 {
@@ -216,6 +228,7 @@ void Plane::update_logging1(void)
 
 /*
   do 10Hz logging - part2
+  进行10Hz记录
  */
 void Plane::update_logging2(void)
 {
@@ -235,11 +248,13 @@ void Plane::update_logging2(void)
 
 /*
   check for AFS failsafe check
+  检查AFS故障安全检查
  */
 #if ADVANCED_FAILSAFE == ENABLED
 void Plane::afs_fs_check(void)
 {
     // perform AFS failsafe checks
+	// 执行AFS故障安全检查
     afs.check(failsafe.last_heartbeat_ms, geofence_breached(), failsafe.AFS_last_valid_rc_ms);
 }
 #endif
@@ -252,6 +267,7 @@ extern AP_IOMCU iomcu;
 void Plane::one_second_loop()
 {
     // make it possible to change control channel ordering at runtime
+	// 使在运行时更改控制通道顺序成为可能
     set_control_channels();
 
 #if HAL_WITH_IO_MCU
@@ -259,17 +275,20 @@ void Plane::one_second_loop()
 #endif
 
     // make it possible to change orientation at runtime
+    // 使在运行时更改方向成为可能
     ahrs.update_orientation();
 
     adsb.set_stall_speed_cm(aparm.airspeed_min);
     adsb.set_max_speed(aparm.airspeed_max);
 
     // sync MAVLink system ID
+    // 同步MAVLink系统ID
     mavlink_system.sysid = g.sysid_this_mav;
 
     SRV_Channels::enable_aux_servos();
 
     // update notify flags
+    // 更新通知标志
     AP_Notify::flags.pre_arm_check = arming.pre_arm_checks(false);
     AP_Notify::flags.pre_arm_gps_check = true;
     AP_Notify::flags.armed = arming.is_armed() || arming.arming_required() == AP_Arming::Required::NO;
@@ -282,6 +301,7 @@ void Plane::one_second_loop()
 
     // update home position if NOT armed and gps position has
     // changed. Update every 5s at most
+    // 如果未加锁且GPS位置已更改，请更新原始位置。 最多每5s更新一次
     if (!arming.is_armed() &&
         gps.last_message_time_ms() - last_home_update_ms > 5000 &&
         gps.status() >= AP_GPS::GPS_OK_FIX_3D) {
@@ -289,6 +309,7 @@ void Plane::one_second_loop()
             update_home();
             
             // reset the landing altitude correction
+            // 重置着陆高度校正
             landing.alt_offset = 0;
     }
 }
@@ -300,6 +321,7 @@ void Plane::compass_save()
         !hal.util->get_soft_armed()) {
         /*
           only save offsets when disarmed
+          仅在解锁时保存补偿
          */
         compass.save_offsets();
     }
@@ -307,6 +329,7 @@ void Plane::compass_save()
 
 /*
   once a second update the airspeed calibration ratio
+  每秒更新一次空速校准率
  */
 void Plane::airspeed_ratio_update(void)
 {
@@ -314,6 +337,7 @@ void Plane::airspeed_ratio_update(void)
         gps.status() < AP_GPS::GPS_OK_FIX_3D ||
         gps.ground_speed() < 4) {
         // don't calibrate when not moving
+    	// 不动时请勿校准
         return;        
     }
     if (airspeed.get_airspeed() < aparm.airspeed_min && 
@@ -322,12 +346,14 @@ void Plane::airspeed_ratio_update(void)
         // check both airspeed and ground speed to catch cases where
         // the airspeed ratio is way too low, which could lead to it
         // never coming up again
+    	// 低于最低空速飞行时请勿校准。 我们同时检查空速和地面速度，以发现空速比过低的情况，这可能导致空速比不再上升
         return;
     }
     if (labs(ahrs.roll_sensor) > roll_limit_cd ||
         ahrs.pitch_sensor > aparm.pitch_limit_max_cd ||
         ahrs.pitch_sensor < pitch_limit_min_cd) {
         // don't calibrate when going beyond normal flight envelope
+    	// 超出正常飞行范围时请勿校准
         return;
     }
     const Vector3f &vg = gps.velocity();
@@ -337,12 +363,14 @@ void Plane::airspeed_ratio_update(void)
 
 /*
   read the GPS and update position
+  读取GPS并更新位置
  */
 void Plane::update_GPS_50Hz(void)
 {
     gps.update();
 
     // get position from AHRS
+    // 从AHRS获得位置
     have_position = ahrs.get_position(current_loc);
     ahrs.get_relative_position_D_home(relative_altitude);
     relative_altitude *= -1.0f;
@@ -350,6 +378,7 @@ void Plane::update_GPS_50Hz(void)
 
 /*
   read update GPS position - 10Hz update
+  读取更新GPS位置-10Hz更新
  */
 void Plane::update_GPS_10Hz(void)
 {
@@ -362,13 +391,14 @@ void Plane::update_GPS_10Hz(void)
         } else if (ground_start_count == 1) {
             // We countdown N number of good GPS fixes
             // so that the altitude is more accurate
-            // -------------------------------------
+            // 我们倒数N个良好的GPS定位，以使高度更准确
             if (current_loc.lat == 0 && current_loc.lng == 0) {
                 ground_start_count = 5;
 
             } else {
                 if (!set_home_persistently(gps.location())) {
                     // silently ignore failure...
+                	// 默默地忽略失败...
                 }
 
                 next_WP_loc = prev_WP_loc = home;
@@ -378,6 +408,7 @@ void Plane::update_GPS_10Hz(void)
         }
 
         // see if we've breached the geo-fence
+        // 看看我们是否违反了地理围栏
         geofence_check(false);
 
 #if CAMERA == ENABLED
@@ -385,9 +416,11 @@ void Plane::update_GPS_10Hz(void)
 #endif
 
         // update wind estimate
+        // 更新风估计
         ahrs.estimate_wind();
     } else if (gps.status() < AP_GPS::GPS_OK_FIX_3D && ground_start_count != 0) {
         // lost 3D fix, start again
+    	// 丢失了3D修正，重新开始
         ground_start_count = 5;
     }
 
@@ -396,6 +429,7 @@ void Plane::update_GPS_10Hz(void)
 
 /*
   main control mode dependent update code
+  主控制模式相关的更新代码
  */
 void Plane::update_control_mode(void)
 {
@@ -406,12 +440,14 @@ void Plane::update_control_mode(void)
 
     if (effective_mode != &mode_auto) {
         // hold_course is only used in takeoff and landing
+    	// 保持航线仅用于起飞和降落
         steer_state.hold_course_cd = -1;
     }
 
     // ensure we are fly-forward when we are flying as a pure fixed
     // wing aircraft. This helps the EKF produce better state
     // estimates as it can make stronger assumptions
+    // 确保当我们作为纯固定翼飞机飞行时能够向前飞行。 这可以帮助EKF做出更好的状态估计，因为它可以做出更强的假设
     if (quadplane.in_vtol_mode() ||
         quadplane.in_assisted_flight()) {
         ahrs.set_fly_forward(false);
@@ -427,7 +463,7 @@ void Plane::update_control_mode(void)
 void Plane::update_navigation()
 {
     // wp_distance is in ACTUAL meters, not the *100 meters we get from the GPS
-    // ------------------------------------------------------------------------
+    // 导航点距离以米为单位，而不是我们从GPS获得的* 100米
 
     uint16_t radius = 0;
     uint16_t qrtl_radius = abs(g.rtl_radius);
@@ -452,6 +488,7 @@ void Plane::update_navigation()
               for a quadplane in RTL mode we switch to QRTL when we
               are within the maximum of the stopping distance and the
               RTL_RADIUS
+              对于处于RTL模式的四翼飞机，当我们在停止距离和RTL_RADIUS的最大值内时，我们会切换到QRTL
              */
             set_mode(mode_qrtl, ModeReason::UNKNOWN);
             break;
@@ -460,27 +497,33 @@ void Plane::update_navigation()
             reached_loiter_target() && 
             labs(altitude_error_cm) < 1000) {
             // we've reached the RTL point, see if we have a landing sequence
+        	// 我们已经到达RTL点，看看我们是否有降落顺序
             if (mission.jump_to_landing_sequence()) {
                 // switch from RTL -> AUTO
+            	// 从RTL切换成AUTO
                 mission.set_force_resume(true);
                 set_mode(mode_auto, ModeReason::UNKNOWN);
             }
 
             // prevent running the expensive jump_to_landing_sequence
             // on every loop
+            // 防止在每个循环上运行昂贵的跳转到着陆程序
             auto_state.checked_for_autoland = true;
         }
         else if (g.rtl_autoland == 2 &&
             !auto_state.checked_for_autoland) {
             // Go directly to the landing sequence
+        	// 直接进入着陆顺序
             if (mission.jump_to_landing_sequence()) {
                 // switch from RTL -> AUTO
+            	// 从RTL切换成AUTO
                 mission.set_force_resume(true);
                 set_mode(mode_auto, ModeReason::UNKNOWN);
             }
 
             // prevent running the expensive jump_to_landing_sequence
             // on every loop
+            // 防止在每个循环上运行昂贵的跳转到着陆程序
             auto_state.checked_for_autoland = true;
         }
         radius = abs(g.rtl_radius);
@@ -488,6 +531,7 @@ void Plane::update_navigation()
             loiter.direction = (g.rtl_radius < 0) ? -1 : 1;
         }
         // fall through to LOITER
+        // 陷入困境
         FALLTHROUGH;
 
     case Mode::Number::LOITER:
@@ -524,6 +568,7 @@ void Plane::update_navigation()
 
 /*
   set the flight stage
+  设定飞行阶段
  */
 void Plane::set_flight_stage(AP_Vehicle::FixedWing::FlightStage fs)
 {
@@ -551,6 +596,7 @@ void Plane::update_alt()
     }
 
     // calculate the sink rate.
+    // 计算下沉率。
     float sink_rate;
     Vector3f vel;
     if (ahrs.get_velocity_NED(vel)) {
@@ -562,6 +608,7 @@ void Plane::update_alt()
     }
 
     // low pass the sink rate to take some of the noise out
+    // 下沉率使用低通滤波器消除一些噪声
     auto_state.sink_rate = 0.8f * auto_state.sink_rate + 0.2f*sink_rate;
 #if PARACHUTE == ENABLED
     parachute.set_sink_rate(auto_state.sink_rate);
@@ -590,6 +637,7 @@ void Plane::update_alt()
             // ensure we do the initial climb in RTL. We add an extra
             // 10m in the demanded height to push TECS to climb
             // quickly
+        	// 确保我们在RTL中进行了初始爬坡。 我们在要求的高度上增加了10m，以推动TECS快速爬升
             target_alt = MAX(target_alt, prev_WP_loc.alt + (g2.rtl_climb_min+10)*100);
         }
 
@@ -607,10 +655,12 @@ void Plane::update_alt()
 
 /*
   recalculate the flight_stage
+  重新计算飞行阶段
  */
 void Plane::update_flight_stage(void)
 {
     // Update the speed & height controller states
+	// 更新速度和高度控制器状态
     if (auto_throttle_mode && !throttle_suppressed) {        
         if (control_mode == &mode_auto) {
             if (quadplane.in_vtol_auto()) {
@@ -620,6 +670,7 @@ void Plane::update_flight_stage(void)
             } else if (mission.get_current_nav_cmd().id == MAV_CMD_NAV_LAND) {
                 if (landing.is_commanded_go_around() || flight_stage == AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND) {
                     // abort mode is sticky, it must complete while executing NAV_LAND
+                	// 中止模式为粘滞模式，必须在执行NAV LAND时完成
                     set_flight_stage(AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND);
                 } else if (landing.get_abort_throttle_enable() && get_throttle_input() >= 90 &&
                            landing.request_go_around()) {
@@ -637,6 +688,7 @@ void Plane::update_flight_stage(void)
             // If not in AUTO then assume normal operation for normal TECS operation.
             // This prevents TECS from being stuck in the wrong stage if you switch from
             // AUTO to, say, FBWB during a landing, an aborted landing or takeoff.
+        	// 如果不在AUTO模式中，则假定正常运行以进行正常的TECS操作。 如果在着陆，中止着陆或起飞期间从AUTO切换为FBWB，这可以防止TECS停留在错误的阶段。
             set_flight_stage(AP_Vehicle::FixedWing::FLIGHT_NORMAL);
         }
     } else if (quadplane.in_vtol_mode() ||
@@ -654,6 +706,8 @@ void Plane::update_flight_stage(void)
     If land_DisarmDelay is enabled (non-zero), check for a landing then auto-disarm after time expires
 
     only called from AP_Landing, when the landing library is ready to disarm
+    如果启用了陆地解锁延迟（非零），请检查着陆情况，然后在时间到期后自动解锁
+	仅在着陆库准备解锁时才从AP登陆调用
  */
 void Plane::disarm_if_autoland_complete()
 {
@@ -661,7 +715,8 @@ void Plane::disarm_if_autoland_complete()
         !is_flying() &&
         arming.arming_required() != AP_Arming::Required::NO &&
         arming.is_armed()) {
-        /* we have auto disarm enabled. See if enough time has passed */
+        /* we have auto disarm enabled. See if enough time has passed
+         我们启用了自动解锁。 查看是否已经过去了足够的时间 */
         if (millis() - auto_state.last_flying_ms >= landing.get_disarm_delay()*1000UL) {
             if (arming.disarm()) {
                 gcs().send_text(MAV_SEVERITY_INFO,"Auto disarmed");
@@ -674,6 +729,7 @@ void Plane::disarm_if_autoland_complete()
 
 /*
   the height above field elevation that we pass to TECS
+  我们传递给TECS的场高以上的高度
  */
 float Plane::tecs_hgt_afe(void)
 {
@@ -682,6 +738,7 @@ float Plane::tecs_hgt_afe(void)
       the ground when in landing, which means that TECS gets the
       rangefinder information and thus can know when the flare is
       coming.
+      在着陆时将高于地面标高的高度作为地面上方的高度传递，这意味着TECS可以获取测距仪信息，从而可以知道耀斑何时来临。
     */
     float hgt_afe;
     if (flight_stage == AP_Vehicle::FixedWing::FLIGHT_LAND) {
@@ -690,6 +747,7 @@ float Plane::tecs_hgt_afe(void)
     } else {
         // when in normal flight we pass the hgt_afe as relative
         // altitude to home
+    	// 在正常飞行中，我们将hgt_afe作为相对高度返航
         hgt_afe = relative_altitude;
     }
     return hgt_afe;
