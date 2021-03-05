@@ -449,7 +449,7 @@ void QuadPlane::tiltrotor_bicopter(void)
     }
 
     // bicopter assumes that trim is up so we scale down so match
-    // 双旋翼假设修剪增加，因此我们按比例缩小以匹配
+    // 双旋翼假设配平增加，因此我们按比例缩小以匹配
     float tilt_left = SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorLeft);
     float tilt_right = SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorRight);
 
