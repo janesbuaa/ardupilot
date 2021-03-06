@@ -9,7 +9,7 @@
 
 /*
   calculate maximum tilt change as a proportion from 0 to 1 of tilt
-  以0到1的倾斜度比例计算最大倾斜度变化
+  以0到1的倾转角比例计算最大倾转角变化
  */
 float QuadPlane::tilt_max_change(bool up)
 {
@@ -30,7 +30,7 @@ float QuadPlane::tilt_max_change(bool up)
         if (fast_tilt) {
             // allow a minimum of 90 DPS in manual or if we are not
             // stabilising, to give fast control
-            // 允许至少90 DPS的手动操作，或者如果我们不稳定，则可以进行快速控制
+            // 允许至少90度/秒的手动操作，或者如果我们不增稳，则可以进行快速控制
             rate = MAX(rate, 90);
         }
     }
@@ -39,7 +39,7 @@ float QuadPlane::tilt_max_change(bool up)
 
 /*
   output a slew limited tiltrotor angle. tilt is from 0 to 1
-  输出一个回转受限的rotorrotor角度。倾斜度是从0到1
+  输出一个回转受限的rotorrotor角度。倾转角是从0到1
  */
 void QuadPlane::tiltrotor_slew(float newtilt)
 {
@@ -53,7 +53,7 @@ void QuadPlane::tiltrotor_slew(float newtilt)
 
 /*
   update motor tilt for continuous tilt servos
-  更新电机倾斜度以实现连续倾斜伺服
+  更新电机倾转角以实现连续倾斜伺服
  */
 void QuadPlane::tiltrotor_continuous_update(void)
 {
@@ -117,9 +117,9 @@ void QuadPlane::tiltrotor_continuous_update(void)
 
       3) if we are in TRANSITION_TIMER mode then we are transitioning
          to forward flight and should put the rotors all the way forward
-      我们处于VTOL模式。 我们需要弄清楚需要多少倾斜度。我们将使用3种策略：
+      我们处于VTOL模式。 我们需要弄清楚需要多少倾转角。我们将使用3种策略：
       1）在QSTABILIZE或QHOVER中，角度将设置为零。这样可以将这些模式用作安全恢复模式。
-      2）在固定翼辅助飞行或速度控制模式下，我们将根据所需的前向油门设置角度，最大倾斜度由Q_TILT_MAX给出。 这取决于Q_VFWD_GAIN的设置
+      2）在固定翼辅助飞行或速度控制模式下，我们将根据所需的前向油门设置角度，最大倾转角由Q_TILT_MAX给出。 这取决于Q_VFWD_GAIN的设置
       3）如果我们处于TRANSITION_TIMER模式，那么我们正在过渡到向前飞行，应该将旋翼一直向前
     */
     if (plane.control_mode == &plane.mode_qstabilize ||
@@ -140,7 +140,7 @@ void QuadPlane::tiltrotor_continuous_update(void)
         // Q_TILT_MAX. Anything above 50% throttle gets
         // Q_TILT_MAX. Below 50% throttle we decrease linearly. This
         // relies heavily on Q_VFWD_GAIN being set appropriately.
-    	// 在完成过渡之前，我们将倾斜度限制为Q_TILT_MAX。 超过50％的推力只能获得Q_TILT_MAX。
+    	// 在完成过渡之前，我们将倾转角限制为Q_TILT_MAX。 超过50％的推力只能获得Q_TILT_MAX。
     	// 低于50％的油门，我们会线性下降。 这依赖于正确设置Q_VFWD_GAIN。
         float settilt = constrain_float(SRV_Channels::get_output_scaled(SRV_Channel::k_throttle) / 50.0f, 0, 1);
         tiltrotor_slew(settilt * tilt.max_angle_deg / 90.0f);
@@ -150,7 +150,7 @@ void QuadPlane::tiltrotor_continuous_update(void)
 
 /*
   output a slew limited tiltrotor angle. tilt is 0 or 1
-  输出一个回转受限的rotorrotor角度。倾斜度为0或1
+  输出一个回转受限的rotorrotor角度。倾转角为0或1
  */
 void QuadPlane::tiltrotor_binary_slew(bool forward)
 {
@@ -271,8 +271,8 @@ void QuadPlane::tilt_compensate_down(float *thrust, uint8_t num_motors)
     // control motor while preventing them trying to do roll and yaw
     // control while angled over. This greatly improves the stability
     // of the last phase of transitions
-    // 当我们经过Q_TILT_MAX时，我们将倾斜的电机绑在一起产生相等的推力。这使它们像一个音高一样
-    // 控制电机，同时防止他们尝试滚动和偏航倾斜时进行控制。这大大提高了转换的最后阶段的稳定性
+    // 当我们经过Q_TILT_MAX时，我们将倾转的电机加在一起产生相等的推力。这使它们像一个俯仰控制电机一样
+    // ，同时防止他们尝试滚动和偏航倾斜时进行控制。这大大提高了转换的最后阶段的稳定性
     float tilt_threshold = (tilt.max_angle_deg/90.0f);
     bool equal_thrust = (tilt.current_tilt > tilt_threshold);
 
@@ -329,8 +329,8 @@ void QuadPlane::tilt_compensate_up(float *thrust, uint8_t num_motors)
     // control motor while preventing them trying to do roll and yaw
     // control while angled over. This greatly improves the stability
     // of the last phase of transitions
-    // 当我们经过Q_TILT_MAX时，我们将倾斜的电机绑在一起产生相等的推力。这使它们像一个音高一样
-    // 控制电机，同时防止他们尝试滚动和偏航倾斜时进行控制。这大大提高了转换的最后阶段的稳定性
+    // 当我们经过Q_TILT_MAX时，我们将倾转的电机加在一起产生相等的推力。这使它们像一个俯仰控制电机一样
+    // ，同时防止他们尝试滚动和偏航倾斜时进行控制。这大大提高了转换的最后阶段的稳定性
     float tilt_threshold = (tilt.max_angle_deg/90.0f);
     bool equal_thrust = (tilt.current_tilt > tilt_threshold);
 
@@ -363,7 +363,7 @@ void QuadPlane::tilt_compensate_up(float *thrust, uint8_t num_motors)
   choose up or down tilt compensation based on flight mode When going
   to a fixed wing mode we use tilt_compensate_down, when going to a
   VTOL mode we use tilt_compensate_up
-  根据飞行模式选择向上或向下倾斜补偿到固定机翼模式时，我们使用VTOL模式，我们使用tilt_compensate_up
+  根据飞行模式选择向上或向下倾斜补偿到固定机翼模式时，我们使用VTOL模式，我们使用tilt_compensate_up向上倾转补偿
  */
 void QuadPlane::tilt_compensate(float *thrust, uint8_t num_motors)
 {
