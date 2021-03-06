@@ -298,7 +298,7 @@
 // that channel where we reset the control mode to the current switch
 // position (to for example return to switched mode after failsafe or
 // fence breach)
-// 如果RESET_SWITCH_CH不为零，则这是该通道上的PWM值，我们在该通道上将控制模式重置为当前开关位置（例如，在发生故障安全或栅栏破坏后返回到开关模式）
+// 如果RESET_SWITCH_CH不为零，则这是该通道上的PWM值，我们在该通道上将控制模式重置为当前开关位置（例如，在发生故障保护或栅栏破坏后返回到开关模式）
 #ifndef RESET_SWITCH_CHAN_PWM
  # define RESET_SWITCH_CHAN_PWM 1750
 #endif
