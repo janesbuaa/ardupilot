@@ -14,7 +14,7 @@
 
 /*
   QuadPlane specific functionality
-  特定功能
+  多旋翼固定翼特定功能
  */
 class QuadPlane
 {
