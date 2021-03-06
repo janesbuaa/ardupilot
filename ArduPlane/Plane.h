@@ -35,8 +35,7 @@
 #include <StorageManager/StorageManager.h>
 #include <AP_Math/AP_Math.h>        // ArduPilot Mega Vector/Matrix math Library数学库
 #include <AP_InertialSensor/AP_InertialSensor.h> // Inertial Sensor Library惯性传感器库
-#include <AP_AccelCal/AP_AccelCal.h>                // interface and maths for accelerometer calibration
-// 加速度计校准的界面和数学
+#include <AP_AccelCal/AP_AccelCal.h>                // interface and maths for accelerometer calibration 加速度计校准的界面和数学
 #include <AP_AHRS/AP_AHRS.h>         // ArduPilot Mega DCM Library
 #include <SRV_Channel/SRV_Channel.h>
 #include <AP_RangeFinder/AP_RangeFinder.h>     // Range finder library范围查找器库
@@ -246,6 +245,7 @@ private:
     } steering_control;
 
     // should throttle be pass-thru in guided?油门应该在引导下通过吗？
+    bool guided_throttle_passthru;
 
     // are we doing calibration? This is used to allow heartbeat to
     // external failsafe boards during baro and airspeed calibration
