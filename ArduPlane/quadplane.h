@@ -72,7 +72,7 @@ public:
     }
 
     // is quadplane assisting?
-    // 四翼飞机辅助吗？
+    // 四旋翼辅助吗？
     bool in_assisted_flight(void) const {
         return available() && assisted_flight;
     }
@@ -414,7 +414,7 @@ private:
     float last_throttle;
 
     // pitch when we enter loiter mode
-    // 进入悬停模式时的俯仰
+    // 进入盘旋模式时的俯仰
     int32_t loiter_initial_pitch_cd;
 
     // when did we last run the attitude controller?
@@ -456,7 +456,7 @@ private:
     } landing_detect;
 
     // time we last set the loiter target
-    //我们上次设定悬停目标的时间
+    //我们上次设定盘旋目标的时间
     uint32_t last_loiter_ms;
 
     enum position_control_state {
