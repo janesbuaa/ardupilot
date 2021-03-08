@@ -3,7 +3,7 @@
 /*
   control code for tiltrotors and tiltwings. Enabled by setting
   Q_TILT_MASK to a non-zero value
-  倾转旋翼和俯仰机翼的控制代码。 通过将Q_TILT_MASK设置为非零值来启用
+  倾转旋翼和倾转机翼的控制代码。 通过将Q_TILT_MASK设置为非零值来启用
  */
 
 
@@ -318,7 +318,7 @@ void QuadPlane::tilt_compensate_down(float *thrust, uint8_t num_motors)
 
 /*
   tilt compensation when transitioning to VTOL flight
-  过渡到VTOL飞行时的倾斜补偿
+  过渡到VTOL飞行时的倾转补偿
  */
 void QuadPlane::tilt_compensate_up(float *thrust, uint8_t num_motors)
 {
@@ -363,7 +363,7 @@ void QuadPlane::tilt_compensate_up(float *thrust, uint8_t num_motors)
   choose up or down tilt compensation based on flight mode When going
   to a fixed wing mode we use tilt_compensate_down, when going to a
   VTOL mode we use tilt_compensate_up
-  根据飞行模式选择向上或向下倾斜补偿到固定机翼模式时，我们使用VTOL模式，我们使用tilt_compensate_up向上倾转补偿
+  根据飞行模式选择向上或向下倾转补偿固定机翼模式时，我们使用VTOL模式，我们使用tilt_compensate_up向上倾转补偿
  */
 void QuadPlane::tilt_compensate(float *thrust, uint8_t num_motors)
 {
