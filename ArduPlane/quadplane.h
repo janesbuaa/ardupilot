@@ -497,24 +497,24 @@ private:
     uint32_t last_qtun_log_ms;
 
     // types of tilt mechanisms
-    //倾斜机制的类型
-    enum {TILT_TYPE_CONTINUOUS    =0,
-          TILT_TYPE_BINARY        =1,
-          TILT_TYPE_VECTORED_YAW  =2,
-          TILT_TYPE_BICOPTER      =3
+    //倾转类型
+    enum {TILT_TYPE_CONTINUOUS    =0,	//连续可控的
+          TILT_TYPE_BINARY        =1,	//两档的
+          TILT_TYPE_VECTORED_YAW  =2,	//矢量的
+          TILT_TYPE_BICOPTER      =3	//双旋翼
     };
 
     // tiltrotor control variables
     //倾转旋翼控制变量
     struct {
-        AP_Int16 tilt_mask;
-        AP_Int16 max_rate_up_dps;
-        AP_Int16 max_rate_down_dps;
-        AP_Int8  max_angle_deg;
-        AP_Int8  tilt_type;
-        AP_Float tilt_yaw_angle;
-        float current_tilt;
-        float current_throttle;
+        AP_Int16 tilt_mask;				//倾转电机编码，二进制
+        AP_Int16 max_rate_up_dps;		//向上倾转速率
+        AP_Int16 max_rate_down_dps;		//向下倾转速率
+        AP_Int8  max_angle_deg;			//最大角度
+        AP_Int8  tilt_type;				//倾转类型
+        AP_Float tilt_yaw_angle;		//倾转偏航角
+        float current_tilt;				//当前倾角
+        float current_throttle;			//当前油门
         bool motors_active:1;
     } tilt;
 
@@ -635,7 +635,7 @@ private:
 
     /*
       are we in the descent phase of a VTOL landing?
-      我们是否处于VTOL降落的下降阶段？
+      我们是否处于VTOL着陆的下降阶段？
      */
     bool in_vtol_land_descent(void) const;
 
