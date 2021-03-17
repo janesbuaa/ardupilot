@@ -364,6 +364,7 @@ void Plane::stabilize()
 {
     if (control_mode == &mode_manual) {
         // reset steering controls
+    	// 重置转向控制
         steer_state.locked_course = false;
         steer_state.locked_course_err = 0;
         return;
@@ -374,6 +375,7 @@ void Plane::stabilize()
         /*
           during transition to vtol in a tailsitter try to raise the
           nose rapidly while keeping the wings level
+          在尾坐飞机过渡到vtol的过程中，尝试快速抬起鼻子，同时保持机翼水平
          */
         nav_pitch_cd = constrain_float((quadplane.tailsitter.transition_angle+5)*100, 5500, 8500),
         nav_roll_cd = 0;
@@ -383,11 +385,13 @@ void Plane::stabilize()
     if (now - last_stabilize_ms > 2000) {
         // if we haven't run the rate controllers for 2 seconds then
         // reset the integrators
+    	// 如果我们没有运行速率控制器2秒钟，则重置积分器
         rollController.reset_I();
         pitchController.reset_I();
         yawController.reset_I();
 
         // and reset steering controls
+        // 并重置转向控制
         steer_state.locked_course = false;
         steer_state.locked_course_err = 0;
     }
@@ -420,6 +424,7 @@ void Plane::stabilize()
 
     /*
       see if we should zero the attitude controller integrators. 
+      看看我们是否应该将姿态控制器积分器归零。
      */
     if (get_throttle_input() == 0 &&
         fabsf(relative_altitude) < 5.0f && 
@@ -428,11 +433,13 @@ void Plane::stabilize()
         // we are low, with no climb rate, and zero throttle, and very
         // low ground speed. Zero the attitude controller
         // integrators. This prevents integrator buildup pre-takeoff.
+    	// 我们很低，没有爬升率，油门为零，地速很低。 调零姿态控制器积分器。 这样可以防止起飞准备时积分器积聚。
         rollController.reset_I();
         pitchController.reset_I();
         yawController.reset_I();
 
         // if moving very slowly also zero the steering integrator
+        // 如果运动非常缓慢，转向积分器也将归零
         if (gps.ground_speed() < 1) {
             steerController.reset_I();            
         }
@@ -446,6 +453,7 @@ void Plane::calc_throttle()
         // user has asked for zero throttle - this may be done by a
         // mission which wants to turn off the engine for a parachute
         // landing
+    	// 用户要求节气门为零-可以通过执行任务来关闭发动机以降落伞降落
         SRV_Channels::set_output_scaled(SRV_Channel::k_throttle, 0);
         return;
     }
@@ -453,6 +461,7 @@ void Plane::calc_throttle()
     int32_t commanded_throttle = SpdHgt_Controller->get_throttle_demand();
 
     // Received an external msg that guides throttle in the last 3 seconds?
+    // 在最近3秒钟内收到了引导油门的外部消息？
     if ((control_mode == &mode_guided || control_mode == &mode_avoidADSB) &&
             plane.guided_state.last_forced_throttle_ms > 0 &&
             millis() - plane.guided_state.last_forced_throttle_ms < 3000) {
@@ -464,10 +473,12 @@ void Plane::calc_throttle()
 
 /*****************************************
 * Calculate desired roll/pitch/yaw angles (in medium freq loop)
+* 计算所需的侧倾/俯仰/偏航角（在中等频率循环中）
 *****************************************/
 
 /*
   calculate yaw control for coordinated flight
+  计算协调飞行的偏航控制
  */
 void Plane::calc_nav_yaw_coordinated(float speed_scaler)
 {
@@ -477,6 +488,7 @@ void Plane::calc_nav_yaw_coordinated(float speed_scaler)
     int16_t commanded_rudder;
 
     // Received an external msg that guides yaw in the last 3 seconds?
+    // 在最近3秒钟内收到了指导偏航的外部消息？
     if ((control_mode == &mode_guided || control_mode == &mode_avoidADSB) &&
             plane.guided_state.last_forced_rpy_ms.z > 0 &&
             millis() - plane.guided_state.last_forced_rpy_ms.z < 3000) {
@@ -489,6 +501,7 @@ void Plane::calc_nav_yaw_coordinated(float speed_scaler)
         commanded_rudder = yawController.get_servo_out(speed_scaler, disable_integrator);
 
         // add in rudder mixing from roll
+        // 从滚转中加入方向舵混合
         commanded_rudder += SRV_Channels::get_output_scaled(SRV_Channel::k_aileron) * g.kff_rudder_mix;
         commanded_rudder += rudder_in;
     }
@@ -498,11 +511,13 @@ void Plane::calc_nav_yaw_coordinated(float speed_scaler)
 
 /*
   calculate yaw control for ground steering with specific course
+  计算特定路线的地面转向的偏航控制
  */
 void Plane::calc_nav_yaw_course(void)
 {
     // holding a specific navigation course on the ground. Used in
     // auto-takeoff and landing
+	// 在地面上举行特定的导航路线。 用于自动起降
     int32_t bearing_error_cd = nav_controller->bearing_error_cd();
     steering_control.steering = steerController.get_steering_out_angle_error(bearing_error_cd);
     if (stick_mixing_enabled()) {
@@ -513,6 +528,7 @@ void Plane::calc_nav_yaw_course(void)
 
 /*
   calculate yaw control for ground steering
+  计算地面转向的偏航控制
  */
 void Plane::calc_nav_yaw_ground(void)
 {
@@ -521,6 +537,7 @@ void Plane::calc_nav_yaw_ground(void)
         flight_stage != AP_Vehicle::FixedWing::FLIGHT_TAKEOFF &&
         flight_stage != AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND) {
         // manual rudder control while still
+    	// 静止时手动操纵方向舵
         steer_state.locked_course = false;
         steer_state.locked_course_err = 0;
         steering_control.steering = rudder_input();
@@ -534,9 +551,11 @@ void Plane::calc_nav_yaw_ground(void)
     }
     if (!is_zero(steer_rate)) {
         // pilot is giving rudder input
+    	// 飞行员正在控制方向舵
         steer_state.locked_course = false;        
     } else if (!steer_state.locked_course) {
         // pilot has released the rudder stick or we are still - lock the course
+    	// 飞行员已经释放了方向舵杆，或者我们仍在-锁定航线
         steer_state.locked_course = true;
         if (flight_stage != AP_Vehicle::FixedWing::FLIGHT_TAKEOFF &&
             flight_stage != AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND) {
@@ -545,9 +564,11 @@ void Plane::calc_nav_yaw_ground(void)
     }
     if (!steer_state.locked_course) {
         // use a rate controller at the pilot specified rate
+    	// 以飞行员指定的速率使用速率控制器
         steering_control.steering = steerController.get_steering_out_rate(steer_rate);
     } else {
         // use a error controller on the summed error
+    	// 对偏差总和使用偏差控制器
         int32_t yaw_error_cd = -ToDeg(steer_state.locked_course_err)*100;
         steering_control.steering = steerController.get_steering_out_angle_error(yaw_error_cd);
     }
@@ -557,14 +578,17 @@ void Plane::calc_nav_yaw_ground(void)
 
 /*
   calculate a new nav_pitch_cd from the speed height controller
+  从速度高度控制器计算一个新的nav_pitch_cd
  */
 void Plane::calc_nav_pitch()
 {
     // Calculate the Pitch of the plane
+	// 计算飞机的俯仰
     // --------------------------------
     int32_t commanded_pitch = SpdHgt_Controller->get_pitch_demand();
 
     // Received an external msg that guides roll in the last 3 seconds?
+    // 在最近3秒钟内收到了引导滚转的外部指令？
     if ((control_mode == &mode_guided || control_mode == &mode_avoidADSB) &&
             plane.guided_state.last_forced_rpy_ms.y > 0 &&
             millis() - plane.guided_state.last_forced_rpy_ms.y < 3000) {
@@ -577,12 +601,14 @@ void Plane::calc_nav_pitch()
 
 /*
   calculate a new nav_roll_cd from the navigation controller
+  从导航控制器计算一个新的nav_roll_cd
  */
 void Plane::calc_nav_roll()
 {
     int32_t commanded_roll = nav_controller->nav_roll_cd();
 
     // Received an external msg that guides roll in the last 3 seconds?
+    // 在最近3秒钟内收到了引导滚转的外部指令？
     if ((control_mode == &mode_guided || control_mode == &mode_avoidADSB) &&
             plane.guided_state.last_forced_rpy_ms.x > 0 &&
             millis() - plane.guided_state.last_forced_rpy_ms.x < 3000) {
@@ -598,6 +624,8 @@ void Plane::calc_nav_roll()
   keeping up good airspeed in FBWA mode easier, as the plane will
   automatically pitch down a little when at low throttle. It makes
   FBWA landings without stalling much easier.
+  为STAB_PITCH_DOWN_CD调整nav_pitch_cd。 这用于使在FBWA模式下保持良好的空速更加容易，
+  因为在低油门时飞机会自动俯仰一点。 它使FBWA着陆而不会停顿变得更加容易。
  */
 void Plane::adjust_nav_pitch_throttle(void)
 {
@@ -613,6 +641,7 @@ void Plane::adjust_nav_pitch_throttle(void)
   calculate a new aerodynamic_load_factor and limit nav_roll_cd to
   ensure that the load factor does not take us below the sustainable
   airspeed
+  计算一个新的Aerodynamic_load_factor并限制nav_roll_cd，以确保负载系数不会使我们低于可持续的空速
  */
 void Plane::update_load_factor(void)
 {
@@ -626,6 +655,7 @@ void Plane::update_load_factor(void)
     if (quadplane.in_transition() &&
         (quadplane.options & QuadPlane::OPTION_LEVEL_TRANSITION)) {
         // the user wants transitions to be kept level to within LEVEL_ROLL_LIMIT
+    	// 用户希望将过渡保持在LEVEL_ROLL_LIMIT之内
         roll_limit_cd = MIN(roll_limit_cd, g.level_roll_limit*100);
         nav_roll_cd = constrain_int32(nav_roll_cd, -roll_limit_cd, roll_limit_cd);
         return;
@@ -633,14 +663,17 @@ void Plane::update_load_factor(void)
     
     if (!aparm.stall_prevention) {
         // stall prevention is disabled
+    	// 失速保护已经关闭
         return;
     }
     if (fly_inverted()) {
         // no roll limits when inverted
+    	// 倒飞时没有滚转限制
         return;
     }
     if (quadplane.tailsitter_active()) {
         // no limits while hovering
+    	// 盘旋时没有限制
         return;
     }
        
@@ -649,6 +682,7 @@ void Plane::update_load_factor(void)
     if (max_load_factor <= 1) {
         // our airspeed is below the minimum airspeed. Limit roll to
         // 25 degrees
+    	// 我们的空速低于最小空速。 将滚转限制到25度
         nav_roll_cd = constrain_int32(nav_roll_cd, -2500, 2500);
         roll_limit_cd = MIN(roll_limit_cd, 2500);
     } else if (max_load_factor < aerodynamic_load_factor) {
@@ -658,6 +692,8 @@ void Plane::update_load_factor(void)
         // allow at least 25 degrees of roll however, to ensure the
         // aircraft can be maneuvered with a bad airspeed estimate. At
         // 25 degrees the load factor is 1.1 (10%)
+    	// 所需的nav_roll将使我们超过极限载荷。 将滚转限制在一定的倾斜角度，以使负载保持在机身可以承受的范围内。
+    	// 但是，我们始终至少允许25度的侧倾，以确保飞机可以在空速估算不佳的情况下进行操作。 在25度时，过载系数为1.1（10％）
         int32_t roll_limit = degrees(acosf(sq(1.0f / max_load_factor)))*100;
         if (roll_limit < 2500) {
             roll_limit = 2500;
