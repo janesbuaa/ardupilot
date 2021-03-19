@@ -5,7 +5,7 @@
 *   The init_ardupilot function processes everything we need for an in - air restart
 *        We will determine later if we are actually on the ground and process a
 *        ground start in that case.
-*        init_ardupilotå‡½æ•°å¤„ç†ç©ºä¸­é‡å¯æ‰€éœ€çš„ä¸€åˆ‡ï¼Œæˆ‘ä»¬ç¨åŽå°†ç¡®å®šæˆ‘ä»¬æ˜¯å¦çœŸæ­£åœ¨åœ°é¢ä¸Šå¹¶åœ¨è¿™ç§æƒ…å†µä¸‹è¿›è¡Œåœ°é¢å¯åŠ¨ã€‚
+*        init_ardupilotº¯Êý´¦Àí¿ÕÖÐÖØÆôËùÐèµÄÒ»ÇÐ£¬ÎÒÃÇÉÔºó½«È·¶¨ÎÒÃÇÊÇ·ñÕæÕýÔÚµØÃæÉÏ²¢ÔÚÕâÖÖÇé¿öÏÂ½øÐÐµØÃæÆô¶¯¡£
 *
 *****************************************************************************/
 
@@ -22,7 +22,7 @@ static void failsafe_check_static()
 void Plane::init_ardupilot()
 {
     // initialise serial port
-    // åˆå§‹åŒ–ä¸²å£
+    // ³õÊ¼»¯´®¿Ú
     serial_manager.init_console();
 
     hal.console->printf("\n\nInit %s"
@@ -32,19 +32,19 @@ void Plane::init_ardupilot()
 
     //
     // Check the EEPROM format version before loading any parameters from EEPROM
-    // ä»ŽEEPROMåŠ è½½ä»»ä½•å‚æ•°ä¹‹å‰ï¼Œè¯·æ£€æŸ¥EEPROMæ ¼å¼ç‰ˆæœ¬
+    // ´ÓEEPROM¼ÓÔØÈÎºÎ²ÎÊýÖ®Ç°£¬Çë¼ì²éEEPROM¸ñÊ½°æ±¾
     load_parameters();
 
 #if STATS_ENABLED == ENABLED
     // initialise stats module
-    // åˆå§‹åŒ–ç»Ÿè®¡æ¨¡å—
+    // ³õÊ¼»¯Í³¼ÆÄ£¿é
     g2.stats.init();
 #endif
 
 #if HIL_SUPPORT
     if (g.hil_mode == 1) {
         // set sensors to HIL mode
-        // å°†ä¼ æ„Ÿå™¨è®¾ç½®ä¸ºHILæ¨¡å¼
+        // ½«´«¸ÐÆ÷ÉèÖÃÎªHILÄ£Ê½
         ins.set_hil_mode();
         compass.set_hil_mode();
         barometer.set_hil_mode();
@@ -63,24 +63,24 @@ void Plane::init_ardupilot()
 
     // Register mavlink_delay_cb, which will run anytime you have
     // more than 5ms remaining in your call to hal.scheduler->delay
-    // æ³¨å†Œmavlink_delay_cbï¼Œå®ƒå°†åœ¨æ‚¨å¯¹hal.scheduler-> delayçš„è°ƒç”¨ä¸­å‰©ä½™è¶…è¿‡5æ¯«ç§’çš„ä»»ä½•æ—¶é—´è¿è¡Œ
+    // ×¢²ámavlink_delay_cb£¬Ëü½«ÔÚÄú¶Ôhal.scheduler-> delayµÄµ÷ÓÃÖÐÊ£Óà³¬¹ý5ºÁÃëµÄÈÎºÎÊ±¼äÔËÐÐ
     hal.scheduler->register_delay_callback(mavlink_delay_cb_static, 5);
 
     // setup any board specific drivers
-    // è®¾ç½®ä»»ä½•ä¸»æ¿ä¸“ç”¨çš„é©±åŠ¨ç¨‹åº
+    // ÉèÖÃÈÎºÎÖ÷°å×¨ÓÃµÄÇý¶¯³ÌÐò
     BoardConfig.init();
 #if HAL_WITH_UAVCAN
     BoardConfig_CAN.init();
 #endif
 
     // initialise rc channels including setting mode
-    // åˆå§‹åŒ–é¥æŽ§å™¨é€šé“ï¼ŒåŒ…æ‹¬è®¾ç½®æ¨¡å¼
+    // ³õÊ¼»¯Ò£¿ØÆ÷Í¨µÀ£¬°üÀ¨ÉèÖÃÄ£Ê½
     rc().init();
 
     relay.init();
 
     // initialise notify system
-    // åˆå§‹åŒ–é€šçŸ¥ç³»ç»Ÿ
+    // ³õÊ¼»¯Í¨ÖªÏµÍ³
     notify.init();
     notify_mode(*control_mode);
 
@@ -88,26 +88,26 @@ void Plane::init_ardupilot()
     
     // keep a record of how many resets have happened. This can be
     // used to detect in-flight resets
-    // è®°å½•å‘ç”Ÿäº†å¤šå°‘æ¬¡é‡ç½®ã€‚ è¿™å¯ç”¨äºŽæ£€æµ‹é£žè¡Œä¸­çš„é‡ç½®
+    // ¼ÇÂ¼·¢ÉúÁË¶àÉÙ´ÎÖØÖÃ¡£ Õâ¿ÉÓÃÓÚ¼ì²â·ÉÐÐÖÐµÄÖØÖÃ
     g.num_resets.set_and_save(g.num_resets+1);
 
     // init baro
-    // åˆå§‹æ°”åŽ‹è®¡
+    // ³õÊ¼ÆøÑ¹¼Æ
     barometer.init();
 
     // initialise rangefinder
-    // åˆå§‹åŒ–æµ‹è·ä»ª
+    // ³õÊ¼»¯²â¾àÒÇ
     rangefinder.set_log_rfnd_bit(MASK_LOG_SONAR);
     rangefinder.init(ROTATION_PITCH_270);
 
     // initialise battery monitoring
-    // åˆå§‹åŒ–ç”µæ± ç›‘æŽ§
+    // ³õÊ¼»¯µç³Ø¼à¿Ø
     battery.init();
 
     rpm_sensor.init();
 
     // setup telem slots with serial ports
-    // ä½¿ç”¨ä¸²å£è®¾ç½®æ•°ä¼ 
+    // Ê¹ÓÃ´®¿ÚÉèÖÃÊý´«
     gcs().setup_uarts();
 
 #if OSD_ENABLED == ENABLED
@@ -119,7 +119,7 @@ void Plane::init_ardupilot()
 #endif
 
     // initialise airspeed sensor
-    // åˆå§‹åŒ–ç©ºé€Ÿä¼ æ„Ÿå™¨
+    // ³õÊ¼»¯¿ÕËÙ´«¸ÐÆ÷
     airspeed.init();
 
     AP::compass().set_log_bit(MASK_LOG_COMPASS);
@@ -127,32 +127,32 @@ void Plane::init_ardupilot()
 
 #if OPTFLOW == ENABLED
     // make optflow available to libraries
-    // ä½¿å…‰æµå¯åšåº“è°ƒç”¨
+    // Ê¹¹âÁ÷¿É×ö¿âµ÷ÓÃ
     if (optflow.enabled()) {
         ahrs.set_optflow(&optflow);
     }
 #endif
 
     // give AHRS the airspeed sensor
-    // ç»™AHRSç©ºé€Ÿä¼ æ„Ÿå™¨
+    // ¸øAHRS¿ÕËÙ´«¸ÐÆ÷
     ahrs.set_airspeed(&airspeed);
 
     // GPS Initialization
-    // GPSåˆå§‹åŒ–
+    // GPS³õÊ¼»¯
     gps.set_log_gps_bit(MASK_LOG_GPS);
     gps.init(serial_manager);
 
-    init_rc_in();               // sets up rc channels from radio    ä»Žæ— çº¿ç”µè®¾ç½®é¥æŽ§é¢‘é“
+    init_rc_in();               // sets up rc channels from radio    ´ÓÎÞÏßµçÉèÖÃÒ£¿ØÆµµÀ
 
 #if MOUNT == ENABLED
     // initialise camera mount
-    // åˆå§‹åŒ–ç›¸æœºæ”¯æž¶
+    // ³õÊ¼»¯Ïà»úÖ§¼Ü
     camera_mount.init();
 #endif
 
 #if LANDING_GEAR_ENABLED == ENABLED
     // initialise landing gear position
-    // åˆå§‹åŒ–èµ·è½æž¶ä½ç½®
+    // ³õÊ¼»¯ÆðÂä¼ÜÎ»ÖÃ
     g2.landing_gear.init();
 #endif
 
@@ -164,7 +164,7 @@ void Plane::init_ardupilot()
     /*
      *  setup the 'main loop is dead' check. Note that this relies on
      *  the RC library being initialised.
-     *  è®¾ç½®â€œä¸»å¾ªçŽ¯å·²æ­»â€æ£€æŸ¥ã€‚ è¯·æ³¨æ„ï¼Œè¿™ä¾èµ–äºŽæ­£åœ¨åˆå§‹åŒ–çš„RCåº“ã€‚
+     *  ÉèÖÃ¡°Ö÷Ñ­»·ÒÑËÀ¡±¼ì²é¡£ Çë×¢Òâ£¬ÕâÒÀÀµÓÚÕýÔÚ³õÊ¼»¯µÄRC¿â¡£
      */
     hal.scheduler->register_timer_failsafe(failsafe_check_static, 1000);
 
@@ -176,22 +176,22 @@ void Plane::init_ardupilot()
 
     // don't initialise aux rc output until after quadplane is setup as
     // that can change initial values of channels
-    // åœ¨è®¾ç½®é£žæœºåŽï¼Œæ‰åˆå§‹åŒ–è¾…åŠ©é¥æŽ§å™¨è¾“å‡ºï¼Œå› ä¸ºé‚£æ ·ä¼šæ”¹å˜é€šé“çš„åˆå§‹å€¼
+    // ÔÚÉèÖÃ·É»úºó£¬²Å³õÊ¼»¯¸¨ÖúÒ£¿ØÆ÷Êä³ö£¬ÒòÎªÄÇÑù»á¸Ä±äÍ¨µÀµÄ³õÊ¼Öµ
     init_rc_out_aux();
     
     // choose the nav controller
-    // é€‰æ‹©å¯¼èˆªæŽ§åˆ¶å™¨
+    // Ñ¡Ôñµ¼º½¿ØÖÆÆ÷
     set_nav_controller();
 
     set_mode_by_number((enum Mode::Number)g.initial_mode.get(), ModeReason::UNKNOWN);
 
     // set the correct flight mode
-    // è®¾ç½®æ­£ç¡®çš„é£žè¡Œæ¨¡å¼
+    // ÉèÖÃÕýÈ·µÄ·ÉÐÐÄ£Ê½
     // ---------------------------
     reset_control_switch();
 
     // initialise sensor
-    // åˆå§‹åŒ–ä¼ æ„Ÿå™¨
+    // ³õÊ¼»¯´«¸ÐÆ÷
 #if OPTFLOW == ENABLED
     if (optflow.enabled()) {
         optflow.init(-1);
@@ -199,17 +199,17 @@ void Plane::init_ardupilot()
 #endif
 
 // init cargo gripper
-// åˆå§‹è´§ç‰©å¤¹çˆª
+// ³õÊ¼»õÎï¼Ð×¦
 #if GRIPPER_ENABLED == ENABLED
     g2.gripper.init();
 #endif
 
     // call AP_Vehicle setup code
-    // è‡´ç”µAPè½¦è¾†è®¾ç½®ä»£ç 
+    // ÖÂµçAP³µÁ¾ÉèÖÃ´úÂë
     vehicle_setup();
 
     // disable safety if requested
-    // æ ¹æ®è¦æ±‚ç¦ç”¨å®‰å…¨æ€§
+    // ¸ù¾ÝÒªÇó½ûÓÃ°²È«ÐÔ
     BoardConfig.init_safety();
 
 #if AP_PARAM_KEY_DUMP
@@ -219,7 +219,7 @@ void Plane::init_ardupilot()
 
 //********************************************************************************
 //This function does all the calibrations, etc. that we need during a ground start
-//æ­¤åŠŸèƒ½å¯è¿›è¡Œåœ°é¢å¯åŠ¨è¿‡ç¨‹ä¸­éœ€è¦çš„æ‰€æœ‰æ ¡å‡†ç­‰å·¥ä½œã€‚
+//´Ë¹¦ÄÜ¿É½øÐÐµØÃæÆô¶¯¹ý³ÌÖÐÐèÒªµÄËùÓÐÐ£×¼µÈ¹¤×÷¡£
 //********************************************************************************
 void Plane::startup_ground(void)
 {
@@ -233,13 +233,13 @@ void Plane::startup_ground(void)
 #endif
 
     //INS ground start
-    //INSåœ°é¢å¯åŠ¨
+    //INSµØÃæÆô¶¯
     //------------------------
     //
     startup_INS_ground();
 
     // Save the settings for in-air restart
-    // ä¿å­˜è®¾ç½®ä»¥è¿›è¡Œç©ºä¸­é‡å¯
+    // ±£´æÉèÖÃÒÔ½øÐÐ¿ÕÖÐÖØÆô
     // ------------------------------------
     //save_EEPROM_groundstart();
 
@@ -247,7 +247,7 @@ void Plane::startup_ground(void)
     mission.init();
 
     // initialise AP_Logger library
-    // åˆå§‹åŒ–ä»»åŠ¡åº“
+    // ³õÊ¼»¯ÈÎÎñ¿â
 #if LOGGING_ENABLED == ENABLED
     logger.setVehicle_Startup_Writer(
         FUNCTOR_BIND(&plane, &Plane::Log_Write_Vehicle_Startup_Messages, void)
@@ -260,13 +260,13 @@ void Plane::startup_ground(void)
 
     // reset last heartbeat time, so we don't trigger failsafe on slow
     // startup
-    // é‡ç½®ä¸Šä¸€ä¸ªå¿ƒè·³æ—¶é—´ï¼Œæ‰€ä»¥åœ¨å¯åŠ¨ç¼“æ…¢æ—¶æˆ‘ä»¬ä¸ä¼šè§¦å‘æ•…éšœä¿æŠ¤
+    // ÖØÖÃÉÏÒ»¸öÐÄÌøÊ±¼ä£¬ËùÒÔÔÚÆô¶¯»ºÂýÊ±ÎÒÃÇ²»»á´¥·¢¹ÊÕÏ±£»¤
     failsafe.last_heartbeat_ms = millis();
 
     // we don't want writes to the serial port to cause us to pause
     // mid-flight, so set the serial ports non-blocking once we are
     // ready to fly
-    // æˆ‘ä»¬ä¸æƒ³å†™å…¥ä¸²å£ä»¥ä½¿æˆ‘ä»¬åœ¨é£žè¡Œä¸­æš‚åœï¼Œå› æ­¤è¯·åœ¨å‡†å¤‡å¥½é£žè¡ŒåŽå°†ä¸²è¡Œç«¯å£è®¾ç½®ä¸ºéžé˜»å¡ž
+    // ÎÒÃÇ²»ÏëÐ´Èë´®¿ÚÒÔÊ¹ÎÒÃÇÔÚ·ÉÐÐÖÐÔÝÍ££¬Òò´ËÇëÔÚ×¼±¸ºÃ·ÉÐÐºó½«´®ÐÐ¶Ë¿ÚÉèÖÃÎª·Ç×èÈû
     serial_manager.set_blocking_writes_all(false);
 
     gcs().send_text(MAV_SEVERITY_INFO,"Ground start complete");
@@ -277,7 +277,7 @@ bool Plane::set_mode(Mode &new_mode, const ModeReason reason)
 {
     if (control_mode == &new_mode) {
         // don't switch modes if we are already in the correct mode.
-        // å¦‚æžœæˆ‘ä»¬å·²ç»å¤„äºŽæ­£ç¡®çš„æ¨¡å¼ï¼Œè¯·ä¸è¦åˆ‡æ¢æ¨¡å¼ã€‚
+        // Èç¹ûÎÒÃÇÒÑ¾­´¦ÓÚÕýÈ·µÄÄ£Ê½£¬Çë²»ÒªÇÐ»»Ä£Ê½¡£
         return true;
     }
 
@@ -290,29 +290,29 @@ bool Plane::set_mode(Mode &new_mode, const ModeReason reason)
 #endif
 
     // backup current control_mode and previous_mode
-    // å¤‡ä»½å½“å‰æŽ§åˆ¶æ¨¡å¼å’Œå…ˆå‰æ¨¡å¼
+    // ±¸·Ýµ±Ç°¿ØÖÆÄ£Ê½ºÍÏÈÇ°Ä£Ê½
     Mode &old_previous_mode = *previous_mode;
     Mode &old_mode = *control_mode;
     const ModeReason previous_mode_reason_backup = previous_mode_reason;
 
     // update control_mode assuming success
-    // å‡è®¾æˆåŠŸæ›´æ–°æŽ§åˆ¶æ¨¡å¼
+    // ¼ÙÉè³É¹¦¸üÐÂ¿ØÖÆÄ£Ê½
     // TODO: move these to be after enter() once start_command_callback() no longer checks control_mode
-    // ä¸€æ—¦start_command_callbackï¼ˆï¼‰ä¸å†æ£€æŸ¥æŽ§åˆ¶æ¨¡å¼ï¼Œè¯·å°†å®ƒä»¬ç§»åˆ°enterï¼ˆï¼‰ä¹‹åŽ
+    // Ò»µ©start_command_callback£¨£©²»ÔÙ¼ì²é¿ØÖÆÄ£Ê½£¬Çë½«ËüÃÇÒÆµ½enter£¨£©Ö®ºó
     previous_mode = control_mode;
     control_mode = &new_mode;
     previous_mode_reason = control_mode_reason;
     control_mode_reason = reason;
 
     // attempt to enter new mode
-    // å°è¯•è¿›å…¥æ–°æ¨¡å¼
+    // ³¢ÊÔ½øÈëÐÂÄ£Ê½
     if (!new_mode.enter()) {
         // Log error that we failed to enter desired flight mode
-        // è®°å½•æˆ‘ä»¬æœªèƒ½è¿›å…¥æ‰€éœ€é£žè¡Œæ¨¡å¼çš„é”™è¯¯
+        // ¼ÇÂ¼ÎÒÃÇÎ´ÄÜ½øÈëËùÐè·ÉÐÐÄ£Ê½µÄ´íÎó
         gcs().send_text(MAV_SEVERITY_WARNING, "Flight mode change failed");
 
         // we failed entering new mode, roll back to old
-        // æˆ‘ä»¬æ— æ³•è¿›å…¥æ–°æ¨¡å¼ï¼Œè¯·å›žæ»šåˆ°æ—§æ¨¡å¼
+        // ÎÒÃÇÎÞ·¨½øÈëÐÂÄ£Ê½£¬Çë»Ø¹öµ½¾ÉÄ£Ê½
         previous_mode = &old_previous_mode;
         control_mode = &old_mode;
 
@@ -321,10 +321,10 @@ bool Plane::set_mode(Mode &new_mode, const ModeReason reason)
 
         // currently, only Q modes can fail enter(). This will likely change in the future and all modes
         // should be changed to check dependencies and fail early before depending on changes in Mode::set_mode()
-        // å½“å‰ï¼Œåªæœ‰Qæ¨¡å¼å¯ä»¥ä½¿enterï¼ˆï¼‰å¤±è´¥ã€‚ å°†æ¥è¿™å¯èƒ½ä¼šæ”¹å˜ï¼Œå¹¶ä¸”åº”æ ¹æ®Mode :: set_modeï¼ˆï¼‰çš„æ›´æ”¹ï¼Œåº”æ›´æ”¹æ‰€æœ‰æ¨¡å¼ä»¥æ£€æŸ¥ä¾èµ–å…³ç³»å¹¶å°½æ—©å¤±è´¥ã€‚
+        // µ±Ç°£¬Ö»ÓÐQÄ£Ê½¿ÉÒÔÊ¹enter£¨£©Ê§°Ü¡£ ½«À´Õâ¿ÉÄÜ»á¸Ä±ä£¬²¢ÇÒÓ¦¸ù¾ÝMode :: set_mode£¨£©µÄ¸ü¸Ä£¬Ó¦¸ü¸ÄËùÓÐÄ£Ê½ÒÔ¼ì²éÒÀÀµ¹ØÏµ²¢¾¡ÔçÊ§°Ü¡£
         if (control_mode->is_vtol_mode()) {
             // ignore result because if we fail we risk looping at the qautotune check above
-            // å¿½ç•¥ç»“æžœï¼Œå› ä¸ºå¦‚æžœå¤±è´¥ï¼Œæˆ‘ä»¬å¯èƒ½ä¼šåœ¨ä¸Šé¢çš„qautotuneæ£€æŸ¥ä¸­å¾ªçŽ¯
+            // ºöÂÔ½á¹û£¬ÒòÎªÈç¹ûÊ§°Ü£¬ÎÒÃÇ¿ÉÄÜ»áÔÚÉÏÃæµÄqautotune¼ì²éÖÐÑ­»·
             control_mode->enter();
         }
         return false;
@@ -332,21 +332,21 @@ bool Plane::set_mode(Mode &new_mode, const ModeReason reason)
 
     if (previous_mode == &mode_autotune) {
         // restore last gains
-        // æ¢å¤æœ€åŽçš„å¢žç›Š
+        // »Ö¸´×îºóµÄÔöÒæ
         autotune_restore();
     }
 
     // exit previous mode
-    // é€€å‡ºä¸Šä¸€ä¸ªæ¨¡å¼
+    // ÍË³öÉÏÒ»¸öÄ£Ê½
     old_mode.exit();
 
     // record reasons
-    // è®°å½•åŽŸå› 
+    // ¼ÇÂ¼Ô­Òò
     previous_mode_reason = control_mode_reason;
     control_mode_reason = reason;
 
     // log and notify mode change
-    // è®°å½•å¹¶é€šçŸ¥æ¨¡å¼æ›´æ”¹
+    // ¼ÇÂ¼²¢Í¨ÖªÄ£Ê½¸ü¸Ä
     logger.Write_Mode(control_mode->mode_number(), control_mode_reason);
     notify_mode(*control_mode);
     gcs().send_message(MSG_HEARTBEAT);

@@ -2,7 +2,7 @@
 
 #include <AP_Motors/AP_Motors.h>
 #include <AC_PID/AC_PID.h>
-#include <AC_AttitudeControl/AC_AttitudeControl_Multi.h> // Attitude control library	å§¿æ€æ§åˆ¶åº“
+#include <AC_AttitudeControl/AC_AttitudeControl_Multi.h> // Attitude control library	×ËÌ¬¿ØÖÆ¿â
 #include <AP_InertialNav/AP_InertialNav.h>
 #include <AC_AttitudeControl/AC_PosControl.h>
 #include <AC_WPNav/AC_WPNav.h>
@@ -14,7 +14,7 @@
 
 /*
   QuadPlane specific functionality
-  å¤šæ—‹ç¿¼å›ºå®šç¿¼ç‰¹å®šåŠŸèƒ½
+  ¶àĞıÒí¹Ì¶¨ÒíÌØ¶¨¹¦ÄÜ
  */
 class QuadPlane
 {
@@ -41,7 +41,7 @@ public:
     QuadPlane(AP_AHRS_NavEKF &_ahrs);
 
     // var_info for holding Parameter information
-    // ç”¨äºä¿å­˜å‚æ•°ä¿¡æ¯çš„var_info
+    // ÓÃÓÚ±£´æ²ÎÊıĞÅÏ¢µÄvar_info
     static const struct AP_Param::GroupInfo var_info[];
     static const struct AP_Param::GroupInfo var_info2[];
 
@@ -58,34 +58,34 @@ public:
     void update_throttle_mix(void);
     
     // update transition handling
-    // æ›´æ–°è¿‡æ¸¡å¤„ç†
+    // ¸üĞÂ¹ı¶É´¦Àí
     void update(void);
 
     // set motor arming
-    // è®¾ç½®ç”µåŠ¨æœºåŠ é”
+    // ÉèÖÃµç¶¯»ú¼ÓËø
     void set_armed(bool armed);
 
     // is VTOL available?
-    // æ˜¯å‚ç›´èµ·é™å¯ç”¨ï¼Ÿ
+    // ÊÇ´¹Ö±Æğ½µ¿ÉÓÃ£¿
     bool available(void) const {
         return initialised;
     }
 
     // is quadplane assisting?
-    // å››æ—‹ç¿¼è¾…åŠ©å—ï¼Ÿ
+    // ËÄĞıÒí¸¨ÖúÂğ£¿
     bool in_assisted_flight(void) const {
         return available() && assisted_flight;
     }
 
     /*
       return true if we are in a transition to fwd flight from hover
-      å¦‚æœæˆ‘ä»¬æ­£åœ¨ä»æ‚¬åœè¿‡æ¸¡åˆ°å‰é£ï¼Œåˆ™è¿”å›true
+      Èç¹ûÎÒÃÇÕıÔÚ´ÓĞüÍ£¹ı¶Éµ½Ç°·É£¬Ôò·µ»Øtrue
     */
     bool in_transition(void) const;
 
     /*
       return true if we are a tailsitter transitioning to VTOL flight
-      å¦‚æœæˆ‘ä»¬æ­£è¿‡æ¸¡åˆ°VTOLé£è¡Œï¼Œåˆ™è¿”å›true
+      Èç¹ûÎÒÃÇÕı¹ı¶Éµ½VTOL·ÉĞĞ£¬Ôò·µ»Øtrue
     */
     bool in_tailsitter_vtol_transition(void) const;
     
@@ -100,62 +100,62 @@ public:
     void update_throttle_hover();
 
     // vtol help for is_flying()
-    // vtolå¸®åŠ©is_flyingï¼ˆï¼‰
+    // vtol°ïÖúis_flying£¨£©
     bool is_flying(void);
 
     // return current throttle as a percentate
-    // è¿”å›å½“å‰çš„æ²¹é—¨ç™¾åˆ†æ¯”
+    // ·µ»Øµ±Ç°µÄÓÍÃÅ°Ù·Ö±È
     uint8_t throttle_percentage(void) const {
         return last_throttle * 100;
     }
 
     // return desired forward throttle percentage
-    // è¿”å›æœŸæœ›çš„æ²¹é—¨ç™¾åˆ†æ¯”
+    // ·µ»ØÆÚÍûµÄÓÍÃÅ°Ù·Ö±È
     int8_t forward_throttle_pct(void);        
     float get_weathervane_yaw_rate_cds(void);
 
     // see if we are flying from vtol point of view
-    // çœ‹çœ‹æˆ‘ä»¬æ˜¯å¦ä»vtolçš„è§’åº¦å‡ºå‘
+    // ¿´¿´ÎÒÃÇÊÇ·ñ´ÓvtolµÄ½Ç¶È³ö·¢
     bool is_flying_vtol(void) const;
 
     // return true when tailsitter frame configured
-    // å½“é…ç½®äº†å°¾åæ„å‹æ—¶è¿”å›true
+    // µ±ÅäÖÃÁËÎ²×ø¹¹ĞÍÊ±·µ»Øtrue
     bool is_tailsitter(void) const;
 
     // return true when flying a tailsitter in VTOL
-    // å°¾åæ„å‹åœ¨å‚èµ·ä¸‹é£è¡Œæ—¶è¿”å›true
+    // Î²×ø¹¹ĞÍÔÚ´¹ÆğÏÂ·ÉĞĞÊ±·µ»Øtrue
     bool tailsitter_active(void);
     
     // create outputs for tailsitters
-    // ä¸ºå°¾åæ„å‹åˆ›å»ºè¾“å‡º
+    // ÎªÎ²×ø¹¹ĞÍ´´½¨Êä³ö
     void tailsitter_output(void);
 
     // handle different tailsitter input types
-    // å¤„ç†ä¸åŒçš„å°¾å·´è¾“å…¥ç±»å‹
+    // ´¦Àí²»Í¬µÄÎ²°ÍÊäÈëÀàĞÍ
     void tailsitter_check_input(void);
     
     // check if we have completed transition to fixed wing
-    // æ£€æŸ¥æˆ‘ä»¬æ˜¯å¦å·²å®Œæˆå‘å›ºå®šç¿¼çš„è¿‡æ¸¡
+    // ¼ì²éÎÒÃÇÊÇ·ñÒÑÍê³ÉÏò¹Ì¶¨ÒíµÄ¹ı¶É
     bool tailsitter_transition_fw_complete(void);
 
     // check if we have completed transition to vtol
-    // æ£€æŸ¥æ˜¯å¦å·²å®Œæˆå‘vtolçš„è¿‡æ¸¡
+    // ¼ì²éÊÇ·ñÒÑÍê³ÉÏòvtolµÄ¹ı¶É
     bool tailsitter_transition_vtol_complete(void) const;
 
     // account for surface speed scaling in hover
-    // è€ƒè™‘æ‚¬åœæ—¶çš„è¡¨é¢é€Ÿåº¦ç¼©æ”¾
+    // ¿¼ÂÇĞüÍ£Ê±µÄ±íÃæËÙ¶ÈËõ·Å
     void tailsitter_speed_scaling(void);
     
     // user initiated takeoff for guided mode
-    // ç”¨æˆ·ä½¿ç”¨å¯¼å¼•æ¨¡å¼èµ·é£
+    // ÓÃ»§Ê¹ÓÃµ¼ÒıÄ£Ê½Æğ·É
     bool do_user_takeoff(float takeoff_altitude);
 
     // return true if the wp_nav controller is being updated
-    // å¦‚æœæ­£åœ¨æ›´æ–°wp_navæ§åˆ¶å™¨ï¼Œåˆ™è¿”å›true
+    // Èç¹ûÕıÔÚ¸üĞÂwp_nav¿ØÖÆÆ÷£¬Ôò·µ»Øtrue
     bool using_wp_nav(void) const;
 
     // return true if the user has set ENABLE
-    // å¦‚æœç”¨æˆ·è®¾ç½®äº†ENABLEï¼Œåˆ™è¿”å›true
+    // Èç¹ûÓÃ»§ÉèÖÃÁËENABLE£¬Ôò·µ»Øtrue
     bool enabled(void) const { return enable != 0; }
     
     struct PACKED log_QControl_Tuning {
@@ -193,55 +193,55 @@ private:
     AC_Loiter *loiter_nav;
     
     // maximum vertical velocity the pilot may request
-    // é£è¡Œå‘˜å¯èƒ½è¦æ±‚çš„æœ€å¤§å‚ç›´é€Ÿåº¦
+    // ·ÉĞĞÔ±¿ÉÄÜÒªÇóµÄ×î´ó´¹Ö±ËÙ¶È
     AP_Int16 pilot_velocity_z_max;
 
     // vertical acceleration the pilot may request
-    // é£è¡Œå‘˜å¯èƒ½è¦æ±‚çš„å‚ç›´åŠ é€Ÿåº¦
+    // ·ÉĞĞÔ±¿ÉÄÜÒªÇóµÄ´¹Ö±¼ÓËÙ¶È
     AP_Int16 pilot_accel_z;
 
     // check for quadplane assistance needed
-    // æ£€æŸ¥å››ç¿¼é£æœºæ‰€éœ€çš„ååŠ©
+    // ¼ì²éËÄÒí·É»úËùĞèµÄĞ­Öú
     bool assistance_needed(float aspeed);
 
     // update transition handling
-    // æ›´æ–°è¿‡æ¸¡å¤„ç†
+    // ¸üĞÂ¹ı¶É´¦Àí
     void update_transition(void);
 
     // check for an EKF yaw reset
-    // æ£€æŸ¥æ‰©å±•å¡å°”æ›¼æ»¤æ³¢åèˆªé‡è®¾
+    // ¼ì²éÀ©Õ¹¿¨¶ûÂüÂË²¨Æ«º½ÖØÉè
     void check_yaw_reset(void);
     
     // hold hover (for transition)
-    //ä¿æŒæ‚¬åœï¼ˆç”¨äºè¿‡æ¸¡ï¼‰
+    //±£³ÖĞüÍ££¨ÓÃÓÚ¹ı¶É£©
     void hold_hover(float target_climb_rate);    
 
     // hold stabilize (for transition)
-    //ä¿æŒç¨³å®šï¼ˆç”¨äºè¿‡æ¸¡ï¼‰
+    //±£³ÖÎÈ¶¨£¨ÓÃÓÚ¹ı¶É£©
     void hold_stabilize(float throttle_in);    
 
     // get pilot desired yaw rate in cd/s
-    // ä»¥cd/sä¸ºå•ä½è·å–é£è¡Œå‘˜æœŸæœ›çš„åèˆªç‡
+    // ÒÔcd/sÎªµ¥Î»»ñÈ¡·ÉĞĞÔ±ÆÚÍûµÄÆ«º½ÂÊ
     float get_pilot_input_yaw_rate_cds(void) const;
 
     // get overall desired yaw rate in cd/s
-    //ä»¥cd / sä¸ºå•ä½è·å–æ•´ä½“æ‰€éœ€çš„åèˆªç‡
+    //ÒÔcd / sÎªµ¥Î»»ñÈ¡ÕûÌåËùĞèµÄÆ«º½ÂÊ
     float get_desired_yaw_rate_cds(void);
     
     // get desired climb rate in cm/s
-    //ä»¥cm / sä¸ºå•ä½è·å–æ‰€éœ€çš„çˆ¬å‡é€Ÿåº¦
+    //ÒÔcm / sÎªµ¥Î»»ñÈ¡ËùĞèµÄÅÀÉıËÙ¶È
     float get_pilot_desired_climb_rate_cms(void) const;
 
     // initialise throttle_wait when entering mode
-    //è¿›å…¥æ¨¡å¼æ—¶åˆå§‹åŒ–æ²¹é—¨ç­‰å¾…
+    //½øÈëÄ£Ê½Ê±³õÊ¼»¯ÓÍÃÅµÈ´ı
     void init_throttle_wait();
 
     // use multicopter rate controller
-    //ä½¿ç”¨å¤šæ—‹ç¿¼é€Ÿç‡æ§åˆ¶å™¨
+    //Ê¹ÓÃ¶àĞıÒíËÙÂÊ¿ØÖÆÆ÷
     void multicopter_attitude_rate_update(float yaw_rate_cds);
     
     // main entry points for VTOL flight modes
-    // VTOLé£è¡Œæ¨¡å¼çš„ä¸»è¦å…¥å£ç‚¹
+    // VTOL·ÉĞĞÄ£Ê½µÄÖ÷ÒªÈë¿Úµã
     void init_stabilize(void);
     void control_stabilize(void);
 
@@ -265,7 +265,7 @@ private:
     float assist_climb_rate_cms(void) const;
 
     // calculate desired yaw rate for assistance
-    //è®¡ç®—æ‰€éœ€çš„åèˆªç‡ä»¥è·å¾—å¸®åŠ©
+    //¼ÆËãËùĞèµÄÆ«º½ÂÊÒÔ»ñµÃ°ïÖú
     float desired_auto_yaw_rate_cds(void) const;
 
     bool should_relax(void);
@@ -274,7 +274,7 @@ private:
     float landing_descent_rate_cms(float height_above_ground) const;
     
     // setup correct aux channels for frame class
-    //ä¸ºå¸§ç±»åˆ«è®¾ç½®æ­£ç¡®çš„è¾…åŠ©é€šé“
+    //ÎªÖ¡Àà±ğÉèÖÃÕıÈ·µÄ¸¨ÖúÍ¨µÀ
     void setup_default_channels(uint8_t num_motors);
 
     void guided_start(void);
@@ -287,64 +287,64 @@ private:
     void setup_defaults(void);
 
     // calculate a stopping distance for fixed-wing to vtol transitions
-    //è®¡ç®—å›ºå®šç¿¼åˆ°vtolè¿‡æ¸¡çš„åœæ­¢è·ç¦»
+    //¼ÆËã¹Ì¶¨Òíµ½vtol¹ı¶ÉµÄÍ£Ö¹¾àÀë
     float stopping_distance(void);
     
     AP_Int16 transition_time_ms;
 
     // transition deceleration, m/s/s
-    //è¿‡æ¸¡å‡é€Ÿåº¦ï¼Œm/s/s
+    //¹ı¶É¼õËÙ¶È£¬m/s/s
     AP_Float transition_decel;
 
     // transition failure milliseconds
-    //è½¬æ¢å¤±è´¥æ¯«ç§’
+    //×ª»»Ê§°ÜºÁÃë
     AP_Int16 transition_failure;
 
     // Quadplane trim, degrees
-    // æ—‹ç¿¼é£æœºé…å¹³ï¼Œåº¦
+    // ĞıÒí·É»úÅäÆ½£¬¶È
     AP_Float ahrs_trim_pitch;
     float _last_ahrs_trim_pitch;
 
     // fw landing approach radius
-    //é™è½è¿›è¿‘åŠå¾„
+    //½µÂä½ø½ü°ë¾¶
     AP_Float fw_land_approach_radius;
 
     AP_Int16 rc_speed;
 
     // min and max PWM for throttle
-    //æ²¹é—¨çš„æœ€å°å’Œæœ€å¤§PWM
+    //ÓÍÃÅµÄ×îĞ¡ºÍ×î´óPWM
     AP_Int16 thr_min_pwm;
     AP_Int16 thr_max_pwm;
 
     // speed below which quad assistance is given
-    // ä½äºè¯¥é€Ÿåº¦æ—¶å°†æä¾›å››é‡æ—‹ç¿¼è¾…åŠ©
+    // µÍÓÚ¸ÃËÙ¶ÈÊ±½«Ìá¹©ËÄÖØĞıÒí¸¨Öú
     AP_Float assist_speed;
 
     // angular error at which quad assistance is given
-    // æä¾›å››æ—‹ç¿¼è¾…åŠ©çš„è§’åº¦è¯¯å·®
+    // Ìá¹©ËÄĞıÒí¸¨ÖúµÄ½Ç¶ÈÎó²î
     AP_Int8 assist_angle;
     uint32_t angle_error_start_ms;
 
     // altitude to trigger assistance
-    // è§¦å‘æ—‹ç¿¼è¾…åŠ©çš„é«˜åº¦
+    // ´¥·¢ĞıÒí¸¨ÖúµÄ¸ß¶È
     AP_Int16 assist_alt;
     uint32_t alt_error_start_ms;
     bool in_alt_assist;
 
     // maximum yaw rate in degrees/second
-    //æœ€å¤§æ¨ªæ‘†ç‡ï¼Œä»¥åº¦/ç§’ä¸ºå•ä½
+    //×î´óºá°ÚÂÊ£¬ÒÔ¶È/ÃëÎªµ¥Î»
     AP_Float yaw_rate_max;
 
     // landing speed in cm/s
-    //ç€é™†é€Ÿåº¦ï¼Œå•ä½ï¼šcm / s
+    //×ÅÂ½ËÙ¶È£¬µ¥Î»£ºcm / s
     AP_Int16 land_speed_cms;
 
     // QRTL start altitude, meters
-    // QRTLèµ·å§‹é«˜åº¦ï¼Œç±³
+    // QRTLÆğÊ¼¸ß¶È£¬Ã×
     AP_Int16 qrtl_alt;
     
     // alt to switch to QLAND_FINAL
-    // altåˆ‡æ¢åˆ°QLAND_FINAL
+    // altÇĞ»»µ½QLAND_FINAL
     AP_Float land_final_alt;
     AP_Float vel_forward_alt_cutoff;
     
@@ -352,38 +352,38 @@ private:
     AP_Int8 transition_pitch_max;
 
     // control if a VTOL RTL will be used
-    // æ§åˆ¶æ˜¯å¦ä½¿ç”¨VTOL è¿”èˆªæ¨¡å¼
+    // ¿ØÖÆÊÇ·ñÊ¹ÓÃVTOL ·µº½Ä£Ê½
     AP_Int8 rtl_mode;
 
     // control if a VTOL GUIDED will be used
-    // æ§åˆ¶æ˜¯å¦ä½¿ç”¨VTOL å¼•å¯¼æ¨¡å¼
+    // ¿ØÖÆÊÇ·ñÊ¹ÓÃVTOL Òıµ¼Ä£Ê½
     AP_Int8 guided_mode;
 
     // control ESC throttle calibration
-    // æ§åˆ¶ESCæ²¹é—¨æ ¡å‡†
+    // ¿ØÖÆESCÓÍÃÅĞ£×¼
     AP_Int8 esc_calibration;
     void run_esc_calibration(void);
 
     // ICEngine control on landing
-    // ç€é™†æ—¶çš„ICEngineæ§åˆ¶
+    // ×ÅÂ½Ê±µÄICEngine¿ØÖÆ
     AP_Int8 land_icengine_cut;
 
     // HEARTBEAT mav_type override
-    // å¿ƒè·³mav_typeè¦†ç›–
+    // ĞÄÌømav_type¸²¸Ç
     AP_Int8 mav_type;
 
     // manual throttle curve expo strength
-    // æ‰‹åŠ¨æ²¹é—¨æ›²çº¿çš„æ›å…‰å¼ºåº¦
+    // ÊÖ¶¯ÓÍÃÅÇúÏßµÄÆØ¹âÇ¿¶È
     AP_Float throttle_expo;
 
     // QACRO mode max roll/pitch/yaw rates
-    // QACROæ¨¡å¼çš„æœ€å¤§æ¨ªæ‘‡/ä¿¯ä»°/åèˆªç‡
+    // QACROÄ£Ê½µÄ×î´óºáÒ¡/¸©Ñö/Æ«º½ÂÊ
     AP_Float acro_roll_rate;
     AP_Float acro_pitch_rate;
     AP_Float acro_yaw_rate;
 
     // time we last got an EKF yaw reset
-    //æˆ‘ä»¬ä¸Šä¸€æ¬¡è·å¾—EKFåèˆªçš„æ—¶é—´
+    //ÎÒÃÇÉÏÒ»´Î»ñµÃEKFÆ«º½µÄÊ±¼ä
     uint32_t ekfYawReset_ms;
 
     struct {
@@ -403,26 +403,26 @@ private:
     bool initialised;
     
     // timer start for transition
-    // è¿‡æ¸¡å¼€å§‹çš„æ—¶é—´
+    // ¹ı¶É¿ªÊ¼µÄÊ±¼ä
     uint32_t transition_start_ms;
     uint32_t transition_low_airspeed_ms;
 
     Location last_auto_target;
 
     // last throttle value when active
-    // æ´»åŠ¨æ—¶çš„æœ€åä¸€ä¸ªæ²¹é—¨å€¼
+    // »î¶¯Ê±µÄ×îºóÒ»¸öÓÍÃÅÖµ
     float last_throttle;
 
     // pitch when we enter loiter mode
-    // è¿›å…¥ç›˜æ—‹æ¨¡å¼æ—¶çš„ä¿¯ä»°
+    // ½øÈëÅÌĞıÄ£Ê½Ê±µÄ¸©Ñö
     int32_t loiter_initial_pitch_cd;
 
     // when did we last run the attitude controller?
-    // æˆ‘ä»¬ä¸Šä¸€æ¬¡è¿è¡Œå§¿æ€æ§åˆ¶å™¨çš„æ—¶é—´ï¼Ÿ
+    // ÎÒÃÇÉÏÒ»´ÎÔËĞĞ×ËÌ¬¿ØÖÆÆ÷µÄÊ±¼ä£¿
     uint32_t last_att_control_ms;
 
     // true if we have reached the airspeed threshold for transition
-    // å¦‚æœæˆ‘ä»¬å·²ç»è¾¾åˆ°è¿‡æ¸¡çš„ç©ºé€Ÿé˜ˆå€¼ï¼Œåˆ™ä¸ºtrue
+    // Èç¹ûÎÒÃÇÒÑ¾­´ïµ½¹ı¶ÉµÄ¿ÕËÙãĞÖµ£¬ÔòÎªtrue
     enum {
         TRANSITION_AIRSPEED_WAIT,
         TRANSITION_TIMER,
@@ -432,31 +432,31 @@ private:
     } transition_state;
 
     // true when waiting for pilot throttle
-    // ç­‰å¾…é£è¡Œå‘˜æ²¹é—¨æ—¶ä¸ºtrue
+    // µÈ´ı·ÉĞĞÔ±ÓÍÃÅÊ±Îªtrue
     bool throttle_wait:1;
 
     // true when quad is assisting a fixed wing mode
-    //å½“å¤šæ—‹ç¿¼æ­£åœ¨è¾…åŠ©å›ºå®šæœºç¿¼æ¨¡å¼æ—¶ä¸ºtrue
+    //µ±¶àĞıÒíÕıÔÚ¸¨Öú¹Ì¶¨»úÒíÄ£Ê½Ê±Îªtrue
     bool assisted_flight:1;
 
     // true when in angle assist
-    // è§’åº¦è¾…åŠ©æ—¶ä¸ºtrue
+    // ½Ç¶È¸¨ÖúÊ±Îªtrue
     bool in_angle_assist:1;
 
     // are we in a guided takeoff?
-    // æˆ‘ä»¬å¤„äºå¼•å¯¼å¼èµ·é£çŠ¶æ€å—ï¼Ÿ
+    // ÎÒÃÇ´¦ÓÚÒıµ¼Ê½Æğ·É×´Ì¬Âğ£¿
     bool guided_takeoff:1;
     
     struct {
         // time when motors reached lower limit
-    	//ç”µæœºè¾¾åˆ°ä¸‹é™çš„æ—¶é—´
+    	//µç»ú´ïµ½ÏÂÏŞµÄÊ±¼ä
         uint32_t lower_limit_start_ms;
         uint32_t land_start_ms;
         float vpos_start_m;
     } landing_detect;
 
     // time we last set the loiter target
-    //æˆ‘ä»¬ä¸Šæ¬¡è®¾å®šç›˜æ—‹ç›®æ ‡çš„æ—¶é—´
+    //ÎÒÃÇÉÏ´ÎÉè¶¨ÅÌĞıÄ¿±êµÄÊ±¼ä
     uint32_t last_loiter_ms;
 
     enum position_control_state {
@@ -477,44 +477,44 @@ private:
 
     struct {
         bool running;
-        uint32_t start_ms;            // system time the motor test began//ç”µæœºæµ‹è¯•å¼€å§‹çš„ç³»ç»Ÿæ—¶é—´
+        uint32_t start_ms;            // system time the motor test began//µç»ú²âÊÔ¿ªÊ¼µÄÏµÍ³Ê±¼ä
         uint32_t timeout_ms = 0;      // test will timeout this many milliseconds after the motor_test_start_ms
-        							  //æµ‹è¯•å°†åœ¨motor_test_start_msä¹‹åçš„å‡ æ¯«ç§’å†…è¶…æ—¶
-        uint8_t seq = 0;              // motor sequence number of motor being tested//è¢«æµ‹ç”µæœºçš„ç”µæœºåºå·
+        							  //²âÊÔ½«ÔÚmotor_test_start_msÖ®ºóµÄ¼¸ºÁÃëÄÚ³¬Ê±
+        uint8_t seq = 0;              // motor sequence number of motor being tested//±»²âµç»úµÄµç»úĞòºÅ
         uint8_t throttle_type = 0;    // motor throttle type (0=throttle percentage, 1=PWM, 2=pilot throttle channel pass-through)
-        							  // é©¬è¾¾æ²¹é—¨ç±»å‹ï¼ˆ0 =æ²¹é—¨ç™¾åˆ†æ¯”ï¼Œ1 = PWMï¼Œ2 =å…ˆå¯¼æ²¹é—¨é€šé“é€šè¿‡ï¼‰
+        							  // Âí´ïÓÍÃÅÀàĞÍ£¨0 =ÓÍÃÅ°Ù·Ö±È£¬1 = PWM£¬2 =ÏÈµ¼ÓÍÃÅÍ¨µÀÍ¨¹ı£©
         uint16_t throttle_value = 0;  // throttle to be sent to motor, value depends upon it's type
-        							  // è¦å‘é€ç»™ç”µåŠ¨æœºçš„èŠ‚æ°”é—¨ï¼Œå…¶å€¼å–å†³äºå…¶ç±»å‹
-        uint8_t motor_count;          // number of motors to cycle//è¦å¾ªç¯çš„ç”µæœºæ•°
+        							  // Òª·¢ËÍ¸øµç¶¯»úµÄ½ÚÆøÃÅ£¬ÆäÖµÈ¡¾öÓÚÆäÀàĞÍ
+        uint8_t motor_count;          // number of motors to cycle//ÒªÑ­»·µÄµç»úÊı
     } motor_test;
 
     // time of last control log message
-    //æœ€åçš„æ§åˆ¶æ—¥å¿—æ¶ˆæ¯çš„æ—¶é—´
+    //×îºóµÄ¿ØÖÆÈÕÖ¾ÏûÏ¢µÄÊ±¼ä
     uint32_t last_ctrl_log_ms;
 
     // time of last QTUN log message
-    //æœ€åçš„QTUNæ—¥å¿—æ¶ˆæ¯çš„æ—¶é—´
+    //×îºóµÄQTUNÈÕÖ¾ÏûÏ¢µÄÊ±¼ä
     uint32_t last_qtun_log_ms;
 
     // types of tilt mechanisms
-    //å€¾è½¬ç±»å‹
-    enum {TILT_TYPE_CONTINUOUS    =0,	//è¿ç»­å¯æ§çš„
-          TILT_TYPE_BINARY        =1,	//ä¸¤æ¡£çš„
-          TILT_TYPE_VECTORED_YAW  =2,	//çŸ¢é‡çš„
-          TILT_TYPE_BICOPTER      =3	//åŒæ—‹ç¿¼
+    //Çã×ªÀàĞÍ
+    enum {TILT_TYPE_CONTINUOUS    =0,	//Á¬Ğø¿É¿ØµÄ
+          TILT_TYPE_BINARY        =1,	//Á½µµµÄ
+          TILT_TYPE_VECTORED_YAW  =2,	//Ê¸Á¿µÄ
+          TILT_TYPE_BICOPTER      =3	//Ë«ĞıÒí
     };
 
     // tiltrotor control variables
-    //å€¾è½¬æ—‹ç¿¼æ§åˆ¶å˜é‡
+    //Çã×ªĞıÒí¿ØÖÆ±äÁ¿
     struct {
-        AP_Int16 tilt_mask;				//å€¾è½¬ç”µæœºç¼–ç ï¼ŒäºŒè¿›åˆ¶
-        AP_Int16 max_rate_up_dps;		//å‘ä¸Šå€¾è½¬é€Ÿç‡
-        AP_Int16 max_rate_down_dps;		//å‘ä¸‹å€¾è½¬é€Ÿç‡
-        AP_Int8  max_angle_deg;			//æœ€å¤§è§’åº¦
-        AP_Int8  tilt_type;				//å€¾è½¬ç±»å‹
-        AP_Float tilt_yaw_angle;		//å€¾è½¬åèˆªè§’
-        float current_tilt;				//å½“å‰å€¾è§’
-        float current_throttle;			//å½“å‰æ²¹é—¨
+        AP_Int16 tilt_mask;				//Çã×ªµç»ú±àÂë£¬¶ş½øÖÆ
+        AP_Int16 max_rate_up_dps;		//ÏòÉÏÇã×ªËÙÂÊ
+        AP_Int16 max_rate_down_dps;		//ÏòÏÂÇã×ªËÙÂÊ
+        AP_Int8  max_angle_deg;			//×î´ó½Ç¶È
+        AP_Int8  tilt_type;				//Çã×ªÀàĞÍ
+        AP_Float tilt_yaw_angle;		//Çã×ªÆ«º½½Ç
+        float current_tilt;				//µ±Ç°Çã½Ç
+        float current_throttle;			//µ±Ç°ÓÍÃÅ
         bool motors_active:1;
     } tilt;
 
@@ -533,7 +533,7 @@ private:
     };
     
     // tailsitter control variables
-    //å°¾åæ„å‹çš„æ§åˆ¶å˜é‡
+    //Î²×ø¹¹ĞÍµÄ¿ØÖÆ±äÁ¿
     struct {
         AP_Int8 transition_angle;
         AP_Int8 input_type;
@@ -548,20 +548,20 @@ private:
     } tailsitter;
 
     // the attitude view of the VTOL attitude controller
-    // VTOLå§¿æ€æ§åˆ¶å™¨çš„å§¿æ€è§†å›¾
+    // VTOL×ËÌ¬¿ØÖÆÆ÷µÄ×ËÌ¬ÊÓÍ¼
     AP_AHRS_View *ahrs_view;
 
     // time when motors were last active
-    //ç”µæœºæœ€åä¸€æ¬¡æ¿€æ´»çš„æ—¶é—´
+    //µç»ú×îºóÒ»´Î¼¤»îµÄÊ±¼ä
     uint32_t last_motors_active_ms;
 
     // time when we last ran the vertical accel controller
-    //æˆ‘ä»¬ä¸Šæ¬¡è¿è¡Œå‚ç›´åŠ é€Ÿæ§åˆ¶å™¨çš„æ—¶é—´
+    //ÎÒÃÇÉÏ´ÎÔËĞĞ´¹Ö±¼ÓËÙ¿ØÖÆÆ÷µÄÊ±¼ä
     uint32_t last_pidz_active_ms;
     uint32_t last_pidz_init_ms;
 
     // time when we were last in a vtol control mode
-    //æˆ‘ä»¬ä¸Šä¸€æ¬¡å¤„äºvtolæ§åˆ¶æ¨¡å¼çš„æ—¶é—´
+    //ÎÒÃÇÉÏÒ»´Î´¦ÓÚvtol¿ØÖÆÄ£Ê½µÄÊ±¼ä
     uint32_t last_vtol_mode_ms;
     
     void tiltrotor_slew(float tilt);
@@ -584,16 +584,16 @@ private:
     bool guided_mode_enabled(void);
 
     // set altitude target to current altitude
-    //å°†æµ·æ‹”é«˜åº¦ç›®æ ‡è®¾ç½®ä¸ºå½“å‰æµ·æ‹”é«˜åº¦
+    //½«º£°Î¸ß¶ÈÄ¿±êÉèÖÃÎªµ±Ç°º£°Î¸ß¶È
 
     void set_alt_target_current(void);
     
     // adjust altitude target smoothly
-    //å¹³ç¨³è°ƒæ•´ç›®æ ‡é«˜åº¦
+    //Æ½ÎÈµ÷ÕûÄ¿±ê¸ß¶È
     void adjust_alt_target(float target_cm);
 
     // additional options
-    // å…¶ä»–é€‰é¡¹
+    // ÆäËûÑ¡Ïî
     AP_Int32 options;
     enum {
         OPTION_LEVEL_TRANSITION=(1<<0),
@@ -611,43 +611,43 @@ private:
 
     /*
       return true if current mission item is a vtol takeoff
-      å¦‚æœå½“å‰ä»»åŠ¡é¡¹ç›®æ˜¯vtolèµ·é£ï¼Œåˆ™è¿”å›true
+      Èç¹ûµ±Ç°ÈÎÎñÏîÄ¿ÊÇvtolÆğ·É£¬Ôò·µ»Øtrue
      */
     bool is_vtol_takeoff(uint16_t id) const;
 
     /*
       return true if current mission item is a vtol landing
-      å¦‚æœå½“å‰ä»»åŠ¡é¡¹æ˜¯vtolç€é™†ï¼Œåˆ™è¿”å›true
+      Èç¹ûµ±Ç°ÈÎÎñÏîÊÇvtol×ÅÂ½£¬Ôò·µ»Øtrue
      */
     bool is_vtol_land(uint16_t id) const;
 
 #if QAUTOTUNE_ENABLED
     // qautotune mode
-    // qautotuneæ¨¡å¼
+    // qautotuneÄ£Ê½
     QAutoTune qautotune;
 #endif
 
     /*
       are we in the approach phase of a VTOL landing?
-      æˆ‘ä»¬æ˜¯å¦æ­£å¤„äºVTOLç€é™†çš„è¿›è¿‘é˜¶æ®µï¼Ÿ
+      ÎÒÃÇÊÇ·ñÕı´¦ÓÚVTOL×ÅÂ½µÄ½ø½ü½×¶Î£¿
      */
     bool in_vtol_land_approach(void) const;
 
     /*
       are we in the descent phase of a VTOL landing?
-      æˆ‘ä»¬æ˜¯å¦å¤„äºVTOLç€é™†çš„ä¸‹é™é˜¶æ®µï¼Ÿ
+      ÎÒÃÇÊÇ·ñ´¦ÓÚVTOL×ÅÂ½µÄÏÂ½µ½×¶Î£¿
      */
     bool in_vtol_land_descent(void) const;
 
     /*
       are we in the final landing phase of a VTOL landing?
-      æˆ‘ä»¬æ˜¯å¦å¤„äºVTOLç€é™†çš„æœ€ç»ˆç€é™†é˜¶æ®µï¼Ÿ
+      ÎÒÃÇÊÇ·ñ´¦ÓÚVTOL×ÅÂ½µÄ×îÖÕ×ÅÂ½½×¶Î£¿
      */
     bool in_vtol_land_final(void) const;
 
     /*
       are we in any of the phases of a VTOL landing?
-      æˆ‘ä»¬å¤„äºVTOLç€é™†çš„ä»»ä½•é˜¶æ®µå—ï¼Ÿ
+      ÎÒÃÇ´¦ÓÚVTOL×ÅÂ½µÄÈÎºÎ½×¶ÎÂğ£¿
      */
     bool in_vtol_land_sequence(void) const;
     

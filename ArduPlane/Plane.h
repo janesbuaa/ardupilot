@@ -33,43 +33,43 @@
 #include <AP_Common/AP_Common.h>
 #include <AP_Param/AP_Param.h>
 #include <StorageManager/StorageManager.h>
-#include <AP_Math/AP_Math.h>        // ArduPilot Mega Vector/Matrix math Libraryæ•°å­¦åº“
-#include <AP_InertialSensor/AP_InertialSensor.h> // Inertial Sensor Libraryæƒ¯æ€§ä¼ æ„Ÿå™¨åº“
-#include <AP_AccelCal/AP_AccelCal.h>                // interface and maths for accelerometer calibration åŠ é€Ÿåº¦è®¡æ ¡å‡†çš„ç•Œé¢å’Œæ•°å­¦
+#include <AP_Math/AP_Math.h>        // ArduPilot Mega Vector/Matrix math LibraryÊıÑ§¿â
+#include <AP_InertialSensor/AP_InertialSensor.h> // Inertial Sensor Library¹ßĞÔ´«¸ĞÆ÷¿â
+#include <AP_AccelCal/AP_AccelCal.h>                // interface and maths for accelerometer calibration ¼ÓËÙ¶È¼ÆĞ£×¼µÄ½çÃæºÍÊıÑ§
 #include <AP_AHRS/AP_AHRS.h>         // ArduPilot Mega DCM Library
 #include <SRV_Channel/SRV_Channel.h>
-#include <AP_RangeFinder/AP_RangeFinder.h>     // Range finder libraryèŒƒå›´æŸ¥æ‰¾å™¨åº“
-#include <Filter/Filter.h>                     // Filter libraryè¿‡æ»¤å™¨åº“
-#include <AP_Camera/AP_Camera.h>          // Photo or video cameraç…§ç›¸æˆ–æ‘„åƒæœº
+#include <AP_RangeFinder/AP_RangeFinder.h>     // Range finder library·¶Î§²éÕÒÆ÷¿â
+#include <Filter/Filter.h>                     // Filter library¹ıÂËÆ÷¿â
+#include <AP_Camera/AP_Camera.h>          // Photo or video cameraÕÕÏà»òÉãÏñ»ú
 #include <AP_Airspeed/AP_Airspeed.h>
 #include <AP_Terrain/AP_Terrain.h>
 #include <AP_RPM/AP_RPM.h>
-#include <AP_Stats/AP_Stats.h>     // statistics libraryç»Ÿè®¡èµ„æ–™åº“
+#include <AP_Stats/AP_Stats.h>     // statistics libraryÍ³¼Æ×ÊÁÏ¿â
 #include <AP_Beacon/AP_Beacon.h>
 
 #include <AP_AdvancedFailsafe/AP_AdvancedFailsafe.h>
 #include <APM_Control/APM_Control.h>
 #include <APM_Control/AP_AutoTune.h>
 #include <GCS_MAVLink/GCS_MAVLink.h>    // MAVLink GCS definitions
-#include <AP_Mount/AP_Mount.h>           // Camera/Antenna mountæ‘„åƒå¤´/å¤©çº¿å®‰è£…
+#include <AP_Mount/AP_Mount.h>           // Camera/Antenna mountÉãÏñÍ·/ÌìÏß°²×°
 #include <AP_Declination/AP_Declination.h> // ArduPilot Mega Declination Helper Library
 #include <AP_Logger/AP_Logger.h>
-#include <AP_Scheduler/AP_Scheduler.h>       // main loop schedulerä¸»å¾ªç¯è°ƒåº¦ç¨‹åº
-#include <AP_Scheduler/PerfInfo.h>                  // loop perf monitoringå¾ªç¯æ€§èƒ½ç›‘è§†
+#include <AP_Scheduler/AP_Scheduler.h>       // main loop schedulerÖ÷Ñ­»·µ÷¶È³ÌĞò
+#include <AP_Scheduler/PerfInfo.h>                  // loop perf monitoringÑ­»·ĞÔÄÜ¼àÊÓ
 
 #include <AP_Navigation/AP_Navigation.h>
 #include <AP_L1_Control/AP_L1_Control.h>
-#include <AP_RCMapper/AP_RCMapper.h>        // RC input mapping libraryé¥æ§è¾“å…¥æ˜ å°„åº“
+#include <AP_RCMapper/AP_RCMapper.h>        // RC input mapping libraryÒ£¿ØÊäÈëÓ³Éä¿â
 
 #include <AP_Vehicle/AP_Vehicle.h>
 #include <AP_SpdHgtControl/AP_SpdHgtControl.h>
 #include <AP_TECS/AP_TECS.h>
 #include <AP_NavEKF2/AP_NavEKF2.h>
 #include <AP_NavEKF3/AP_NavEKF3.h>
-#include <AP_Mission/AP_Mission.h>     // Mission command libraryä»»åŠ¡å‘½ä»¤åº“
+#include <AP_Mission/AP_Mission.h>     // Mission command libraryÈÎÎñÃüÁî¿â
 
 #include <AP_Soaring/AP_Soaring.h>
-#include <AP_BattMonitor/AP_BattMonitor.h> // Battery monitor libraryç”µæ± ç›‘è§†å™¨åº“
+#include <AP_BattMonitor/AP_BattMonitor.h> // Battery monitor libraryµç³Ø¼àÊÓÆ÷¿â
 
 #include <AP_Arming/AP_Arming.h>
 #include <AP_Frsky_Telem/AP_Frsky_Telem.h>
@@ -77,27 +77,27 @@
 
 #include <AP_Rally/AP_Rally.h>
 
-#include <AP_OpticalFlow/AP_OpticalFlow.h>     // Optical Flow libraryå…‰æµåº“
+#include <AP_OpticalFlow/AP_OpticalFlow.h>     // Optical Flow library¹âÁ÷¿â
 #include <AP_Parachute/AP_Parachute.h>
 #include <AP_ADSB/AP_ADSB.h>
 #include <AP_ICEngine/AP_ICEngine.h>
 #include <AP_Gripper/AP_Gripper.h>
 #include <AP_Landing/AP_Landing.h>
-#include <AP_LandingGear/AP_LandingGear.h>     // Landing Gear libraryèµ·è½æ¶åº“
+#include <AP_LandingGear/AP_LandingGear.h>     // Landing Gear libraryÆğÂä¼Ü¿â
 
 #include "GCS_Mavlink.h"
 #include "GCS_Plane.h"
 #include "quadplane.h"
 #include "tuning.h"
 
-// Configurationé…ç½®
+// ConfigurationÅäÖÃ
 #include "config.h"
 
 #if ADVANCED_FAILSAFE == ENABLED
 #include "afs_plane.h"
 #endif
 
-// Local modulesæœ¬åœ°æ¨¡å—
+// Local modules±¾µØÄ£¿é
 #include "defines.h"
 #include "mode.h"
 
@@ -105,7 +105,7 @@
 #include <AP_Scripting/AP_Scripting.h>
 #endif
 
-#include "RC_Channel.h"     // RC Channel Libraryé¥æ§é€šé“åº“
+#include "RC_Channel.h"     // RC Channel LibraryÒ£¿ØÍ¨µÀ¿â
 #include "Parameters.h"
 #include "avoidance_adsb.h"
 #include "AP_Arming.h"
@@ -159,31 +159,31 @@ public:
 
     Plane(void);
 
-    // HAL::Callbacks implementationå®ç°.
+    // HAL::Callbacks implementationÊµÏÖ.
     void setup() override;
     void loop() override;
 
 private:
 
     // key aircraft parameters passed to multiple libraries
-    // å…³é”®é£æœºå‚æ•°ä¼ é€’åˆ°å¤šä¸ªåº“
+    // ¹Ø¼ü·É»ú²ÎÊı´«µİµ½¶à¸ö¿â
     AP_Vehicle::FixedWing aparm;
 
     // Global parameters are all contained within the 'g' and 'g2' classes.
-    // å…¨å±€å‚æ•°éƒ½åŒ…å«åœ¨'g'å’Œ'g2'ç±»ä¸­ã€‚
+    // È«¾Ö²ÎÊı¶¼°üº¬ÔÚ'g'ºÍ'g2'ÀàÖĞ¡£
     Parameters g;
     ParametersG2 g2;
 
     // main loop scheduler
-    // ä¸»å¾ªç¯è°ƒåº¦å™¨
+    // Ö÷Ñ­»·µ÷¶ÈÆ÷
     AP_Scheduler scheduler;
 
     // mapping between input channels
-    // è¾“å…¥é€šé“ä¹‹é—´çš„æ˜ å°„
+    // ÊäÈëÍ¨µÀÖ®¼äµÄÓ³Éä
     RCMapper rcmap;
 
     // primary input channels
-    // ä¸»è¦è¾“å…¥é€šé“
+    // Ö÷ÒªÊäÈëÍ¨µÀ
     RC_Channel *channel_roll;
     RC_Channel *channel_pitch;
     RC_Channel *channel_throttle;
@@ -192,12 +192,12 @@ private:
     AP_Logger logger;
 
     // scaled roll limit based on pitch
-    // æ ¹æ®ä¿¯ä»°ç¼©æ”¾æ»šåŠ¨é™åˆ¶
+    // ¸ù¾İ¸©ÑöËõ·Å¹ö¶¯ÏŞÖÆ
     int32_t roll_limit_cd;
     int32_t pitch_limit_min_cd;
 
     // flight modes convenience array
-    // é£è¡Œæ¨¡å¼ä¾¿åˆ©æ€§æ•°ç»„
+    // ·ÉĞĞÄ£Ê½±ãÀûĞÔÊı×é
     AP_Int8 *flight_modes = &g.flight_mode1;
 
     AP_Vehicle::FixedWing::Rangefinder_State rangefinder_state;
@@ -205,7 +205,7 @@ private:
     AP_RPM rpm_sensor;
 
 // Inertial Navigation EKF
-// æƒ¯æ€§å¯¼èˆªEKF
+// ¹ßĞÔµ¼º½EKF
 #if AP_AHRS_NAVEKF_AVAILABLE
     NavEKF2 EKF2{&ahrs, rangefinder};
     NavEKF3 EKF3{&ahrs, rangefinder};
@@ -218,7 +218,7 @@ private:
     AP_L1_Control L1_controller{ahrs, &TECS_controller};
 
     // Attitude to servo controllers
-    // å¯¹ä¼ºæœæ§åˆ¶å™¨çš„å§¿æ€
+    // ¶ÔËÅ·ş¿ØÖÆÆ÷µÄ×ËÌ¬
     AP_RollController rollController{ahrs, aparm};
     AP_PitchController pitchController{ahrs, aparm};
     AP_YawController yawController{ahrs, aparm};
@@ -229,51 +229,51 @@ private:
 #endif
 
     // Training mode
-    // è®­ç»ƒæ¨¡å¼
-    bool training_manual_roll;  // user has manual roll controlç”¨æˆ·å…·æœ‰æ‰‹åŠ¨æ»šè½¬æ§åˆ¶
-    bool training_manual_pitch; // user has manual pitch controlç”¨æˆ·å…·æœ‰æ‰‹åŠ¨ä¿¯ä»°æ§åˆ¶
+    // ÑµÁ·Ä£Ê½
+    bool training_manual_roll;  // user has manual roll controlÓÃ»§¾ßÓĞÊÖ¶¯¹ö×ª¿ØÖÆ
+    bool training_manual_pitch; // user has manual pitch controlÓÃ»§¾ßÓĞÊÖ¶¯¸©Ñö¿ØÖÆ
 
     /*
       keep steering and rudder control separated until we update servos,
       to allow for a separate wheel servo from rudder servo
-      ä¿æŒæ–¹å‘èˆµå’Œè½¬å¼¯çš„æ§åˆ¶åˆ†å¼€ï¼Œç›´åˆ°æˆ‘ä»¬æ›´æ–°èˆµæœºï¼Œå…è®¸ç‹¬ç«‹äºæ–¹å‘èˆµä¸è½¬å¼¯èˆµæœº
+      ±£³Ö·½Ïò¶æºÍ×ªÍäµÄ¿ØÖÆ·Ö¿ª£¬Ö±µ½ÎÒÃÇ¸üĞÂ¶æ»ú£¬ÔÊĞí¶ÀÁ¢ÓÚ·½Ïò¶æÓë×ªÍä¶æ»ú
     */
     struct {
-        bool ground_steering; // are we doing ground steering?æˆ‘ä»¬åœ¨è¿›è¡Œåœ°é¢è½¬å‘å—ï¼Ÿ
-        int16_t steering; // value for nose/tail wheelå‰é¼»/å°¾è½®çš„å€¼
-        int16_t rudder;   // value for rudderæ–¹å‘èˆµçš„å€¼
+        bool ground_steering; // are we doing ground steering?ÎÒÃÇÔÚ½øĞĞµØÃæ×ªÏòÂğ£¿
+        int16_t steering; // value for nose/tail wheelÇ°±Ç/Î²ÂÖµÄÖµ
+        int16_t rudder;   // value for rudder·½Ïò¶æµÄÖµ
     } steering_control;
 
-    // should throttle be pass-thru in guided?æ²¹é—¨åº”è¯¥åœ¨å¼•å¯¼ä¸‹é€šè¿‡å—ï¼Ÿ
+    // should throttle be pass-thru in guided?ÓÍÃÅÓ¦¸ÃÔÚÒıµ¼ÏÂÍ¨¹ıÂğ£¿
     bool guided_throttle_passthru;
 
     // are we doing calibration? This is used to allow heartbeat to
     // external failsafe boards during baro and airspeed calibration
-    // æˆ‘ä»¬åœ¨åšæ ¡å‡†å—ï¼Ÿ ç”¨äºåœ¨æ°”å‹å’Œç©ºé€Ÿæ ¡å‡†æœŸé—´å…è®¸å¿ƒè·³åˆ°å¤–éƒ¨æ•…éšœä¿æŠ¤æ¿
+    // ÎÒÃÇÔÚ×öĞ£×¼Âğ£¿ ÓÃÓÚÔÚÆøÑ¹ºÍ¿ÕËÙĞ£×¼ÆÚ¼äÔÊĞíĞÄÌøµ½Íâ²¿¹ÊÕÏ±£»¤°å
     bool in_calibration;
 
-    // GCS selectionGCSé€‰æ‹©
+    // GCS selectionGCSÑ¡Ôñ
     GCS_Plane _gcs; // avoid using this; use gcs()
     GCS_Plane &gcs() { return _gcs; }
 
-    // selected navigation controlleré€‰æ‹©å¯¼èˆªæ§åˆ¶å™¨
+    // selected navigation controllerÑ¡Ôñµ¼º½¿ØÖÆÆ÷
     AP_Navigation *nav_controller = &L1_controller;
 
-    // selected navigation controlleré€‰æ‹©å¯¼èˆªæ§åˆ¶å™¨
+    // selected navigation controllerÑ¡Ôñµ¼º½¿ØÖÆÆ÷
     AP_SpdHgtControl *SpdHgt_Controller = &TECS_controller;
 
-    // Cameraç›¸æœº
+    // CameraÏà»ú
 #if CAMERA == ENABLED
     AP_Camera camera{MASK_LOG_CAMERA, current_loc};
 #endif
 
 #if OPTFLOW == ENABLED
-    // Optical flow sensorå…‰æµä¼ æ„Ÿå™¨
+    // Optical flow sensor¹âÁ÷´«¸ĞÆ÷
     OpticalFlow optflow;
 #endif
 
     // Rally Points
-    // å¤‡é™ç‚¹
+    // ±¸½µµã
     AP_Rally rally;
 
 #if OSD_ENABLED == ENABLED
@@ -306,73 +306,73 @@ private:
 
     // This is the state of the flight control system
     // There are multiple states defined such as MANUAL, FBW-A, AUTO
-    // è¿™æ˜¯é£æ§ç³»ç»Ÿçš„çŠ¶æ€,å®šä¹‰äº†å¤šç§çŠ¶æ€ï¼Œä¾‹å¦‚MANUALï¼ŒFBW-Aï¼ŒAUTO
+    // ÕâÊÇ·É¿ØÏµÍ³µÄ×´Ì¬,¶¨ÒåÁË¶àÖÖ×´Ì¬£¬ÀıÈçMANUAL£¬FBW-A£¬AUTO
     Mode *control_mode = &mode_initializing;
     ModeReason control_mode_reason = ModeReason::UNKNOWN;
     Mode *previous_mode = &mode_initializing;
     ModeReason previous_mode_reason = ModeReason::UNKNOWN;
 
     // time of last mode change
-    // æœ€åä¸€æ¬¡æ¨¡å¼æ›´æ”¹çš„æ—¶é—´
+    // ×îºóÒ»´ÎÄ£Ê½¸ü¸ÄµÄÊ±¼ä
     uint32_t last_mode_change_ms;
 
     // Used to maintain the state of the previous control switch position
     // This is set to 254 when we need to re-read the switch
-    // ç”¨äºç»´æŒå…ˆå‰æ§åˆ¶å¼€å…³ä½ç½®çš„çŠ¶æ€ï¼Œéœ€è¦é‡æ–°è¯»å–å¼€å…³æ—¶å°†å…¶è®¾ç½®ä¸º254
+    // ÓÃÓÚÎ¬³ÖÏÈÇ°¿ØÖÆ¿ª¹ØÎ»ÖÃµÄ×´Ì¬£¬ĞèÒªÖØĞÂ¶ÁÈ¡¿ª¹ØÊ±½«ÆäÉèÖÃÎª254
     uint8_t oldSwitchPosition = 254;
 
     // This is used to enable the inverted flight feature
-    // è¿™ç”¨äºå¯ç”¨å€’é£åŠŸèƒ½
+    // ÕâÓÃÓÚÆôÓÃµ¹·É¹¦ÄÜ
     bool inverted_flight;
 
     // last time we ran roll/pitch stabilization
-    // ä¸Šä¸€æ¬¡æ»šè½¬/ä¿¯ä»°ç¨³å®šçš„æ—¶é—´
+    // ÉÏÒ»´Î¹ö×ª/¸©ÑöÎÈ¶¨µÄÊ±¼ä
     uint32_t last_stabilize_ms;
     
     // Failsafe
-    // æ•…éšœä¿æŠ¤
+    // ¹ÊÕÏ±£»¤
     struct {
         // Used to track if the value on channel 3 (throtttle) has fallen below the failsafe threshold
         // RC receiver should be set up to output a low throttle value when signal is lost
-        // ç”¨äºè·Ÿè¸ªé€šé“3ï¼ˆæ²¹é—¨ï¼‰ä¸Šçš„å€¼æ˜¯å¦å·²ä½äºæ•…éšœå®‰å…¨é˜ˆå€¼
-        // RCæ¥æ”¶å™¨åº”è®¾ç½®ä¸ºåœ¨ä¿¡å·ä¸¢å¤±æ—¶è¾“å‡ºä½æ²¹é—¨å€¼
+        // ÓÃÓÚ¸ú×ÙÍ¨µÀ3£¨ÓÍÃÅ£©ÉÏµÄÖµÊÇ·ñÒÑµÍÓÚ¹ÊÕÏ°²È«ãĞÖµ
+        // RC½ÓÊÕÆ÷Ó¦ÉèÖÃÎªÔÚĞÅºÅ¶ªÊ§Ê±Êä³öµÍÓÍÃÅÖµ
         bool rc_failsafe;
 
         // has the saved mode for failsafe been set?
-        // è®¾ç½®çš„æ¨¡å¼æ˜¯å¦è®¾ç½®äº†æ•…éšœä¿æŠ¤
+        // ÉèÖÃµÄÄ£Ê½ÊÇ·ñÉèÖÃÁË¹ÊÕÏ±£»¤
         bool saved_mode_set;
 
         // true if an adsb related failsafe has occurred
-        // å¦‚æœå‘ç”Ÿä¸ads-bç›¸å…³çš„æ•…éšœä¿æŠ¤ï¼Œåˆ™ä¸ºtrue
+        // Èç¹û·¢ÉúÓëads-bÏà¹ØµÄ¹ÊÕÏ±£»¤£¬ÔòÎªtrue
         bool adsb;
 
         // saved flight mode
-        // ä¿å­˜çš„é£è¡Œæ¨¡å¼
+        // ±£´æµÄ·ÉĞĞÄ£Ê½
         enum Mode::Number saved_mode_number;
 
         // A tracking variable for type of failsafe active
         // Used for failsafe based on loss of RC signal or GCS signal
-        // ä¸»åŠ¨æ•…éšœä¿æŠ¤ç±»å‹çš„è·Ÿè¸ªå˜é‡,ç”¨äºåŸºäºé¥æ§ä¿¡å·æˆ–åœ°é¢ç«™ä¿¡å·ä¸¢å¤±çš„æ•…éšœä¿æŠ¤
+        // Ö÷¶¯¹ÊÕÏ±£»¤ÀàĞÍµÄ¸ú×Ù±äÁ¿,ÓÃÓÚ»ùÓÚÒ£¿ØĞÅºÅ»òµØÃæÕ¾ĞÅºÅ¶ªÊ§µÄ¹ÊÕÏ±£»¤
         int16_t state;
 
         // number of low throttle values
-        // ä½æ²¹é—¨æ•°å€¼
+        // µÍÓÍÃÅÊıÖµ
         uint8_t throttle_counter;
 
         // the time when the last HEARTBEAT message arrived from a GCS
-        // æœ€åä¸€åˆ™å¿ƒè·³æ¶ˆæ¯ä»åœ°é¢ç«™åˆ°è¾¾çš„æ—¶é—´
+        // ×îºóÒ»ÔòĞÄÌøÏûÏ¢´ÓµØÃæÕ¾µ½´ïµÄÊ±¼ä
         uint32_t last_heartbeat_ms;
         
         // A timer used to track how long we have been in a "short failsafe" condition due to loss of RC signal
-        // ä¸€ä¸ªè®¡æ—¶å™¨ï¼Œç”¨äºè·Ÿè¸ªç”±äºé¥æ§ä¿¡å·ä¸¢å¤±è€Œå¤„äºâ€œçŸ­æ•…éšœä¿æŠ¤â€çŠ¶æ€çš„æ—¶é—´
+        // Ò»¸ö¼ÆÊ±Æ÷£¬ÓÃÓÚ¸ú×ÙÓÉÓÚÒ£¿ØĞÅºÅ¶ªÊ§¶ø´¦ÓÚ¡°¶Ì¹ÊÕÏ±£»¤¡±×´Ì¬µÄÊ±¼ä
         uint32_t short_timer_ms;
         
         uint32_t last_valid_rc_ms;
 
         //keeps track of the last valid rc as it relates to the AFS system
         //Does not count rc inputs as valid if the standard failsafe is on
-        //ä¿ç•™ä¸AFSç³»ç»Ÿç›¸å…³çš„æœ€åä¸€ä¸ªæœ‰æ•ˆé¥æ§çš„è·Ÿè¸ª
-        //å¦‚æœå¯ç”¨äº†æ ‡å‡†æ•…éšœä¿æŠ¤åŠŸèƒ½ï¼Œåˆ™ä¸å°†é¥æ§è¾“å…¥è§†ä¸ºæœ‰æ•ˆ
+        //±£ÁôÓëAFSÏµÍ³Ïà¹ØµÄ×îºóÒ»¸öÓĞĞ§Ò£¿ØµÄ¸ú×Ù
+        //Èç¹ûÆôÓÃÁË±ê×¼¹ÊÕÏ±£»¤¹¦ÄÜ£¬Ôò²»½«Ò£¿ØÊäÈëÊÓÎªÓĞĞ§
         uint32_t AFS_last_valid_rc_ms;
     } failsafe;
 
@@ -384,7 +384,7 @@ private:
         VTOL_LANDING,
     };
 
-    // Landingé™è½
+    // Landing½µÂä
     struct {
         enum Landing_ApproachStage approach_stage;
         float approach_direction_deg;
@@ -396,57 +396,57 @@ private:
 
     // A counter used to count down valid gps fixes to allow the gps estimate to settle
     // before recording our home position (and executing a ground start if we booted with an air start)
-    // ç”¨æ¥é€’å‡æœ‰æ•ˆgpsä¿®æ­£å€¼çš„è®¡æ•°å™¨ï¼Œä»¥ä½¿gpsä¼°ç®—å€¼ç¨³å®šä¸‹æ¥
-    // åœ¨è®°å½•æˆ‘ä»¬çš„åŸç‚¹ä½ç½®ä¹‹å‰ï¼ˆå¦‚æœæ˜¯ç©ºä¸­å¯åŠ¨åˆ™æ‰§è¡Œåœ°é¢å¯åŠ¨ï¼‰
+    // ÓÃÀ´µİ¼õÓĞĞ§gpsĞŞÕıÖµµÄ¼ÆÊıÆ÷£¬ÒÔÊ¹gps¹ÀËãÖµÎÈ¶¨ÏÂÀ´
+    // ÔÚ¼ÇÂ¼ÎÒÃÇµÄÔ­µãÎ»ÖÃÖ®Ç°£¨Èç¹ûÊÇ¿ÕÖĞÆô¶¯ÔòÖ´ĞĞµØÃæÆô¶¯£©
     uint8_t ground_start_count = 5;
 
     // true if we have a position estimate from AHRS
-    // å¦‚æœæˆ‘ä»¬æœ‰AHRSçš„èŒä½ä¼°ç®—ï¼Œåˆ™ä¸ºtrue
+    // Èç¹ûÎÒÃÇÓĞAHRSµÄÖ°Î»¹ÀËã£¬ÔòÎªtrue
     bool have_position;
 
     // Airspeed
     // The calculated airspeed to use in FBW-B.  Also used in higher modes for insuring min ground speed is met.
     // Also used for flap deployment criteria.  Centimeters per second.
-    // ç©ºé€Ÿ
-    // è®¡ç®—å‡ºçš„è¦åœ¨FBW-Bä¸­ä½¿ç”¨çš„ç©ºé€Ÿã€‚è¿˜ç”¨äºæ›´é«˜çš„æ¨¡å¼ï¼Œä»¥ç¡®ä¿è¾¾åˆ°æœ€å°åœ°é¢é€Ÿåº¦ã€‚
-    // ä¹Ÿç”¨äºè¥Ÿç¿¼åè½¬æ ‡å‡†ã€‚å˜ç±³/ç§’ã€‚
+    // ¿ÕËÙ
+    // ¼ÆËã³öµÄÒªÔÚFBW-BÖĞÊ¹ÓÃµÄ¿ÕËÙ¡£»¹ÓÃÓÚ¸ü¸ßµÄÄ£Ê½£¬ÒÔÈ·±£´ïµ½×îĞ¡µØÃæËÙ¶È¡£
+    // Ò²ÓÃÓÚ½óÒíÆ«×ª±ê×¼¡£ÀåÃ×/Ãë¡£
     int32_t target_airspeed_cm;
 
     // The difference between current and desired airspeed.  Used in the pitch controller.  Meters per second.
-    // å½“å‰å’ŒæœŸæœ›ç©ºé€Ÿä¹‹é—´çš„å·®ã€‚ç”¨äºéŸ³é«˜æ§åˆ¶å™¨ã€‚ç±³/ç§’ã€‚
+    // µ±Ç°ºÍÆÚÍû¿ÕËÙÖ®¼äµÄ²î¡£ÓÃÓÚÒô¸ß¿ØÖÆÆ÷¡£Ã×/Ãë¡£
     float airspeed_error;
 
     // An amount that the airspeed should be increased in auto modes based on the user positioning the
     // throttle stick in the top half of the range.  Centimeters per second.
-    // æ ¹æ®ç”¨æˆ·æ”¾ç½®çš„ä½ç½®ï¼Œåœ¨è‡ªåŠ¨æ¨¡å¼ä¸‹åº”æé«˜ç©ºé€Ÿçš„æ•°é‡,æ²¹é—¨æ‘‡æ†ä½äºèŒƒå›´çš„ä¸ŠåŠéƒ¨åˆ†ã€‚å˜ç±³/ç§’ã€‚
+    // ¸ù¾İÓÃ»§·ÅÖÃµÄÎ»ÖÃ£¬ÔÚ×Ô¶¯Ä£Ê½ÏÂÓ¦Ìá¸ß¿ÕËÙµÄÊıÁ¿,ÓÍÃÅÒ¡¸ËÎ»ÓÚ·¶Î§µÄÉÏ°ë²¿·Ö¡£ÀåÃ×/Ãë¡£
     int16_t airspeed_nudge_cm;
 
     // Similar to airspeed_nudge, but used when no airspeed sensor.
     // 0-(throttle_max - throttle_cruise) : throttle nudge in Auto mode using top 1/2 of throttle stick travel
-    // ä¸airspeed_nudgeç›¸ä¼¼ï¼Œä½†æ˜¯åœ¨æ²¡æœ‰ç©ºé€Ÿä¼ æ„Ÿå™¨æ—¶ä½¿ç”¨ã€‚
-    // 0-ï¼ˆthrottle_max-æ²¹é—¨è¡Œç¨‹ï¼‰ï¼šåœ¨è‡ªåŠ¨æ¨¡å¼ä¸‹ä½¿ç”¨æ²¹é—¨æ†è¡Œç¨‹çš„å‰1/2è½»æ¨æ²¹é—¨
+    // Óëairspeed_nudgeÏàËÆ£¬µ«ÊÇÔÚÃ»ÓĞ¿ÕËÙ´«¸ĞÆ÷Ê±Ê¹ÓÃ¡£
+    // 0-£¨throttle_max-ÓÍÃÅĞĞ³Ì£©£ºÔÚ×Ô¶¯Ä£Ê½ÏÂÊ¹ÓÃÓÍÃÅ¸ËĞĞ³ÌµÄÇ°1/2ÇáÍÆÓÍÃÅ
     int16_t throttle_nudge;
 
     // Ground speed
     // The amount current ground speed is below min ground speed.  Centimeters per second
-    // åœ°é¢é€Ÿåº¦
-    // å½“å‰åœ°é¢é€Ÿåº¦çš„æ•°é‡ä½äºæœ€å°åœ°é¢é€Ÿåº¦ã€‚å˜ç±³/ç§’
+    // µØÃæËÙ¶È
+    // µ±Ç°µØÃæËÙ¶ÈµÄÊıÁ¿µÍÓÚ×îĞ¡µØÃæËÙ¶È¡£ÀåÃ×/Ãë
     int32_t groundspeed_undershoot;
 
     // Difference between current altitude and desired altitude.  Centimeters
-    // å½“å‰æµ·æ‹”å’ŒæœŸæœ›æµ·æ‹”ä¹‹é—´çš„å·®ã€‚å…¬åˆ†
+    // µ±Ç°º£°ÎºÍÆÚÍûº£°ÎÖ®¼äµÄ²î¡£¹«·Ö
     int32_t altitude_error_cm;
 
-    // Battery Sensorsç”µæ± ä¼ æ„Ÿå™¨
+    // Battery Sensorsµç³Ø´«¸ĞÆ÷
     AP_BattMonitor battery{MASK_LOG_CURRENT,
                            FUNCTOR_BIND_MEMBER(&Plane::handle_battery_failsafe, void, const char*, const int8_t),
                            _failsafe_priorities};
 
-    // Airspeed Sensorsç©ºé€Ÿä¼ æ„Ÿå™¨
+    // Airspeed Sensors¿ÕËÙ´«¸ĞÆ÷
     AP_Airspeed airspeed;
 
     // ACRO controller state
-    // ACROæ§åˆ¶å™¨çŠ¶æ€
+    // ACRO¿ØÖÆÆ÷×´Ì¬
     struct {
         bool locked_roll;
         bool locked_pitch;
@@ -455,7 +455,7 @@ private:
     } acro_state;
 
     // CRUISE controller state
-    // å·¡èˆªæ§åˆ¶å™¨çŠ¶æ€
+    // Ñ²º½¿ØÖÆÆ÷×´Ì¬
     struct CruiseState {
         bool locked_heading;
         int32_t locked_heading_cd;
@@ -473,151 +473,151 @@ private:
     } takeoff_state;
 
     // ground steering controller state
-    // åœ°é¢è½¬å‘æ§åˆ¶å™¨çŠ¶æ€
+    // µØÃæ×ªÏò¿ØÖÆÆ÷×´Ì¬
     struct {
         // Direction held during phases of takeoff and landing centidegrees
         // A value of -1 indicates the course has not been set/is not in use
         // this is a 0..36000 value, or -1 for disabled
-        // åœ¨èµ·é£å’Œç€é™†æ‘„æ°åº¦é˜¶æ®µä¿æŒçš„æ–¹å‘
-        // å€¼-1è¡¨ç¤ºè¯¾ç¨‹å°šæœªè®¾ç½®/æœªä½¿ç”¨
-        // è¿™æ˜¯ä¸€ä¸ª0..36000å€¼ï¼Œæˆ–-1è¡¨ç¤ºå·²ç¦ç”¨
+        // ÔÚÆğ·ÉºÍ×ÅÂ½ÉãÊÏ¶È½×¶Î±£³ÖµÄ·½Ïò
+        // Öµ-1±íÊ¾¿Î³ÌÉĞÎ´ÉèÖÃ/Î´Ê¹ÓÃ
+        // ÕâÊÇÒ»¸ö0..36000Öµ£¬»ò-1±íÊ¾ÒÑ½ûÓÃ
         int32_t hold_course_cd = -1;
 
         // locked_course and locked_course_cd are used in stabilize mode 
         // when ground steering is active, and for steering in auto-takeoff
-        // åœ¨ç¨³å®šæ¨¡å¼ä¸‹ä½¿ç”¨locked_courseå’Œlocked_course_cd
-        // å½“åœ°é¢è½¬å‘å¤„äºæ´»åŠ¨çŠ¶æ€ä¸”ç”¨äºè‡ªåŠ¨èµ·é£è½¬å‘æ—¶
+        // ÔÚÎÈ¶¨Ä£Ê½ÏÂÊ¹ÓÃlocked_courseºÍlocked_course_cd
+        // µ±µØÃæ×ªÏò´¦ÓÚ»î¶¯×´Ì¬ÇÒÓÃÓÚ×Ô¶¯Æğ·É×ªÏòÊ±
         bool locked_course;
         float locked_course_err;
     } steer_state;
 
     // flight mode specific
-    // ç‰¹å®šäºé£è¡Œæ¨¡å¼
+    // ÌØ¶¨ÓÚ·ÉĞĞÄ£Ê½
     struct {
         // Altitude threshold to complete a takeoff command in autonomous
         // modes.  Centimeters above home
-        // è‡ªä¸»å®Œæˆèµ·é£å‘½ä»¤çš„é«˜åº¦é˜ˆå€¼æ¨¡å¼ã€‚èµ·é£ç‚¹ä¸Šå¤šå°‘å˜ç±³
+        // ×ÔÖ÷Íê³ÉÆğ·ÉÃüÁîµÄ¸ß¶ÈãĞÖµÄ£Ê½¡£Æğ·ÉµãÉÏ¶àÉÙÀåÃ×
         int32_t takeoff_altitude_rel_cm;
 
         // Begin leveling out the enforced takeoff pitch angle min at this height to reduce/eliminate overshoot
-        // åœ¨æ­¤é«˜åº¦å¼€å§‹æ‹‰å¹³å¼ºåˆ¶èµ·é£ä¿¯ä»°è§’minï¼Œä»¥å‡å°‘/æ¶ˆé™¤è¶…è°ƒ
+        // ÔÚ´Ë¸ß¶È¿ªÊ¼À­Æ½Ç¿ÖÆÆğ·É¸©Ñö½Çmin£¬ÒÔ¼õÉÙ/Ïû³ı³¬µ÷
         int32_t height_below_takeoff_to_level_off_cm;
 
         // the highest airspeed we have reached since entering AUTO. Used
         // to control ground takeoff
-        // è‡ªè¿›å…¥AUTOä»¥æ¥æˆ‘ä»¬è¾¾åˆ°çš„æœ€é«˜ç©ºé€Ÿã€‚ç”¨æ¥æ§åˆ¶åœ°é¢èµ·é£
+        // ×Ô½øÈëAUTOÒÔÀ´ÎÒÃÇ´ïµ½µÄ×î¸ß¿ÕËÙ¡£ÓÃÀ´¿ØÖÆµØÃæÆğ·É
         float highest_airspeed;
         
         // turn angle for next leg of mission
-        // ä¸ºä¸‹ä¸€ä¸ªä»»åŠ¡è½¬å¼¯è§’åº¦
+        // ÎªÏÂÒ»¸öÈÎÎñ×ªÍä½Ç¶È
         float next_turn_angle {90};
 
         // filtered sink rate for landing
-        // è¿‡æ»¤åçš„é™è½é€Ÿç‡
+        // ¹ıÂËºóµÄ½µÂäËÙÂÊ
         float sink_rate;
 
         // time when we first pass min GPS speed on takeoff
-        // èµ·é£æ—¶æˆ‘ä»¬é¦–æ¬¡é€šè¿‡æœ€å°GPSé€Ÿåº¦çš„æ—¶é—´
+        // Æğ·ÉÊ±ÎÒÃÇÊ×´ÎÍ¨¹ı×îĞ¡GPSËÙ¶ÈµÄÊ±¼ä
         uint32_t takeoff_speed_time_ms;
         
         // distance to next waypoint
-        // åˆ°ä¸‹ä¸€ä¸ªèˆªç‚¹çš„è·ç¦»
+        // µ½ÏÂÒ»¸öº½µãµÄ¾àÀë
         float wp_distance;
         
         // proportion to next waypoint
-        // ä¸ä¸‹ä¸€ä¸ªèˆªç‚¹çš„æ¯”ä¾‹
+        // ÓëÏÂÒ»¸öº½µãµÄ±ÈÀı
         float wp_proportion;
         
         // last time is_flying() returned true in milliseconds
-        // ä¸Šä¸€æ¬¡is_flyingï¼ˆï¼‰è¿”å›trueçš„æ—¶é—´ï¼ˆä»¥æ¯«ç§’ä¸ºå•ä½ï¼‰
+        // ÉÏÒ»´Îis_flying£¨£©·µ»ØtrueµÄÊ±¼ä£¨ÒÔºÁÃëÎªµ¥Î»£©
         uint32_t last_flying_ms;
 
         // time stamp of when we start flying while in auto mode in milliseconds
-        // æˆ‘ä»¬åœ¨è‡ªåŠ¨æ¨¡å¼ä¸‹å¼€å§‹é£è¡Œçš„æ—¶é—´æˆ³ï¼ˆä»¥æ¯«ç§’ä¸ºå•ä½ï¼‰
+        // ÎÒÃÇÔÚ×Ô¶¯Ä£Ê½ÏÂ¿ªÊ¼·ÉĞĞµÄÊ±¼ä´Á£¨ÒÔºÁÃëÎªµ¥Î»£©
         uint32_t started_flying_in_auto_ms;
 
         // barometric altitude at start of takeoff
-        // èµ·é£å¼€å§‹æ—¶çš„æ°”å‹é«˜åº¦
+        // Æğ·É¿ªÊ¼Ê±µÄÆøÑ¹¸ß¶È
         float baro_takeoff_alt;
 
         // initial pitch. Used to detect if nose is rising in a tail dragger
-        // åˆå§‹éŸ³é«˜ã€‚ç”¨äºæ£€æµ‹æ‹–å°¾å™¨ä¸­é¼»å­æ˜¯å¦åœ¨ä¸Šå‡
+        // ³õÊ¼Òô¸ß¡£ÓÃÓÚ¼ì²âÍÏÎ²Æ÷ÖĞ±Ç×ÓÊÇ·ñÔÚÉÏÉı
         int16_t initial_pitch_cd;
 
         // Minimum pitch to hold during takeoff command execution.  Hundredths of a degree
-        // èµ·é£å‘½ä»¤æ‰§è¡ŒæœŸé—´è¦ä¿æŒçš„æœ€å°éŸ³é«˜ã€‚ç™¾åˆ†ä¹‹ä¸€åº¦
+        // Æğ·ÉÃüÁîÖ´ĞĞÆÚ¼äÒª±£³ÖµÄ×îĞ¡Òô¸ß¡£°Ù·ÖÖ®Ò»¶È
         int16_t takeoff_pitch_cd;
 
         // used to 'wiggle' servos in idle mode to prevent them freezing
         // at high altitudes
-        // ç”¨äºåœ¨ç©ºé—²æ¨¡å¼ä¸‹â€œæ‘†åŠ¨â€ä¼ºæœå™¨ä»¥é˜²æ­¢å…¶åœ¨é«˜æµ·æ‹”ä¸‹è¢«å†»ç»“
+        // ÓÃÓÚÔÚ¿ÕÏĞÄ£Ê½ÏÂ¡°°Ú¶¯¡±ËÅ·şÆ÷ÒÔ·ÀÖ¹ÆäÔÚ¸ßº£°ÎÏÂ±»¶³½á
         uint8_t idle_wiggle_stage;
 
         // Flag for using gps ground course instead of INS yaw.  Set false when takeoff command in process.
-        // æ ‡è®°ä¸ºä½¿ç”¨GPSåœ°é¢è·¯çº¿è€Œä¸æ˜¯INSåèˆªã€‚å¤„ç†èµ·é£å‘½ä»¤æ—¶å°†å…¶è®¾ç½®ä¸ºfalseã€‚
+        // ±ê¼ÇÎªÊ¹ÓÃGPSµØÃæÂ·Ïß¶ø²»ÊÇINSÆ«º½¡£´¦ÀíÆğ·ÉÃüÁîÊ±½«ÆäÉèÖÃÎªfalse¡£
         bool takeoff_complete;
 
         // are we headed to the land approach waypoint? Works for any nav type
-        // æˆ‘ä»¬è¦å‰å¾€ç€é™†ç‚¹å—ï¼Ÿé€‚ç”¨äºä»»ä½•å¯¼èˆªç±»å‹
+        // ÎÒÃÇÒªÇ°Íù×ÅÂ½µãÂğ£¿ÊÊÓÃÓÚÈÎºÎµ¼º½ÀàĞÍ
         bool wp_is_land_approach;
 
         // should we fly inverted?
-        // æˆ‘ä»¬åº”è¯¥å€’é£å—ï¼Ÿ
+        // ÎÒÃÇÓ¦¸Ãµ¹·ÉÂğ£¿
         bool inverted_flight;
 
         // should we enable cross-tracking for the next waypoint?
-        // æˆ‘ä»¬åº”è¯¥ä¸ºä¸‹ä¸€ä¸ªèˆªç‚¹å¯ç”¨äº¤å‰è·Ÿè¸ªå—ï¼Ÿ
+        // ÎÒÃÇÓ¦¸ÃÎªÏÂÒ»¸öº½µãÆôÓÃ½»²æ¸ú×ÙÂğ£¿
         bool next_wp_crosstrack;
 
         // should we use cross-tracking for this waypoint?
-        // æˆ‘ä»¬æ˜¯å¦åº”å¯¹æ­¤äº¤å‰ç‚¹ä½¿ç”¨äº¤å‰è·Ÿè¸ªï¼Ÿ
+        // ÎÒÃÇÊÇ·ñÓ¦¶Ô´Ë½»²æµãÊ¹ÓÃ½»²æ¸ú×Ù£¿
         bool crosstrack;
 
         // in FBWA taildragger takeoff mode
-        // åœ¨å°¾åé£æœºç”µä¼ èµ·é£æ¨¡å¼ä¸‹
+        // ÔÚÎ²×ø·É»úµç´«Æğ·ÉÄ£Ê½ÏÂ
         bool fbwa_tdrag_takeoff_mode;
 
         // have we checked for an auto-land?
-        // æˆ‘ä»¬æ˜¯å¦æ£€æŸ¥äº†è‡ªåŠ¨é™è½ï¼Ÿ
+        // ÎÒÃÇÊÇ·ñ¼ì²éÁË×Ô¶¯½µÂä£¿
         bool checked_for_autoland;
 
         // Altitude threshold to complete a takeoff command in autonomous modes.  Centimeters
         // are we in idle mode? used for balloon launch to stop servo
         // movement until altitude is reached
-        // åœ¨è‡ªä¸»æ¨¡å¼ä¸‹å®Œæˆèµ·é£å‘½ä»¤çš„é«˜åº¦é˜ˆå€¼ã€‚ å˜ç±³æˆ‘ä»¬å¤„äºç©ºé—²æ¨¡å¼å—ï¼Ÿ
-        // ç”¨äºæ°”çƒå‘å°„ï¼Œä»¥åœæ­¢ä¼ºæœè¿åŠ¨ï¼Œç›´åˆ°è¾¾åˆ°é«˜åº¦
+        // ÔÚ×ÔÖ÷Ä£Ê½ÏÂÍê³ÉÆğ·ÉÃüÁîµÄ¸ß¶ÈãĞÖµ¡£ ÀåÃ×ÎÒÃÇ´¦ÓÚ¿ÕÏĞÄ£Ê½Âğ£¿
+        // ÓÃÓÚÆøÇò·¢Éä£¬ÒÔÍ£Ö¹ËÅ·şÔË¶¯£¬Ö±µ½´ïµ½¸ß¶È
         bool idle_mode;
 
         // are we in VTOL mode in AUTO?
-        // æˆ‘ä»¬æ˜¯å¦åœ¨AUTOæ¨¡å¼ä¸‹å¤„äºVTOLæ¨¡å¼ï¼Ÿ
+        // ÎÒÃÇÊÇ·ñÔÚAUTOÄ£Ê½ÏÂ´¦ÓÚVTOLÄ£Ê½£¿
         bool vtol_mode;
 
         // are we doing loiter mode as a VTOL?
-        // æˆ‘ä»¬æ˜¯å¦æ­£åœ¨å°†æ¸¸è¡æ¨¡å¼ä½œä¸ºVTOLï¼Ÿ
+        // ÎÒÃÇÊÇ·ñÕıÔÚ½«ÓÎµ´Ä£Ê½×÷ÎªVTOL£¿
         bool vtol_loiter;
 
         // how much correction have we added for terrain data
-        // æˆ‘ä»¬ä¸ºåœ°å½¢æ•°æ®æ·»åŠ äº†å¤šå°‘æ ¡æ­£
+        // ÎÒÃÇÎªµØĞÎÊı¾İÌí¼ÓÁË¶àÉÙĞ£Õı
         float terrain_correction;
     } auto_state;
 
     struct {
         // roll pitch yaw commanded from external controller in centidegrees
-        // å¤–éƒ¨æ§åˆ¶å™¨å‘½ä»¤çš„ä¿¯ä»°åèˆªè§’ï¼ˆä»¥åˆ†ä¸ºå•ä½ï¼‰
+        // Íâ²¿¿ØÖÆÆ÷ÃüÁîµÄ¸©ÑöÆ«º½½Ç£¨ÒÔ·ÖÎªµ¥Î»£©
         Vector3l forced_rpy_cd;
         // last time we heard from the external controller
-        // ä¸Šæ¬¡æ”¶åˆ°å¤–éƒ¨æ§åˆ¶å™¨çš„æ¶ˆæ¯
+        // ÉÏ´ÎÊÕµ½Íâ²¿¿ØÖÆÆ÷µÄÏûÏ¢
         Vector3l last_forced_rpy_ms;
 
         // throttle  commanded from external controller in percent
-        // å¤–éƒ¨æ§åˆ¶å™¨å‘å‡ºçš„æ²¹é—¨ç™¾åˆ†æ¯”
+        // Íâ²¿¿ØÖÆÆ÷·¢³öµÄÓÍÃÅ°Ù·Ö±È
         float forced_throttle;
         uint32_t last_forced_throttle_ms;
     } guided_state;
 
 #if LANDING_GEAR_ENABLED == ENABLED
     // landing gear state
-    // èµ·è½æ¶çŠ¶æ€
+    // ÆğÂä¼Ü×´Ì¬
     struct {
         AP_Vehicle::FixedWing::FlightStage last_flight_stage;
     } gear;
@@ -626,89 +626,89 @@ private:
     struct {
         // on hard landings, only check once after directly a landing so you
         // don't trigger a crash when picking up the aircraft
-        // åœ¨ç¡¬ç€é™†æ—¶ï¼Œåªéœ€è¦åœ¨ç›´æ¥ç€é™†åæ£€æŸ¥ä¸€æ¬¡å³å¯ï¼Œè¿™æ ·åœ¨æ‹¿èµ·é£æœºæ—¶ä¸ä¼šè§¦å‘å æœº
+        // ÔÚÓ²×ÅÂ½Ê±£¬Ö»ĞèÒªÔÚÖ±½Ó×ÅÂ½ºó¼ì²éÒ»´Î¼´¿É£¬ÕâÑùÔÚÄÃÆğ·É»úÊ±²»»á´¥·¢×¹»ú
         bool checkedHardLanding;
 
         // crash detection. True when we are crashed
-        // å æœºæ£€æµ‹ã€‚å½“æˆ‘ä»¬å æ¯æ—¶ä¸ºçœŸ
+        // ×¹»ú¼ì²â¡£µ±ÎÒÃÇ×¹»ÙÊ±ÎªÕæ
         bool is_crashed;
 
         // impact detection flag. Expires after a few seconds via impact_timer_ms
-        // ç¢°æ’æ£€æµ‹æ ‡å¿—ã€‚å‡ ç§’é’Ÿåé€šè¿‡impact_timer_msè¿‡æœŸ
+        // Åö×²¼ì²â±êÖ¾¡£¼¸ÃëÖÓºóÍ¨¹ıimpact_timer_ms¹ıÆÚ
         bool impact_detected;
 
         // debounce timer
-        // åè·³è®¡æ—¶å™¨
+        // ·´Ìø¼ÆÊ±Æ÷
         uint32_t debounce_timer_ms;
 
         // delay time for debounce to count to
-        // å»¶è¿Ÿæ—¶é—´ï¼Œä»¥é˜²æŠ–åŠ¨è®¡æ•°
+        // ÑÓ³ÙÊ±¼ä£¬ÒÔ·À¶¶¶¯¼ÆÊı
         uint32_t debounce_time_total_ms;
 
         // length of time impact_detected has been true. Times out after a few seconds. Used to clip isFlyingProbability
-        // æ£€æµ‹åˆ°çš„å½±å“çš„æ—¶é—´é•¿åº¦æ˜¯æ­£ç¡®çš„ã€‚ å‡ ç§’é’Ÿåè¶…æ—¶ã€‚ ç”¨äºå‰ªè¾‘é£è¡Œæ¦‚ç‡
+        // ¼ì²âµ½µÄÓ°ÏìµÄÊ±¼ä³¤¶ÈÊÇÕıÈ·µÄ¡£ ¼¸ÃëÖÓºó³¬Ê±¡£ ÓÃÓÚ¼ô¼­·ÉĞĞ¸ÅÂÊ
         uint32_t impact_timer_ms;
     } crash_state;
 
     // true if we are in an auto-throttle mode, which means
     // we need to run the speed/height controller
-    // å¦‚æœæˆ‘ä»¬å¤„äºè‡ªåŠ¨æ²¹é—¨æ¨¡å¼ï¼Œåˆ™ä¸ºtrueï¼Œè¿™æ„å‘³ç€æˆ‘ä»¬éœ€è¦è¿è¡Œé€Ÿåº¦/é«˜åº¦æ§åˆ¶å™¨
+    // Èç¹ûÎÒÃÇ´¦ÓÚ×Ô¶¯ÓÍÃÅÄ£Ê½£¬ÔòÎªtrue£¬ÕâÒâÎ¶×ÅÎÒÃÇĞèÒªÔËĞĞËÙ¶È/¸ß¶È¿ØÖÆÆ÷
     bool auto_throttle_mode:1;
 
     // true if we are in an auto-navigation mode, which controls whether control input is ignored
     // with STICK_MIXING=0
-    // å¦‚æœæˆ‘ä»¬å¤„äºè‡ªåŠ¨å¯¼èˆªæ¨¡å¼ï¼Œåˆ™ä¸ºtrueï¼Œå®ƒæ§åˆ¶æ˜¯å¦ä½¿ç”¨STICK_MIXING = 0å¿½ç•¥æ§ä»¶è¾“å…¥
+    // Èç¹ûÎÒÃÇ´¦ÓÚ×Ô¶¯µ¼º½Ä£Ê½£¬ÔòÎªtrue£¬Ëü¿ØÖÆÊÇ·ñÊ¹ÓÃSTICK_MIXING = 0ºöÂÔ¿Ø¼şÊäÈë
     bool auto_navigation_mode:1;
     
     // this allows certain flight modes to mix RC input with throttle depending on airspeed_nudge_cm
-    // è¿™å…è®¸æŸäº›é£è¡Œæ¨¡å¼æ ¹æ®ç©ºé€Ÿå¾®ç§»cmå°†RCè¾“å…¥ä¸æ²¹é—¨æ··åˆ
+    // ÕâÔÊĞíÄ³Ğ©·ÉĞĞÄ£Ê½¸ù¾İ¿ÕËÙÎ¢ÒÆcm½«RCÊäÈëÓëÓÍÃÅ»ìºÏ
     bool throttle_allows_nudging:1;
 
     // this controls throttle suppression in auto modes
-    // åœ¨è‡ªåŠ¨æ¨¡å¼ä¸‹æ§åˆ¶æ²¹é—¨æŠ‘åˆ¶
+    // ÔÚ×Ô¶¯Ä£Ê½ÏÂ¿ØÖÆÓÍÃÅÒÖÖÆ
     bool throttle_suppressed;
 	
     // reduce throttle to eliminate battery over-current
-    // é™ä½æ²¹é—¨ä»¥æ¶ˆé™¤ç”µæ± è¿‡ç”µæµ
+    // ½µµÍÓÍÃÅÒÔÏû³ıµç³Ø¹ıµçÁ÷
     int8_t  throttle_watt_limit_max;
-    int8_t  throttle_watt_limit_min; // for reverse thruståå‘æ¨åŠ›
+    int8_t  throttle_watt_limit_min; // for reverse thrust·´ÏòÍÆÁ¦
     uint32_t throttle_watt_limit_timer_ms;
 
     AP_Vehicle::FixedWing::FlightStage flight_stage = AP_Vehicle::FixedWing::FLIGHT_NORMAL;
 
     // probability of aircraft is currently in flight. range from 0 to
     // 1 where 1 is 100% sure we're in flight
-    // é£æœºç›®å‰æ­£åœ¨é£è¡Œçš„æ¦‚ç‡ã€‚ èŒƒå›´ä»0åˆ°1ï¼Œå…¶ä¸­1æ˜¯100ï¼…ç¡®ä¿æˆ‘ä»¬æ­£åœ¨é£è¡Œ
+    // ·É»úÄ¿Ç°ÕıÔÚ·ÉĞĞµÄ¸ÅÂÊ¡£ ·¶Î§´Ó0µ½1£¬ÆäÖĞ1ÊÇ100£¥È·±£ÎÒÃÇÕıÔÚ·ÉĞĞ
     float isFlyingProbability;
 
     // previous value of is_flying()
-    // is_flyingï¼ˆï¼‰çš„å…ˆå‰å€¼
+    // is_flying£¨£©µÄÏÈÇ°Öµ
     bool previous_is_flying;
 
     // time since started flying in any mode in milliseconds
-    // è‡ªå¼€å§‹ä»¥ä»»ä½•æ¨¡å¼é£è¡Œä»¥æ¥çš„æ—¶é—´ï¼ˆä»¥æ¯«ç§’ä¸ºå•ä½ï¼‰
+    // ×Ô¿ªÊ¼ÒÔÈÎºÎÄ£Ê½·ÉĞĞÒÔÀ´µÄÊ±¼ä£¨ÒÔºÁÃëÎªµ¥Î»£©
     uint32_t started_flying_ms;
 
     // Navigation control variables
     // The instantaneous desired bank angle.  Hundredths of a degree
-    // å¯¼èˆªæ§åˆ¶å˜é‡ï¼Œç¬æ—¶æ‰€éœ€çš„å€¾æ–œè§’ã€‚ç™¾åˆ†ä¹‹ä¸€åº¦
+    // µ¼º½¿ØÖÆ±äÁ¿£¬Ë²Ê±ËùĞèµÄÇãĞ±½Ç¡£°Ù·ÖÖ®Ò»¶È
     int32_t nav_roll_cd;
 
     // The instantaneous desired pitch angle.  Hundredths of a degree
-    // ç¬æ—¶æ‰€éœ€çš„ä¿¯ä»°è§’ã€‚ç™¾åˆ†ä¹‹ä¸€åº¦
+    // Ë²Ê±ËùĞèµÄ¸©Ñö½Ç¡£°Ù·ÖÖ®Ò»¶È
     int32_t nav_pitch_cd;
 
     // the aerodymamic load factor. This is calculated from the demanded
     // roll before the roll is clipped, using 1/sqrt(cos(nav_roll))
-    // æ°”åŠ¨è½½è·ç³»æ•°ã€‚ è¿™æ˜¯æ ¹æ®æ»šè½¬å‰æ‰€éœ€çš„æ»šè½¬è®¡ç®—å¾—å‡ºçš„ï¼Œä½¿ç”¨1 / sqrtï¼ˆcosï¼ˆnav_rollï¼‰ï¼‰
+    // Æø¶¯ÔØºÉÏµÊı¡£ ÕâÊÇ¸ù¾İ¹ö×ªÇ°ËùĞèµÄ¹ö×ª¼ÆËãµÃ³öµÄ£¬Ê¹ÓÃ1 / sqrt£¨cos£¨nav_roll£©£©
     float aerodynamic_load_factor = 1.0f;
 
     // a smoothed airspeed estimate, used for limiting roll angle
-    // å¹³æ»‘çš„ç©ºé€Ÿä¼°ç®—å€¼ï¼Œç”¨äºé™åˆ¶ä¾§å€¾è§’
+    // Æ½»¬µÄ¿ÕËÙ¹ÀËãÖµ£¬ÓÃÓÚÏŞÖÆ²àÇã½Ç
     float smoothed_airspeed;
 
     // Mission library
-    // ä»»åŠ¡åº“
+    // ÈÎÎñ¿â
     AP_Mission mission{
             FUNCTOR_BIND_MEMBER(&Plane::start_command_callback, bool, const AP_Mission::Mission_Command &),
             FUNCTOR_BIND_MEMBER(&Plane::verify_command_callback, bool, const AP_Mission::Mission_Command &),
@@ -720,7 +720,7 @@ private:
 #endif
 
     // terrain handling
-    // åœ°å½¢å¤„ç†
+    // µØĞÎ´¦Àí
 #if AP_TERRAIN_AVAILABLE
     AP_Terrain terrain{mission};
 #endif
@@ -736,144 +736,144 @@ private:
     AP_ADSB adsb;
 
     // avoidance of adsb enabled vehicles (normally manned vheicles)
-    // é¿å…ä½¿ç”¨å¯ç”¨äº†ads-bçš„è½¦è¾†ï¼ˆé€šå¸¸æ˜¯è½½äººè½¦è¾†ï¼‰
+    // ±ÜÃâÊ¹ÓÃÆôÓÃÁËads-bµÄ³µÁ¾£¨Í¨³£ÊÇÔØÈË³µÁ¾£©
     AP_Avoidance_Plane avoidance_adsb{adsb};
 
     // Outback Challenge Failsafe Support
-    // å†…é™†æŒ‘æˆ˜èµ›çš„æ•…éšœä¿æŠ¤æ”¯æŒ
+    // ÄÚÂ½ÌôÕ½ÈüµÄ¹ÊÕÏ±£»¤Ö§³Ö
 #if ADVANCED_FAILSAFE == ENABLED
     AP_AdvancedFailsafe_Plane afs {mission};
 #endif
 
     /*
       meta data to support counting the number of circles in a loiter
-      å…ƒæ•°æ®ä»¥æ”¯æŒè®¡ç®—ç›˜æ—‹çš„åœˆæ•°
+      ÔªÊı¾İÒÔÖ§³Ö¼ÆËãÅÌĞıµÄÈ¦Êı
     */
     struct {
         // previous target bearing, used to update sum_cd
-        // å…ˆå‰çš„ç›®æ ‡æ–¹ä½è§’ï¼Œç”¨äºæ›´æ–°sum_cd
+        // ÏÈÇ°µÄÄ¿±ê·½Î»½Ç£¬ÓÃÓÚ¸üĞÂsum_cd
         int32_t old_target_bearing_cd;
 
         // Total desired rotation in a loiter.  Used for Loiter Turns commands.
-        // ç›˜æ—‹ä¸­æ‰€éœ€çš„æ€»æ—‹è½¬æ¬¡æ•°ã€‚ç”¨äºâ€œç›˜æ—‹è½¬å¼¯â€å‘½ä»¤ã€‚
+        // ÅÌĞıÖĞËùĞèµÄ×ÜĞı×ª´ÎÊı¡£ÓÃÓÚ¡°ÅÌĞı×ªÍä¡±ÃüÁî¡£
         int32_t total_cd;
 
         // total angle completed in the loiter so far
-        // åˆ°ç›®å‰ä¸ºæ­¢ï¼Œç›˜æ—‹å®Œæˆçš„æ€»è§’åº¦
+        // µ½Ä¿Ç°ÎªÖ¹£¬ÅÌĞıÍê³ÉµÄ×Ü½Ç¶È
         int32_t sum_cd;
 
         // Direction for loiter. 1 for clockwise, -1 for counter-clockwise
-        // ç›˜æ—‹çš„æ–¹å‘ã€‚ 1ä»£è¡¨é¡ºæ—¶é’ˆï¼Œ-1ä»£è¡¨é€†æ—¶é’ˆ
+        // ÅÌĞıµÄ·½Ïò¡£ 1´ú±íË³Ê±Õë£¬-1´ú±íÄæÊ±Õë
         int8_t direction;
 
         // when loitering and an altitude is involved, this flag is true when it has been reached at least once
-        // å½“ç›˜æ—‹å¹¶æ¶‰åŠåˆ°æµ·æ‹”é«˜åº¦æ—¶ï¼Œå¦‚æœè‡³å°‘è¾¾åˆ°ä¸€æ¬¡ï¼Œåˆ™æ­¤æ ‡å¿—ä¸ºtrue
+        // µ±ÅÌĞı²¢Éæ¼°µ½º£°Î¸ß¶ÈÊ±£¬Èç¹ûÖÁÉÙ´ïµ½Ò»´Î£¬Ôò´Ë±êÖ¾Îªtrue
         bool reached_target_alt;
 
         // check for scenarios where updrafts can keep you from loitering down indefinitely.
-        // æ£€æŸ¥ä¸Šå‡æ°”æµå¯èƒ½ä¼šé˜»æ­¢æ‚¨æ— é™ä¸‹æ²‰çš„æƒ…å†µã€‚
+        // ¼ì²éÉÏÉıÆøÁ÷¿ÉÄÜ»á×èÖ¹ÄúÎŞÏŞÏÂ³ÁµÄÇé¿ö¡£
         bool unable_to_acheive_target_alt;
 
         // start time of the loiter.  Milliseconds.
-        // ç›˜æ—‹çš„å¼€å§‹æ—¶é—´ã€‚æ¯«ç§’ã€‚
+        // ÅÌĞıµÄ¿ªÊ¼Ê±¼ä¡£ºÁÃë¡£
         uint32_t start_time_ms;
 
         // altitude at start of loiter loop lap. Used to detect delta alt of each lap.
         // only valid when sum_cd > 36000
-        // ç›˜æ—‹å¼€å§‹æ—¶çš„æµ·æ‹”é«˜åº¦ã€‚ ç”¨äºæ£€æµ‹æ¯åœˆçš„å¢é‡å˜åŒ–ã€‚ ä»…åœ¨sum_cd> 36000æ—¶æœ‰æ•ˆ
+        // ÅÌĞı¿ªÊ¼Ê±µÄº£°Î¸ß¶È¡£ ÓÃÓÚ¼ì²âÃ¿È¦µÄÔöÁ¿±ä»¯¡£ ½öÔÚsum_cd> 36000Ê±ÓĞĞ§
         int32_t start_lap_alt_cm;
         int32_t next_sum_lap_cd;
 
         // The amount of time we should stay in a loiter for the Loiter Time command.  Milliseconds.
-        // æˆ‘ä»¬åº”è¯¥åœ¨â€œç›˜æ—‹æ—¶é—´â€å‘½ä»¤ä¸­åœç•™åœ¨ç›˜æ—‹ä¸­çš„æ—¶é—´ã€‚æ¯«ç§’ã€‚
+        // ÎÒÃÇÓ¦¸ÃÔÚ¡°ÅÌĞıÊ±¼ä¡±ÃüÁîÖĞÍ£ÁôÔÚÅÌĞıÖĞµÄÊ±¼ä¡£ºÁÃë¡£
         uint32_t time_max_ms;
     } loiter;
 
 
-    // Conditional commandæ¡ä»¶å‘½ä»¤
+    // Conditional commandÌõ¼şÃüÁî
     // A value used in condition commands (eg delay, change alt, etc.)
     // For example in a change altitude command, it is the altitude to change to.
-    // æ¡ä»¶å‘½ä»¤ä¸­ä½¿ç”¨çš„å€¼ï¼ˆä¾‹å¦‚ï¼Œå»¶è¿Ÿï¼Œæ›´æ”¹altç­‰ï¼‰.ä¾‹å¦‚ï¼Œåœ¨æ›´æ”¹é«˜åº¦å‘½ä»¤ä¸­ï¼Œå®ƒæ˜¯è¦æ›´æ”¹ä¸ºçš„é«˜åº¦ã€‚
+    // Ìõ¼şÃüÁîÖĞÊ¹ÓÃµÄÖµ£¨ÀıÈç£¬ÑÓ³Ù£¬¸ü¸ÄaltµÈ£©.ÀıÈç£¬ÔÚ¸ü¸Ä¸ß¶ÈÃüÁîÖĞ£¬ËüÊÇÒª¸ü¸ÄÎªµÄ¸ß¶È¡£
     int32_t condition_value;
 
     // A starting value used to check the status of a conditional command.
     // For example in a delay command the condition_start records that start time for the delay
-    // ç”¨äºæ£€æŸ¥æ¡ä»¶å‘½ä»¤çŠ¶æ€çš„èµ·å§‹å€¼ã€‚
-    // ä¾‹å¦‚ï¼Œåœ¨delayå‘½ä»¤ä¸­ï¼Œcondition_startè®°å½•è¯¥å»¶è¿Ÿçš„å¼€å§‹æ—¶é—´
+    // ÓÃÓÚ¼ì²éÌõ¼şÃüÁî×´Ì¬µÄÆğÊ¼Öµ¡£
+    // ÀıÈç£¬ÔÚdelayÃüÁîÖĞ£¬condition_start¼ÇÂ¼¸ÃÑÓ³ÙµÄ¿ªÊ¼Ê±¼ä
     uint32_t condition_start;
     // A value used in condition commands.  For example the rate at which to change altitude.
-    // æ¡ä»¶å‘½ä»¤ä¸­ä½¿ç”¨çš„å€¼ã€‚ä¾‹å¦‚ï¼Œæ”¹å˜é«˜åº¦çš„é€Ÿç‡ã€‚
+    // Ìõ¼şÃüÁîÖĞÊ¹ÓÃµÄÖµ¡£ÀıÈç£¬¸Ä±ä¸ß¶ÈµÄËÙÂÊ¡£
     int16_t condition_rate;
 
     // 3D Location vectors
     // Location structure defined in AP_Common
-    // 3Dä½ç½®å‘é‡ã€‚åœ¨AP_Commonä¸­å®šä¹‰çš„ä½ç½®ç»“æ„
+    // 3DÎ»ÖÃÏòÁ¿¡£ÔÚAP_CommonÖĞ¶¨ÒåµÄÎ»ÖÃ½á¹¹
     const struct Location &home = ahrs.get_home();
 
     // The location of the previous waypoint.  Used for track following and altitude ramp calculations
-    // å‰ä¸€ä¸ªèˆªç‚¹çš„ä½ç½®ã€‚ç”¨äºè·Ÿè¸ªå’Œé«˜åº¦å¡é“è®¡ç®—
+    // Ç°Ò»¸öº½µãµÄÎ»ÖÃ¡£ÓÃÓÚ¸ú×ÙºÍ¸ß¶ÈÆÂµÀ¼ÆËã
     Location prev_WP_loc {};
 
     // The plane's current location
-    // é£æœºçš„å½“å‰ä½ç½®
+    // ·É»úµÄµ±Ç°Î»ÖÃ
     struct Location current_loc {};
 
     // The location of the current/active waypoint.  Used for altitude ramp, track following and loiter calculations.
-    // å½“å‰/æ´»åŠ¨èˆªè·¯ç‚¹çš„ä½ç½®ã€‚ç”¨äºé«˜åº¦å¡é“ï¼Œè·Ÿè¸ªå’Œæ¸¸è¡è€…çš„è®¡ç®—ã€‚
+    // µ±Ç°/»î¶¯º½Â·µãµÄÎ»ÖÃ¡£ÓÃÓÚ¸ß¶ÈÆÂµÀ£¬¸ú×ÙºÍÓÎµ´ÕßµÄ¼ÆËã¡£
     Location next_WP_loc {};
 
     // The location of the active waypoint in Guided mode.
-    // å¼•å¯¼æ¨¡å¼ä¸‹æ´»åŠ¨èˆªè·¯ç‚¹çš„ä½ç½®ã€‚
+    // Òıµ¼Ä£Ê½ÏÂ»î¶¯º½Â·µãµÄÎ»ÖÃ¡£
     struct Location guided_WP_loc {};
 
     // Altitude control
-    // é«˜åº¦æ§åˆ¶
+    // ¸ß¶È¿ØÖÆ
     struct {
         // target altitude above sea level in cm. Used for barometric
         // altitude navigation
-        // ç›®æ ‡æµ·æ‹”é«˜åº¦ï¼Œä»¥å˜ç±³ä¸ºå•ä½ã€‚ ç”¨äºæ°”å‹é«˜åº¦å¯¼èˆª
+        // Ä¿±êº£°Î¸ß¶È£¬ÒÔÀåÃ×Îªµ¥Î»¡£ ÓÃÓÚÆøÑ¹¸ß¶Èµ¼º½
         int32_t amsl_cm;
 
         // Altitude difference between previous and current waypoint in
         // centimeters. Used for glide slope handling
-        // å…ˆå‰å’Œå½“å‰èˆªè·¯ç‚¹ä¹‹é—´çš„é«˜åº¦å·®ï¼ˆä»¥å˜ç±³ä¸ºå•ä½ï¼‰ã€‚ ç”¨äºæ»‘ç¿”å¤„ç†
+        // ÏÈÇ°ºÍµ±Ç°º½Â·µãÖ®¼äµÄ¸ß¶È²î£¨ÒÔÀåÃ×Îªµ¥Î»£©¡£ ÓÃÓÚ»¬Ïè´¦Àí
         int32_t offset_cm;
 
 #if AP_TERRAIN_AVAILABLE
         // are we trying to follow terrain?
-        // æˆ‘ä»¬æ˜¯å¦è¦åœ°å½¢è·Ÿéšï¼Ÿ
+        // ÎÒÃÇÊÇ·ñÒªµØĞÎ¸úËæ£¿
         bool terrain_following;
 
         // target altitude above terrain in cm, valid if terrain_following
         // is set
-        // åœ°å½¢ä¸Šæ–¹çš„ç›®æ ‡é«˜åº¦ï¼ˆä»¥å˜ç±³ä¸ºå•ä½ï¼‰ï¼Œå¦‚æœè®¾ç½®äº†åœ°å½¢è·Ÿéšï¼Œåˆ™æœ‰æ•ˆ
+        // µØĞÎÉÏ·½µÄÄ¿±ê¸ß¶È£¨ÒÔÀåÃ×Îªµ¥Î»£©£¬Èç¹ûÉèÖÃÁËµØĞÎ¸úËæ£¬ÔòÓĞĞ§
         int32_t terrain_alt_cm;
 
         // lookahead value for height error reporting
-        // é«˜åº¦é”™è¯¯æŠ¥å‘Šçš„è¶…å‰å€¼
+        // ¸ß¶È´íÎó±¨¸æµÄ³¬Ç°Öµ
         float lookahead;
 #endif
 
         // last input for FBWB/CRUISE height control
-        // FBWB / CRUISEé«˜åº¦æ§åˆ¶çš„æœ€åä¸€ä¸ªè¾“å…¥
+        // FBWB / CRUISE¸ß¶È¿ØÖÆµÄ×îºóÒ»¸öÊäÈë
         float last_elevator_input;
 
         // last time we checked for pilot control of height
-        // ä¸Šä¸€æ¬¡æˆ‘ä»¬æ£€æŸ¥é«˜åº¦çš„å…ˆå¯¼æ§åˆ¶
+        // ÉÏÒ»´ÎÎÒÃÇ¼ì²é¸ß¶ÈµÄÏÈµ¼¿ØÖÆ
         uint32_t last_elev_check_us;
     } target_altitude {};
 
     float relative_altitude;
 
-    // INS variables    INSå˜é‡
+    // INS variables    INS±äÁ¿
     // The main loop execution time.  Seconds
     // This is the time between calls to the DCM algorithm and is the Integration time for the gyros.
-    // ä¸»å¾ªç¯æ‰§è¡Œæ—¶é—´ã€‚ç§’
-    // è¿™æ˜¯è°ƒç”¨DCMç®—æ³•ä¹‹é—´çš„æ—¶é—´ï¼Œæ˜¯é™€èºä»ªçš„ç§¯åˆ†æ—¶é—´ã€‚
+    // Ö÷Ñ­»·Ö´ĞĞÊ±¼ä¡£Ãë
+    // ÕâÊÇµ÷ÓÃDCMËã·¨Ö®¼äµÄÊ±¼ä£¬ÊÇÍÓÂİÒÇµÄ»ı·ÖÊ±¼ä¡£
     float G_Dt = 0.02f;
 
     // loop performance monitoring:
-    // å¾ªç¯æ€§èƒ½ç›‘æ§ï¼š
+    // Ñ­»·ĞÔÄÜ¼à¿Ø£º
     AP::PerfInfo perf_info;
     struct {
         uint32_t last_trim_check;
@@ -885,19 +885,19 @@ private:
     } rtl;
 
     // last time home was updated while disarmed
-    // ä¸Šæ¬¡åœ¨æ’¤é˜²æ—¶æˆ¿å±‹å·²æ›´æ–°
+    // ÉÏ´ÎÔÚ³··ÀÊ±·¿ÎİÒÑ¸üĞÂ
     uint32_t last_home_update_ms;
 
     // Camera/Antenna mount tracking and stabilisation stuff
-    // æ‘„åƒå¤´/å¤©çº¿å®‰è£…è·Ÿè¸ªå’Œç¨³å®šåŠŸèƒ½
+    // ÉãÏñÍ·/ÌìÏß°²×°¸ú×ÙºÍÎÈ¶¨¹¦ÄÜ
 #if MOUNT == ENABLED
     // current_loc uses the baro/gps soloution for altitude rather than gps only.
-    // current_locå°†baro / gpsè§£å†³æ–¹æ¡ˆç”¨äºæµ·æ‹”é«˜åº¦ï¼Œè€Œä¸ä»…ä»…æ˜¯gpsã€‚
+    // current_loc½«baro / gps½â¾ö·½°¸ÓÃÓÚº£°Î¸ß¶È£¬¶ø²»½ö½öÊÇgps¡£
     AP_Mount camera_mount{current_loc};
 #endif
 
     // Arming/Disarming mangement class
-    // åŠ é”/è§£é”ç®¡ç†ç±»
+    // ¼ÓËø/½âËø¹ÜÀíÀà
     AP_Arming_Plane arming;
 
     AP_Param param_loader {var_info};
@@ -906,21 +906,21 @@ private:
     static const AP_Param::Info var_info[];
 
     // time that rudder arming has been running
-    // æ–¹å‘èˆµåŠ é”çš„æ—¶é—´
+    // ·½Ïò¶æ¼ÓËøµÄÊ±¼ä
     uint32_t rudder_arm_timer;
 
     // support for quadcopter-plane
-    // æ”¯æŒå››è½´é£è¡Œå™¨å¹³é¢
+    // Ö§³ÖËÄÖá·ÉĞĞÆ÷Æ½Ãæ
     QuadPlane quadplane{ahrs};
 
     // support for transmitter tuning
-    // æ”¯æŒå‘å°„æœºè°ƒè°
+    // Ö§³Ö·¢Éä»úµ÷Ğ³
     AP_Tuning_Plane tuning;
 
     static const struct LogStructure log_structure[];
 
     // rudder mixing gain for differential thrust (0 - 1)
-    // å·®åŠ¨æ¨åŠ›çš„èˆµæ··åˆå¢ç›Šï¼ˆ0-1ï¼‰
+    // ²î¶¯ÍÆÁ¦µÄ¶æ»ìºÏÔöÒæ£¨0-1£©
     float rudder_dt;
 
     void adjust_nav_pitch_throttle(void);
@@ -975,7 +975,7 @@ private:
     void set_guided_WP(void);
     void update_home();
     // set home location and store it persistently:
-    // è®¾ç½®å®¶åº­ä½ç½®å¹¶æ°¸ä¹…å­˜å‚¨ï¼š
+    // ÉèÖÃ¼ÒÍ¥Î»ÖÃ²¢ÓÀ¾Ã´æ´¢£º
     bool set_home_persistently(const Location &loc) WARN_IF_UNUSED;
     void do_RTL(int32_t alt);
     bool verify_takeoff();
@@ -1174,7 +1174,7 @@ private:
     int16_t get_throttle_input(bool no_deadzone=false) const;
 
     // support for AP_Avoidance custom flight mode, AVOID_ADSB
-    // æ”¯æŒAPé˜²æ’è‡ªå®šä¹‰é£è¡Œæ¨¡å¼AVOID_ADSB
+    // Ö§³ÖAP·À×²×Ô¶¨Òå·ÉĞĞÄ£Ê½AVOID_ADSB
     bool avoid_adsb_init(bool ignore_checks);
     void avoid_adsb_run();
 
@@ -1188,7 +1188,7 @@ private:
     };
 
     // list of priorities, highest priority first
-    // ä¼˜å…ˆçº§åˆ—è¡¨ï¼Œæœ€é«˜ä¼˜å…ˆçº§ä¼˜å…ˆ
+    // ÓÅÏÈ¼¶ÁĞ±í£¬×î¸ßÓÅÏÈ¼¶ÓÅÏÈ
     static constexpr int8_t _failsafe_priorities[] = {
                                                       Failsafe_Action_Terminate,
                                                       Failsafe_Action_Parachute,
@@ -1197,7 +1197,7 @@ private:
                                                       Failsafe_Action_RTL,
                                                       Failsafe_Action_None,
                                                       -1 // the priority list must end with a sentinel of -1
-                                                      // ä¼˜å…ˆçº§åˆ—è¡¨çš„ç»“å°¾å¿…é¡»ä¸º-1
+                                                      // ÓÅÏÈ¼¶ÁĞ±íµÄ½áÎ²±ØĞëÎª-1
                                                      };
     static_assert(_failsafe_priorities[ARRAY_SIZE(_failsafe_priorities) - 1] == -1,
                   "_failsafe_priorities is missing the sentinel");

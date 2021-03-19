@@ -8,13 +8,13 @@
 /*
  *  our failsafe strategy is to detect main loop lockup and switch to
  *  passing inputs straight from the RC inputs to RC outputs.
- *  æˆ‘ä»¬çš„æ•…éšœå®‰å…¨ç­–ç•¥æ˜¯æ£€æµ‹ä¸»å›è·¯é”å®šå¹¶åˆ‡æ¢ä¸ºç›´æ¥å°†è¾“å…¥ä»RCè¾“å…¥ä¼ é€’åˆ°RCè¾“å‡ºã€‚
+ *  ÎÒÃÇµÄ¹ÊÕÏ°²È«²ßÂÔÊÇ¼ì²âÖ÷»ØÂ·Ëø¶¨²¢ÇĞ»»ÎªÖ±½Ó½«ÊäÈë´ÓRCÊäÈë´«µİµ½RCÊä³ö¡£
  */
 
 /*
  *  this failsafe_check function is called from the core timer interrupt
  *  at 1kHz.
- *  ä»å†…æ ¸å®šæ—¶å™¨ä¸­æ–­ä»¥1kHzè°ƒç”¨æ­¤failsafe_checkå‡½æ•°ã€‚
+ *  ´ÓÄÚºË¶¨Ê±Æ÷ÖĞ¶ÏÒÔ1kHzµ÷ÓÃ´Ëfailsafe_checkº¯Êı¡£
  */
 void Plane::failsafe_check(void)
 {
@@ -26,7 +26,7 @@ void Plane::failsafe_check(void)
     const uint16_t ticks = scheduler.ticks();
     if (ticks != last_ticks) {
         // the main loop is running, all is OK
-        // ä¸»å¾ªç¯æ­£åœ¨è¿è¡Œï¼Œä¸€åˆ‡æ­£å¸¸
+        // Ö÷Ñ­»·ÕıÔÚÔËĞĞ£¬Ò»ÇĞÕı³£
         last_ticks = ticks;
         last_timestamp = tnow;
         in_failsafe = false;
@@ -38,14 +38,14 @@ void Plane::failsafe_check(void)
         // ran. That means we're in trouble, or perhaps are in
         // an initialisation routine or log erase. Start passing RC
         // inputs through to outputs
-        // è‡ªä¸»å¾ªç¯è¿è¡Œä»¥æ¥ï¼Œæˆ‘ä»¬è‡³å°‘è¿è¡Œäº†0.2ç§’ã€‚ è¿™æ„å‘³ç€æˆ‘ä»¬æœ‰éº»çƒ¦ï¼Œæˆ–è€…æ­£åœ¨åˆå§‹åŒ–ä¾‹ç¨‹æˆ–æ—¥å¿—æ“¦é™¤ä¸­ã€‚ å¼€å§‹å°†é¥æ§å™¨è¾“å…¥ä¼ é€’åˆ°è¾“å‡º 
+        // ×ÔÖ÷Ñ­»·ÔËĞĞÒÔÀ´£¬ÎÒÃÇÖÁÉÙÔËĞĞÁË0.2Ãë¡£ ÕâÒâÎ¶×ÅÎÒÃÇÓĞÂé·³£¬»òÕßÕıÔÚ³õÊ¼»¯Àı³Ì»òÈÕÖ¾²Á³ıÖĞ¡£ ¿ªÊ¼½«Ò£¿ØÆ÷ÊäÈë´«µİµ½Êä³ö
         in_failsafe = true;
     }
 
     if (in_failsafe && tnow - last_timestamp > 20000) {
 
         // ensure we have the latest RC inputs
-        // ç¡®ä¿æˆ‘ä»¬æ‹¥æœ‰æœ€æ–°çš„é¥æ§å™¨è¾“å…¥
+        // È·±£ÎÒÃÇÓµÓĞ×îĞÂµÄÒ£¿ØÆ÷ÊäÈë
         rc().read_input();
 
         last_timestamp = tnow;
@@ -56,19 +56,19 @@ void Plane::failsafe_check(void)
         if (in_calibration) {
             // tell the failsafe system that we are calibrating
             // sensors, so don't trigger failsafe
-            // å‘Šè¯‰æ•…éšœä¿æŠ¤ç³»ç»Ÿæˆ‘ä»¬æ­£åœ¨æ ¡å‡†ä¼ æ„Ÿå™¨ï¼Œæ‰€ä»¥ä¸è¦è§¦å‘æ•…éšœå®‰å…¨
+            // ¸æËß¹ÊÕÏ±£»¤ÏµÍ³ÎÒÃÇÕıÔÚĞ£×¼´«¸ĞÆ÷£¬ËùÒÔ²»Òª´¥·¢¹ÊÕÏ°²È«
             afs.heartbeat();
         }
 #endif
 
         if (RC_Channels::get_valid_channel_count() < 5) {
             // we don't have any RC input to pass through
-            // æˆ‘ä»¬æ²¡æœ‰ä»»ä½•é¥æ§å™¨è¾“å…¥è¦ä¼ é€’
+            // ÎÒÃÇÃ»ÓĞÈÎºÎÒ£¿ØÆ÷ÊäÈëÒª´«µİ
             return;
         }
 
         // pass RC inputs to outputs every 20ms
-        // æ¯20mså°†é¥æ§å™¨è¾“å…¥ä¼ é€’ç»™è¾“å‡º
+        // Ã¿20ms½«Ò£¿ØÆ÷ÊäÈë´«µİ¸øÊä³ö
         RC_Channels::clear_overrides();
 
         int16_t roll = channel_roll->get_control_in_zero_dz();
@@ -82,7 +82,7 @@ void Plane::failsafe_check(void)
         
         // setup secondary output channels that don't have
         // corresponding input channels
-        // è®¾ç½®æ²¡æœ‰ç›¸åº”è¾“å…¥é€šé“çš„è¾…åŠ©è¾“å‡ºé€šé“
+        // ÉèÖÃÃ»ÓĞÏàÓ¦ÊäÈëÍ¨µÀµÄ¸¨ÖúÊä³öÍ¨µÀ
         SRV_Channels::set_output_scaled(SRV_Channel::k_aileron, roll);
         SRV_Channels::set_output_scaled(SRV_Channel::k_elevator, pitch);
         SRV_Channels::set_output_scaled(SRV_Channel::k_rudder, rudder);
@@ -92,7 +92,7 @@ void Plane::failsafe_check(void)
         // this is to allow the failsafe module to deliberately crash 
         // the plane. Only used in extreme circumstances to meet the
         // OBC rules
-        // è¿™æ˜¯ä¸ºäº†å…è®¸æ•…éšœä¿æŠ¤æ¨¡å—æ•…æ„ä½¿é£æœºå æ¯ã€‚ ä»…åœ¨æ»¡è¶³OBCè§„åˆ™çš„æç«¯æƒ…å†µä¸‹ä½¿ç”¨
+        // ÕâÊÇÎªÁËÔÊĞí¹ÊÕÏ±£»¤Ä£¿é¹ÊÒâÊ¹·É»ú×¹»Ù¡£ ½öÔÚÂú×ãOBC¹æÔòµÄ¼«¶ËÇé¿öÏÂÊ¹ÓÃ
 #if ADVANCED_FAILSAFE == ENABLED
         if (afs.should_crash_vehicle()) {
             afs.terminate_vehicle();
@@ -104,13 +104,13 @@ void Plane::failsafe_check(void)
 
         // setup secondary output channels that do have
         // corresponding input channels
-        // è®¾ç½®å…·æœ‰ç›¸åº”è¾“å…¥é€šé“çš„è¾…åŠ©è¾“å‡ºé€šé“
+        // ÉèÖÃ¾ßÓĞÏàÓ¦ÊäÈëÍ¨µÀµÄ¸¨ÖúÊä³öÍ¨µÀ
         SRV_Channels::copy_radio_in_out(SRV_Channel::k_manual, true);
         SRV_Channels::set_output_scaled(SRV_Channel::k_flap, 0);
         SRV_Channels::set_output_scaled(SRV_Channel::k_flap_auto, 0);
 
         // setup flaperons
-        // è®¾ç½®è¥Ÿå‰¯ç¿¼
+        // ÉèÖÃ½ó¸±Òí
         flaperon_update(0);
 
         servos_output();

@@ -7,35 +7,35 @@ Mode::Mode()
 void Mode::exit()
 {
     // call sub-classes exit
-    // è°ƒç”¨å­ç±»é€€å‡º
+    // µ÷ÓÃ×ÓÀàÍË³ö
     _exit();
 }
 
 bool Mode::enter()
 {
     // cancel inverted flight
-    // å–æ¶ˆå€’é£
+    // È¡Ïûµ¹·É
     plane.auto_state.inverted_flight = false;
 
     // don't cross-track when starting a mission
-    // å¼€å§‹ä»»åŠ¡æ—¶ä¸è¦è¶Šè¿‡ç”µå­å›´æ 
+    // ¿ªÊ¼ÈÎÎñÊ±²»ÒªÔ½¹ıµç×ÓÎ§À¸
     plane.auto_state.next_wp_crosstrack = false;
 
     // reset landing check
-    // é‡ç½®ç™»é™†æ£€æŸ¥
+    // ÖØÖÃµÇÂ½¼ì²é
     plane.auto_state.checked_for_autoland = false;
 
     // zero locked course
-    // é›¶é”å®šè·¯çº¿
+    // ÁãËø¶¨Â·Ïß
     plane.steer_state.locked_course_err = 0;
 
     // reset crash detection
-    // é‡ç½®å æœºæ£€æµ‹
+    // ÖØÖÃ×¹»ú¼ì²â
     plane.crash_state.is_crashed = false;
     plane.crash_state.impact_detected = false;
 
     // reset external attitude guidance
-    // é‡ç½®å¤–éƒ¨é«˜åº¦æŒ‡å¯¼
+    // ÖØÖÃÍâ²¿¸ß¶ÈÖ¸µ¼
     plane.guided_state.last_forced_rpy_ms.zero();
     plane.guided_state.last_forced_throttle_ms = 0;
 
@@ -44,28 +44,28 @@ bool Mode::enter()
 #endif
 
     // zero initial pitch and highest airspeed on mode change
-    // é›¶åˆå§‹ä¿¯ä»°å’Œæœ€é«˜ç©ºé€Ÿåœ¨æ¨¡å¼æ”¹å˜æ—¶
+    // Áã³õÊ¼¸©ÑöºÍ×î¸ß¿ÕËÙÔÚÄ£Ê½¸Ä±äÊ±
     plane.auto_state.highest_airspeed = 0;
     plane.auto_state.initial_pitch_cd = plane.ahrs.pitch_sensor;
 
     // disable taildrag takeoff on mode change
-    // åœ¨æ¨¡å¼æ›´æ”¹æ—¶ç¦ç”¨å°¾åº§èµ·é£
+    // ÔÚÄ£Ê½¸ü¸ÄÊ±½ûÓÃÎ²×ùÆğ·É
     plane.auto_state.fbwa_tdrag_takeoff_mode = false;
 
     // start with previous WP at current location
-    // ä»å½“å‰ä½ç½®çš„ä¸Šä¸€ä¸ªå¯¼èˆªç‚¹å¼€å§‹
+    // ´Óµ±Ç°Î»ÖÃµÄÉÏÒ»¸öµ¼º½µã¿ªÊ¼
     plane.prev_WP_loc = plane.current_loc;
 
     // new mode means new loiter
-    // æ–°æ¨¡å¼æ„å‘³ç€æ‚¬åœ
+    // ĞÂÄ£Ê½ÒâÎ¶×ÅĞüÍ£
     plane.loiter.start_time_ms = 0;
 
     // record time of mode change
-    // è®°å½•æ¨¡å¼æ›´æ”¹æ—¶é—´
+    // ¼ÇÂ¼Ä£Ê½¸ü¸ÄÊ±¼ä
     plane.last_mode_change_ms = AP_HAL::millis();
 
     // assume non-VTOL mode
-    // å‡è®¾ä¸ºéå‚èµ·æ¨¡å¼
+    // ¼ÙÉèÎª·Ç´¹ÆğÄ£Ê½
     plane.auto_state.vtol_mode = false;
     plane.auto_state.vtol_loiter = false;
 
@@ -74,20 +74,20 @@ bool Mode::enter()
     if (enter_result) {
         // -------------------
         // these must be done AFTER _enter() because they use the results to set more flags
-        // è¿™äº›å¿…é¡»AFTER _enter()å®Œæˆï¼Œå› ä¸ºå®ƒä»¬ä½¿ç”¨ç»“æœæ¥è®¾ç½®æ›´å¤šæ ‡
+        // ÕâĞ©±ØĞëAFTER _enter()Íê³É£¬ÒòÎªËüÃÇÊ¹ÓÃ½á¹ûÀ´ÉèÖÃ¸ü¶à±ê
 
         // start with throttle suppressed in auto_throttle modes
-        // åœ¨è‡ªåŠ¨æ²¹é—¨æ¨¡å¼ä¸‹ä»¥æŠ‘åˆ¶æ²¹é—¨å¼€å§‹
+        // ÔÚ×Ô¶¯ÓÍÃÅÄ£Ê½ÏÂÒÔÒÖÖÆÓÍÃÅ¿ªÊ¼
         plane.throttle_suppressed = plane.auto_throttle_mode;
 
         plane.adsb.set_is_auto_mode(plane.auto_navigation_mode);
 
         // reset steering integrator on mode change
-        // åœ¨æ¨¡å¼æ›´æ”¹æ—¶é‡ç½®è½¬å‘ç§¯åˆ†å™¨
+        // ÔÚÄ£Ê½¸ü¸ÄÊ±ÖØÖÃ×ªÏò»ı·ÖÆ÷
         plane.steerController.reset_I();
 
         // update RC failsafe, as mode change may have necessitated changing the failsafe throttle
-        // æ›´æ–°é¥æ§å™¨æ•…éšœä¿æŠ¤ï¼Œå› ä¸ºæ¨¡å¼æ›´æ”¹å¯èƒ½éœ€è¦æ›´æ”¹æ•…éšœå®‰å…¨æ²¹é—¨
+        // ¸üĞÂÒ£¿ØÆ÷¹ÊÕÏ±£»¤£¬ÒòÎªÄ£Ê½¸ü¸Ä¿ÉÄÜĞèÒª¸ü¸Ä¹ÊÕÏ°²È«ÓÍÃÅ
         plane.control_failsafe();
     }
 

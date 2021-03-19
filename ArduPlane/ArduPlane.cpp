@@ -1,22 +1,22 @@
 /*
-é¦–å¸­å¼€å‘äººå‘˜ï¼šAndrew Tridgell
+Ê×Ï¯¿ª·¢ÈËÔ±£ºAndrew Tridgell
 
-   ä½œè€…ï¼šé“æ ¼ãƒ»éŸ¦ä¼¯ï¼ˆDoug Weibelï¼‰ï¼Œä½•å¡ãƒ»æœ±åˆ©å¥¥ï¼ˆJose Julioï¼‰ï¼Œä¹”è¿ªãƒ»ç©†å°¼å…¹ï¼ˆJordi Munozï¼‰ï¼Œæ°æ£®ãƒ»è‚–ç‰¹ï¼ˆJason Shortï¼‰ï¼Œ
-   å…°è¿ªãƒ»éº¦å‡¯ï¼ˆRandy Mackayï¼‰ï¼Œå¸•ç‰¹ãƒ»å¸ŒåŸºï¼ˆPic Hickeyï¼‰ï¼Œçº¦ç¿°ãƒ»é˜¿æ©ãƒ»ä¼¯å…‹å…°ï¼ˆJohn Arne Birkelandï¼‰ï¼Œå¥¥åˆ©ç»´å°”ãƒ»é˜¿å¾·å‹’ï¼ˆAlicar Lucasï¼‰ï¼Œ
-   æ ¼é‡Œé«˜é‡Œãƒ»å¼—è±å½»ï¼ˆGregory Fletcherï¼‰ï¼Œä¿ç½—ãƒ»é‡Œæ–¯ä¼¯å‹’ï¼ˆPaul Riseboroughï¼‰ï¼Œå¸ƒå…°ç™»ãƒ»ç¼æ–¯ï¼ˆBondon Jonesï¼‰ï¼Œ
-   ä¹”æ©ãƒ»æŸ¥æ—æ ¼ï¼ˆJon Challingerï¼‰ï¼Œæ±¤å§†ãƒ»çš®æ»•æ ¼ï¼ˆTom Pittengerï¼‰
-   æ„Ÿè°¢ï¼šå…‹é‡Œæ–¯ãƒ»å®‰å¾·æ£®ï¼ˆChris Andersonï¼‰ï¼Œè¿ˆå…‹å°”ãƒ»å¥¥æœ¬ï¼ˆMichael Oborneï¼‰ï¼Œä¿ç½—ãƒ»é©¬ç‘Ÿï¼ˆPaul Matherï¼‰ï¼Œæ¯”å°”ãƒ»æ™®é›·æ¢…æ‹‰å°¼ï¼ˆBill Premerlaniï¼‰ï¼Œ
-   è©¹å§†æ–¯ãƒ»ç§‘æ©ï¼ˆJames Cohenï¼‰ï¼ŒrotorFXçš„JBï¼ŒAutomatikï¼ŒFefeninï¼Œå½¼å¾—ãƒ»è¿ˆæ–¯ç‰¹ï¼ˆPeter Meisterï¼‰ï¼Œé›·å§†æ¯”æ¯”ï¼Œå°¤é‡Œãƒ»æ–¯ç±³å°”è¯ºå¤«ï¼ˆYurry Smirnovï¼‰ï¼Œ
-   æ¡‘å¾·ç½—ãƒ»è´å°¼å°¼å¥¥ï¼ˆSandro Benignoï¼‰ï¼Œé©¬å…‹æ–¯ãƒ»è±æ–‡ï¼ˆRobert Levineï¼‰ï¼Œç½—ä¼¯æ‰˜ãƒ»çº³æ²ƒå°¼ï¼ˆRoberto Navoniï¼‰ï¼Œæ´›ä¼¦å…¹ãƒ»è¿ˆè€¶ï¼ˆLorenz Meierï¼‰ï¼Œ
-   å°¤é‡Œãƒ»è’™èµï¼ˆYury MonZonï¼‰
+   ×÷Õß£ºµÀ¸ñ.Î¤²®£¨Doug Weibel£©£¬ºÎÈû.ÖìÀû°Â£¨Jose Julio£©£¬ÇÇµÏ.ÄÂÄá×È£¨Jordi Munoz£©£¬½ÜÉ­.Ğ¤ÌØ£¨Jason Short£©£¬
+   À¼µÏ.Âó¿­£¨Randy Mackay£©£¬ÅÁÌØ.Ï£»ù£¨Pic Hickey£©£¬Ô¼º².°¢¶÷.²®¿ËÀ¼£¨John Arne Birkeland£©£¬°ÂÀûÎ¬¶û.°¢µÂÀÕ£¨Alicar Lucas£©£¬
+   ¸ñÀï¸ßÀï.¸¥À³³¹£¨Gregory Fletcher£©£¬±£ÂŞ.ÀïË¹²®ÀÕ£¨Paul Riseborough£©£¬²¼À¼µÇ.ÇíË¹£¨Bondon Jones£©£¬
+   ÇÇ¶÷.²éÁÖ¸ñ£¨Jon Challinger£©£¬ÌÀÄ·.Æ¤ëø¸ñ£¨Tom Pittenger£©
+   ¸ĞĞ»£º¿ËÀïË¹.°²µÂÉ­£¨Chris Anderson£©£¬Âõ¿Ë¶û.°Â±¾£¨Michael Oborne£©£¬±£ÂŞ.ÂíÉª£¨Paul Mather£©£¬±È¶û.ÆÕÀ×Ã·À­Äá£¨Bill Premerlani£©£¬
+   Õ²Ä·Ë¹.¿Æ¶÷£¨James Cohen£©£¬rotorFXµÄJB£¬Automatik£¬Fefenin£¬±ËµÃ.ÂõË¹ÌØ£¨Peter Meister£©£¬À×Ä·±È±È£¬ÓÈÀï.Ë¹Ã×¶ûÅµ·ò£¨Yurry Smirnov£©£¬
+   É£µÂÂŞ.±´ÄáÄá°Â£¨Sandro Benigno£©£¬Âí¿ËË¹.À³ÎÄ£¨Robert Levine£©£¬ÂŞ²®ÍĞ.ÄÉÎÖÄá£¨Roberto Navoni£©£¬ÂåÂ××È.ÂõÒ®£¨Lorenz Meier£©£¬
+   ÓÈÀï.ÃÉÔŞ£¨Yury MonZon£©
 
-   è¯·è´¡çŒ®æ‚¨çš„æƒ³æ³•ï¼æœ‰å…³è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚è§http://dev.ardupilot.orgã€‚
+   Çë¹±Ï×ÄúµÄÏë·¨£¡ÓĞ¹ØÏêÏ¸ĞÅÏ¢£¬Çë²Î¼ûhttp://dev.ardupilot.org¡£
 
-   è¯¥ç¨‹åºæ˜¯å…è´¹è½¯ä»¶ï¼šæ‚¨å¯ä»¥æ ¹æ®è‡ªç”±è½¯ä»¶åŸºé‡‘ä¼šå‘å¸ƒçš„GNUé€šç”¨å…¬å…±è®¸å¯è¯çš„æ¡æ¬¾ï¼ˆè®¸å¯è¯çš„ç‰ˆæœ¬3ï¼‰æˆ–ï¼ˆæ ¹æ®æ‚¨çš„é€‰æ‹©ï¼‰ä»»ä½•æ›´é«˜ç‰ˆæœ¬æ¥é‡æ–°åˆ†å‘å’Œ/æˆ–ä¿®æ”¹å®ƒã€‚
+   ¸Ã³ÌĞòÊÇÃâ·ÑÈí¼ş£ºÄú¿ÉÒÔ¸ù¾İ×ÔÓÉÈí¼ş»ù½ğ»á·¢²¼µÄGNUÍ¨ÓÃ¹«¹²Ğí¿ÉÖ¤µÄÌõ¿î£¨Ğí¿ÉÖ¤µÄ°æ±¾3£©»ò£¨¸ù¾İÄúµÄÑ¡Ôñ£©ÈÎºÎ¸ü¸ß°æ±¾À´ÖØĞÂ·Ö·¢ºÍ/»òĞŞ¸ÄËü¡£
 
-   åˆ†å‘è¯¥ç¨‹åºæ˜¯å¸Œæœ›å®ƒä¼šæœ‰ç”¨ï¼Œä½†æ˜¯æ²¡æœ‰ä»»ä½•ä¿è¯ï¼›ç”šè‡³æ²¡æœ‰å¯¹é€‚é”€æ€§æˆ–ç‰¹å®šç”¨é€”é€‚ç”¨æ€§çš„æš—ç¤ºä¿è¯ã€‚æœ‰å…³æ›´å¤šè¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚è§GNUé€šç”¨å…¬å…±è®¸å¯è¯ã€‚
+   ·Ö·¢¸Ã³ÌĞòÊÇÏ£ÍûËü»áÓĞÓÃ£¬µ«ÊÇÃ»ÓĞÈÎºÎ±£Ö¤£»ÉõÖÁÃ»ÓĞ¶ÔÊÊÏúĞÔ»òÌØ¶¨ÓÃÍ¾ÊÊÓÃĞÔµÄ°µÊ¾±£Ö¤¡£ÓĞ¹Ø¸ü¶àÏêÏ¸ĞÅÏ¢£¬Çë²Î¼ûGNUÍ¨ÓÃ¹«¹²Ğí¿ÉÖ¤¡£
 
-   æ‚¨åº”è¯¥å·²ç»ä¸è¯¥ç¨‹åºä¸€èµ·æ”¶åˆ°äº†GNUé€šç”¨å…¬å…±è®¸å¯è¯çš„å‰¯æœ¬ã€‚å¦‚æœä¸æ˜¯ï¼Œè¯·å‚è§<http://www.gnu.org/licenses/>ã€‚
+   ÄúÓ¦¸ÃÒÑ¾­Óë¸Ã³ÌĞòÒ»ÆğÊÕµ½ÁËGNUÍ¨ÓÃ¹«¹²Ğí¿ÉÖ¤µÄ¸±±¾¡£Èç¹û²»ÊÇ£¬Çë²Î¼û<http://www.gnu.org/licenses/>¡£
  */
 
 #include "Plane.h"
@@ -28,7 +28,7 @@
   scheduler table - all regular tasks are listed here, along with how
   often they should be called (in Hz) and the maximum time
   they are expected to take (in microseconds)
-  è°ƒåº¦ç¨‹åºè¡¨-æ­¤å¤„åˆ—å‡ºäº†æ‰€æœ‰å¸¸è§„ä»»åŠ¡ï¼Œä»¥åŠåº”è°ƒç”¨å®ƒä»¬çš„é¢‘ç‡ï¼ˆä»¥Hzä¸ºå•ä½ï¼‰ä»¥åŠé¢„è®¡å°†èŠ±è´¹çš„æœ€é•¿æ—¶é—´ï¼ˆä»¥å¾®ç§’ä¸ºå•ä½ï¼‰
+  µ÷¶È³ÌĞò±í-´Ë´¦ÁĞ³öÁËËùÓĞ³£¹æÈÎÎñ£¬ÒÔ¼°Ó¦µ÷ÓÃËüÃÇµÄÆµÂÊ£¨ÒÔHzÎªµ¥Î»£©ÒÔ¼°Ô¤¼Æ½«»¨·ÑµÄ×î³¤Ê±¼ä£¨ÒÔÎ¢ÃëÎªµ¥Î»£©
  */
 const AP_Scheduler::Task Plane::scheduler_tasks[] = {
                            // Units:   Hz      us
@@ -85,7 +85,7 @@ const AP_Scheduler::Task Plane::scheduler_tasks[] = {
     SCHED_TASK(parachute_check,        10,    200),
 #if AP_TERRAIN_AVAILABLE
     SCHED_TASK_CLASS(AP_Terrain, &plane.terrain, update, 10, 200),
-#endif // AP_TERRAIN_AVAILABLE	å¯æä¾›APåœ°å½¢
+#endif // AP_TERRAIN_AVAILABLE	¿ÉÌá¹©APµØĞÎ
     SCHED_TASK(update_is_flying_5Hz,    5,    100),
 #if LOGGING_ENABLED == ENABLED
     SCHED_TASK_CLASS(AP_Logger, &plane.logger, periodic_tasks, 50, 400),
@@ -113,7 +113,7 @@ constexpr int8_t Plane::_failsafe_priorities[7];
 void Plane::setup() 
 {
     // load the default values of variables listed in var_info[]
-	// åŠ è½½var_info []ä¸­åˆ—å‡ºçš„å˜é‡çš„é»˜è®¤å€¼
+	// ¼ÓÔØvar_info []ÖĞÁĞ³öµÄ±äÁ¿µÄÄ¬ÈÏÖµ
     AP_Param::setup_sketch_defaults();
 
     rssi.init();
@@ -121,7 +121,7 @@ void Plane::setup()
     init_ardupilot();
 
     // initialise the main loop scheduler
-    // åˆå§‹åŒ–ä¸»å¾ªç¯è°ƒåº¦ç¨‹åº
+    // ³õÊ¼»¯Ö÷Ñ­»·µ÷¶È³ÌĞò
     scheduler.init(&scheduler_tasks[0], ARRAY_SIZE(scheduler_tasks), MASK_LOG_PM);
 }
 
@@ -132,7 +132,7 @@ void Plane::loop()
 }
 
 // update AHRS system
-// æ›´æ–°AHRSç³»ç»Ÿ
+// ¸üĞÂAHRSÏµÍ³
 void Plane::ahrs_update()
 {
     arming.update_soft_armed();
@@ -140,7 +140,7 @@ void Plane::ahrs_update()
 #if HIL_SUPPORT
     if (g.hil_mode == 1) {
         // update hil before AHRS update
-    	// åœ¨AHRSæ›´æ–°ä¹‹å‰æ›´æ–°hil
+    	// ÔÚAHRS¸üĞÂÖ®Ç°¸üĞÂhil
         gcs().update_receive();
     }
 #endif
@@ -152,7 +152,7 @@ void Plane::ahrs_update()
     }
 
     // calculate a scaled roll limit based on current pitch
-    // æ ¹æ®å½“å‰èºè·è®¡ç®—ç¼©æ”¾çš„æ»šåŠ¨é™åˆ¶
+    // ¸ù¾İµ±Ç°Âİ¾à¼ÆËãËõ·ÅµÄ¹ö¶¯ÏŞÖÆ
     roll_limit_cd = aparm.roll_limit_cd;
     pitch_limit_min_cd = aparm.pitch_limit_min_cd;
 
@@ -164,22 +164,22 @@ void Plane::ahrs_update()
     // updated the summed gyro used for ground steering and
     // auto-takeoff. Dot product of DCM.c with gyro vector gives earth
     // frame yaw rate
-    // æ›´æ–°äº†ç”¨äºåœ°é¢è½¬å‘å’Œè‡ªåŠ¨èµ·é£çš„æ€»é™€èºä»ªã€‚ DCM.cä¸é™€èºçŸ¢é‡çš„ç‚¹ç§¯ç»™å‡ºåœ°çƒæ¡†æ¶åèˆªç‡
+    // ¸üĞÂÁËÓÃÓÚµØÃæ×ªÏòºÍ×Ô¶¯Æğ·ÉµÄ×ÜÍÓÂİÒÇ¡£ DCM.cÓëÍÓÂİÊ¸Á¿µÄµã»ı¸ø³öµØÇò¿ò¼ÜÆ«º½ÂÊ
     steer_state.locked_course_err += ahrs.get_yaw_rate_earth() * G_Dt;
     steer_state.locked_course_err = wrap_PI(steer_state.locked_course_err);
 
     // check if we have had a yaw reset from the EKF
-    // æ£€æŸ¥æˆ‘ä»¬æ˜¯å¦å·²ç»ä»EKFè¿›è¡Œäº†åèˆªå¤ä½
+    // ¼ì²éÎÒÃÇÊÇ·ñÒÑ¾­´ÓEKF½øĞĞÁËÆ«º½¸´Î»
     quadplane.check_yaw_reset();
 
     // update inertial_nav for quadplane
-    // æ›´æ–°æƒ¯æ€§å¯¼èˆªä¸ºå››ç¿¼é£æœº
+    // ¸üĞÂ¹ßĞÔµ¼º½ÎªËÄÒí·É»ú
     quadplane.inertial_nav.update();
 }
 
 /*
   update 50Hz speed/height controller
-  æ›´æ–°50Hzé€Ÿåº¦/é«˜åº¦æ§åˆ¶å™¨
+  ¸üĞÂ50HzËÙ¶È/¸ß¶È¿ØÖÆÆ÷
  */
 void Plane::update_speed_height(void)
 {
@@ -187,7 +187,7 @@ void Plane::update_speed_height(void)
 	    // Call TECS 50Hz update. Note that we call this regardless of
 	    // throttle suppressed, as this needs to be running for
 	    // takeoff detection
-    	// è°ƒç”¨TECS 50Hzæ›´æ–°ã€‚ è¯·æ³¨æ„ï¼Œæ— è®ºæ²¹é—¨æ˜¯å¦è¢«æŠ‘åˆ¶ï¼Œæˆ‘ä»¬éƒ½å°†å…¶ç§°ä¸ºâ€œèµ·é£â€ï¼Œå› ä¸ºå®ƒéœ€è¦è¿è¡Œä»¥è¿›è¡Œèµ·é£æ£€æµ‹
+    	// µ÷ÓÃTECS 50Hz¸üĞÂ¡£ Çë×¢Òâ£¬ÎŞÂÛÓÍÃÅÊÇ·ñ±»ÒÖÖÆ£¬ÎÒÃÇ¶¼½«Æä³ÆÎª¡°Æğ·É¡±£¬ÒòÎªËüĞèÒªÔËĞĞÒÔ½øĞĞÆğ·É¼ì²â
         SpdHgt_Controller->update_50hz();
     }
 
@@ -200,7 +200,7 @@ void Plane::update_speed_height(void)
 
 /*
   read and update compass
-  è¯»å–å’Œæ›´æ–°æŒ‡å—é’ˆ
+  ¶ÁÈ¡ºÍ¸üĞÂÖ¸ÄÏÕë
  */
 void Plane::update_compass(void)
 {
@@ -211,7 +211,7 @@ void Plane::update_compass(void)
 
 /*
   do 10Hz logging
-  è¿›è¡Œ10Hzè®°å½•
+  ½øĞĞ10Hz¼ÇÂ¼
  */
 void Plane::update_logging1(void)
 {
@@ -228,7 +228,7 @@ void Plane::update_logging1(void)
 
 /*
   do 10Hz logging - part2
-  è¿›è¡Œ10Hzè®°å½•
+  ½øĞĞ10Hz¼ÇÂ¼
  */
 void Plane::update_logging2(void)
 {
@@ -248,13 +248,13 @@ void Plane::update_logging2(void)
 
 /*
   check for AFS failsafe check
-  æ£€æŸ¥AFSæ•…éšœå®‰å…¨æ£€æŸ¥
+  ¼ì²éAFS¹ÊÕÏ°²È«¼ì²é
  */
 #if ADVANCED_FAILSAFE == ENABLED
 void Plane::afs_fs_check(void)
 {
     // perform AFS failsafe checks
-	// æ‰§è¡ŒAFSæ•…éšœå®‰å…¨æ£€æŸ¥
+	// Ö´ĞĞAFS¹ÊÕÏ°²È«¼ì²é
     afs.check(failsafe.last_heartbeat_ms, geofence_breached(), failsafe.AFS_last_valid_rc_ms);
 }
 #endif
@@ -267,7 +267,7 @@ extern AP_IOMCU iomcu;
 void Plane::one_second_loop()
 {
     // make it possible to change control channel ordering at runtime
-	// ä½¿åœ¨è¿è¡Œæ—¶æ›´æ”¹æ§åˆ¶é€šé“é¡ºåºæˆä¸ºå¯èƒ½
+	// Ê¹ÔÚÔËĞĞÊ±¸ü¸Ä¿ØÖÆÍ¨µÀË³Ğò³ÉÎª¿ÉÄÜ
     set_control_channels();
 
 #if HAL_WITH_IO_MCU
@@ -275,20 +275,20 @@ void Plane::one_second_loop()
 #endif
 
     // make it possible to change orientation at runtime
-    // ä½¿åœ¨è¿è¡Œæ—¶æ›´æ”¹æ–¹å‘æˆä¸ºå¯èƒ½
+    // Ê¹ÔÚÔËĞĞÊ±¸ü¸Ä·½Ïò³ÉÎª¿ÉÄÜ
     ahrs.update_orientation();
 
     adsb.set_stall_speed_cm(aparm.airspeed_min);
     adsb.set_max_speed(aparm.airspeed_max);
 
     // sync MAVLink system ID
-    // åŒæ­¥MAVLinkç³»ç»ŸID
+    // Í¬²½MAVLinkÏµÍ³ID
     mavlink_system.sysid = g.sysid_this_mav;
 
     SRV_Channels::enable_aux_servos();
 
     // update notify flags
-    // æ›´æ–°é€šçŸ¥æ ‡å¿—
+    // ¸üĞÂÍ¨Öª±êÖ¾
     AP_Notify::flags.pre_arm_check = arming.pre_arm_checks(false);
     AP_Notify::flags.pre_arm_gps_check = true;
     AP_Notify::flags.armed = arming.is_armed() || arming.arming_required() == AP_Arming::Required::NO;
@@ -301,7 +301,7 @@ void Plane::one_second_loop()
 
     // update home position if NOT armed and gps position has
     // changed. Update every 5s at most
-    // å¦‚æœæœªåŠ é”ä¸”GPSä½ç½®å·²æ›´æ”¹ï¼Œè¯·æ›´æ–°åŸå§‹ä½ç½®ã€‚ æœ€å¤šæ¯5sæ›´æ–°ä¸€æ¬¡
+    // Èç¹ûÎ´¼ÓËøÇÒGPSÎ»ÖÃÒÑ¸ü¸Ä£¬Çë¸üĞÂÔ­Ê¼Î»ÖÃ¡£ ×î¶àÃ¿5s¸üĞÂÒ»´Î
     if (!arming.is_armed() &&
         gps.last_message_time_ms() - last_home_update_ms > 5000 &&
         gps.status() >= AP_GPS::GPS_OK_FIX_3D) {
@@ -309,7 +309,7 @@ void Plane::one_second_loop()
             update_home();
             
             // reset the landing altitude correction
-            // é‡ç½®ç€é™†é«˜åº¦æ ¡æ­£
+            // ÖØÖÃ×ÅÂ½¸ß¶ÈĞ£Õı
             landing.alt_offset = 0;
     }
 }
@@ -321,7 +321,7 @@ void Plane::compass_save()
         !hal.util->get_soft_armed()) {
         /*
           only save offsets when disarmed
-          ä»…åœ¨è§£é”æ—¶ä¿å­˜è¡¥å¿
+          ½öÔÚ½âËøÊ±±£´æ²¹³¥
          */
         compass.save_offsets();
     }
@@ -329,7 +329,7 @@ void Plane::compass_save()
 
 /*
   once a second update the airspeed calibration ratio
-  æ¯ç§’æ›´æ–°ä¸€æ¬¡ç©ºé€Ÿæ ¡å‡†ç‡
+  Ã¿Ãë¸üĞÂÒ»´Î¿ÕËÙĞ£×¼ÂÊ
  */
 void Plane::airspeed_ratio_update(void)
 {
@@ -337,7 +337,7 @@ void Plane::airspeed_ratio_update(void)
         gps.status() < AP_GPS::GPS_OK_FIX_3D ||
         gps.ground_speed() < 4) {
         // don't calibrate when not moving
-    	// ä¸åŠ¨æ—¶è¯·å‹¿æ ¡å‡†
+    	// ²»¶¯Ê±ÇëÎğĞ£×¼
         return;        
     }
     if (airspeed.get_airspeed() < aparm.airspeed_min && 
@@ -346,14 +346,14 @@ void Plane::airspeed_ratio_update(void)
         // check both airspeed and ground speed to catch cases where
         // the airspeed ratio is way too low, which could lead to it
         // never coming up again
-    	// ä½äºæœ€ä½ç©ºé€Ÿé£è¡Œæ—¶è¯·å‹¿æ ¡å‡†ã€‚ æˆ‘ä»¬åŒæ—¶æ£€æŸ¥ç©ºé€Ÿå’Œåœ°é¢é€Ÿåº¦ï¼Œä»¥å‘ç°ç©ºé€Ÿæ¯”è¿‡ä½çš„æƒ…å†µï¼Œè¿™å¯èƒ½å¯¼è‡´ç©ºé€Ÿæ¯”ä¸å†ä¸Šå‡
+    	// µÍÓÚ×îµÍ¿ÕËÙ·ÉĞĞÊ±ÇëÎğĞ£×¼¡£ ÎÒÃÇÍ¬Ê±¼ì²é¿ÕËÙºÍµØÃæËÙ¶È£¬ÒÔ·¢ÏÖ¿ÕËÙ±È¹ıµÍµÄÇé¿ö£¬Õâ¿ÉÄÜµ¼ÖÂ¿ÕËÙ±È²»ÔÙÉÏÉı
         return;
     }
     if (labs(ahrs.roll_sensor) > roll_limit_cd ||
         ahrs.pitch_sensor > aparm.pitch_limit_max_cd ||
         ahrs.pitch_sensor < pitch_limit_min_cd) {
         // don't calibrate when going beyond normal flight envelope
-    	// è¶…å‡ºæ­£å¸¸é£è¡ŒèŒƒå›´æ—¶è¯·å‹¿æ ¡å‡†
+    	// ³¬³öÕı³£·ÉĞĞ·¶Î§Ê±ÇëÎğĞ£×¼
         return;
     }
     const Vector3f &vg = gps.velocity();
@@ -363,14 +363,14 @@ void Plane::airspeed_ratio_update(void)
 
 /*
   read the GPS and update position
-  è¯»å–GPSå¹¶æ›´æ–°ä½ç½®
+  ¶ÁÈ¡GPS²¢¸üĞÂÎ»ÖÃ
  */
 void Plane::update_GPS_50Hz(void)
 {
     gps.update();
 
     // get position from AHRS
-    // ä»AHRSè·å¾—ä½ç½®
+    // ´ÓAHRS»ñµÃÎ»ÖÃ
     have_position = ahrs.get_position(current_loc);
     ahrs.get_relative_position_D_home(relative_altitude);
     relative_altitude *= -1.0f;
@@ -378,7 +378,7 @@ void Plane::update_GPS_50Hz(void)
 
 /*
   read update GPS position - 10Hz update
-  è¯»å–æ›´æ–°GPSä½ç½®-10Hzæ›´æ–°
+  ¶ÁÈ¡¸üĞÂGPSÎ»ÖÃ-10Hz¸üĞÂ
  */
 void Plane::update_GPS_10Hz(void)
 {
@@ -391,14 +391,14 @@ void Plane::update_GPS_10Hz(void)
         } else if (ground_start_count == 1) {
             // We countdown N number of good GPS fixes
             // so that the altitude is more accurate
-            // æˆ‘ä»¬å€’æ•°Nä¸ªè‰¯å¥½çš„GPSå®šä½ï¼Œä»¥ä½¿é«˜åº¦æ›´å‡†ç¡®
+            // ÎÒÃÇµ¹ÊıN¸öÁ¼ºÃµÄGPS¶¨Î»£¬ÒÔÊ¹¸ß¶È¸ü×¼È·
             if (current_loc.lat == 0 && current_loc.lng == 0) {
                 ground_start_count = 5;
 
             } else {
                 if (!set_home_persistently(gps.location())) {
                     // silently ignore failure...
-                	// é»˜é»˜åœ°å¿½ç•¥å¤±è´¥...
+                	// Ä¬Ä¬µØºöÂÔÊ§°Ü...
                 }
 
                 next_WP_loc = prev_WP_loc = home;
@@ -408,7 +408,7 @@ void Plane::update_GPS_10Hz(void)
         }
 
         // see if we've breached the geo-fence
-        // çœ‹çœ‹æˆ‘ä»¬æ˜¯å¦è¿åäº†åœ°ç†å›´æ 
+        // ¿´¿´ÎÒÃÇÊÇ·ñÎ¥·´ÁËµØÀíÎ§À¸
         geofence_check(false);
 
 #if CAMERA == ENABLED
@@ -416,11 +416,11 @@ void Plane::update_GPS_10Hz(void)
 #endif
 
         // update wind estimate
-        // æ›´æ–°é£ä¼°è®¡
+        // ¸üĞÂ·ç¹À¼Æ
         ahrs.estimate_wind();
     } else if (gps.status() < AP_GPS::GPS_OK_FIX_3D && ground_start_count != 0) {
         // lost 3D fix, start again
-    	// ä¸¢å¤±äº†3Dä¿®æ­£ï¼Œé‡æ–°å¼€å§‹
+    	// ¶ªÊ§ÁË3DĞŞÕı£¬ÖØĞÂ¿ªÊ¼
         ground_start_count = 5;
     }
 
@@ -429,7 +429,7 @@ void Plane::update_GPS_10Hz(void)
 
 /*
   main control mode dependent update code
-  ä¸»æ§åˆ¶æ¨¡å¼ç›¸å…³çš„æ›´æ–°ä»£ç 
+  Ö÷¿ØÖÆÄ£Ê½Ïà¹ØµÄ¸üĞÂ´úÂë
  */
 void Plane::update_control_mode(void)
 {
@@ -440,14 +440,14 @@ void Plane::update_control_mode(void)
 
     if (effective_mode != &mode_auto) {
         // hold_course is only used in takeoff and landing
-    	// ä¿æŒèˆªçº¿ä»…ç”¨äºèµ·é£å’Œé™è½
+    	// ±£³Öº½Ïß½öÓÃÓÚÆğ·ÉºÍ½µÂä
         steer_state.hold_course_cd = -1;
     }
 
     // ensure we are fly-forward when we are flying as a pure fixed
     // wing aircraft. This helps the EKF produce better state
     // estimates as it can make stronger assumptions
-    // ç¡®ä¿å½“æˆ‘ä»¬ä½œä¸ºçº¯å›ºå®šç¿¼é£æœºé£è¡Œæ—¶èƒ½å¤Ÿå‘å‰é£è¡Œã€‚ è¿™å¯ä»¥å¸®åŠ©EKFåšå‡ºæ›´å¥½çš„çŠ¶æ€ä¼°è®¡ï¼Œå› ä¸ºå®ƒå¯ä»¥åšå‡ºæ›´å¼ºçš„å‡è®¾
+    // È·±£µ±ÎÒÃÇ×÷Îª´¿¹Ì¶¨Òí·É»ú·ÉĞĞÊ±ÄÜ¹»ÏòÇ°·ÉĞĞ¡£ Õâ¿ÉÒÔ°ïÖúEKF×ö³ö¸üºÃµÄ×´Ì¬¹À¼Æ£¬ÒòÎªËü¿ÉÒÔ×ö³ö¸üÇ¿µÄ¼ÙÉè
     if (quadplane.in_vtol_mode() ||
         quadplane.in_assisted_flight()) {
         ahrs.set_fly_forward(false);
@@ -463,7 +463,7 @@ void Plane::update_control_mode(void)
 void Plane::update_navigation()
 {
     // wp_distance is in ACTUAL meters, not the *100 meters we get from the GPS
-    // å¯¼èˆªç‚¹è·ç¦»ä»¥ç±³ä¸ºå•ä½ï¼Œè€Œä¸æ˜¯æˆ‘ä»¬ä»GPSè·å¾—çš„* 100ç±³
+    // µ¼º½µã¾àÀëÒÔÃ×Îªµ¥Î»£¬¶ø²»ÊÇÎÒÃÇ´ÓGPS»ñµÃµÄ* 100Ã×
 
     uint16_t radius = 0;
     uint16_t qrtl_radius = abs(g.rtl_radius);
@@ -488,7 +488,7 @@ void Plane::update_navigation()
               for a quadplane in RTL mode we switch to QRTL when we
               are within the maximum of the stopping distance and the
               RTL_RADIUS
-              å¯¹äºå¤„äºRTLæ¨¡å¼çš„å››ç¿¼é£æœºï¼Œå½“æˆ‘ä»¬åœ¨åœæ­¢è·ç¦»å’ŒRTL_RADIUSçš„æœ€å¤§å€¼å†…æ—¶ï¼Œæˆ‘ä»¬ä¼šåˆ‡æ¢åˆ°QRTL
+              ¶ÔÓÚ´¦ÓÚRTLÄ£Ê½µÄËÄÒí·É»ú£¬µ±ÎÒÃÇÔÚÍ£Ö¹¾àÀëºÍRTL_RADIUSµÄ×î´óÖµÄÚÊ±£¬ÎÒÃÇ»áÇĞ»»µ½QRTL
              */
             set_mode(mode_qrtl, ModeReason::UNKNOWN);
             break;
@@ -497,33 +497,33 @@ void Plane::update_navigation()
             reached_loiter_target() && 
             labs(altitude_error_cm) < 1000) {
             // we've reached the RTL point, see if we have a landing sequence
-        	// æˆ‘ä»¬å·²ç»åˆ°è¾¾RTLç‚¹ï¼Œçœ‹çœ‹æˆ‘ä»¬æ˜¯å¦æœ‰é™è½é¡ºåº
+        	// ÎÒÃÇÒÑ¾­µ½´ïRTLµã£¬¿´¿´ÎÒÃÇÊÇ·ñÓĞ½µÂäË³Ğò
             if (mission.jump_to_landing_sequence()) {
                 // switch from RTL -> AUTO
-            	// ä»RTLåˆ‡æ¢æˆAUTO
+            	// ´ÓRTLÇĞ»»³ÉAUTO
                 mission.set_force_resume(true);
                 set_mode(mode_auto, ModeReason::UNKNOWN);
             }
 
             // prevent running the expensive jump_to_landing_sequence
             // on every loop
-            // é˜²æ­¢åœ¨æ¯ä¸ªå¾ªç¯ä¸Šè¿è¡Œæ˜‚è´µçš„è·³è½¬åˆ°ç€é™†ç¨‹åº
+            // ·ÀÖ¹ÔÚÃ¿¸öÑ­»·ÉÏÔËĞĞ°º¹óµÄÌø×ªµ½×ÅÂ½³ÌĞò
             auto_state.checked_for_autoland = true;
         }
         else if (g.rtl_autoland == 2 &&
             !auto_state.checked_for_autoland) {
             // Go directly to the landing sequence
-        	// ç›´æ¥è¿›å…¥ç€é™†é¡ºåº
+        	// Ö±½Ó½øÈë×ÅÂ½Ë³Ğò
             if (mission.jump_to_landing_sequence()) {
                 // switch from RTL -> AUTO
-            	// ä»RTLåˆ‡æ¢æˆAUTO
+            	// ´ÓRTLÇĞ»»³ÉAUTO
                 mission.set_force_resume(true);
                 set_mode(mode_auto, ModeReason::UNKNOWN);
             }
 
             // prevent running the expensive jump_to_landing_sequence
             // on every loop
-            // é˜²æ­¢åœ¨æ¯ä¸ªå¾ªç¯ä¸Šè¿è¡Œæ˜‚è´µçš„è·³è½¬åˆ°ç€é™†ç¨‹åº
+            // ·ÀÖ¹ÔÚÃ¿¸öÑ­»·ÉÏÔËĞĞ°º¹óµÄÌø×ªµ½×ÅÂ½³ÌĞò
             auto_state.checked_for_autoland = true;
         }
         radius = abs(g.rtl_radius);
@@ -531,7 +531,7 @@ void Plane::update_navigation()
             loiter.direction = (g.rtl_radius < 0) ? -1 : 1;
         }
         // fall through to LOITER
-        // é™·å…¥å›°å¢ƒ
+        // ÏİÈëÀ§¾³
         FALLTHROUGH;
 
     case Mode::Number::LOITER:
@@ -568,7 +568,7 @@ void Plane::update_navigation()
 
 /*
   set the flight stage
-  è®¾å®šé£è¡Œé˜¶æ®µ
+  Éè¶¨·ÉĞĞ½×¶Î
  */
 void Plane::set_flight_stage(AP_Vehicle::FixedWing::FlightStage fs)
 {
@@ -596,7 +596,7 @@ void Plane::update_alt()
     }
 
     // calculate the sink rate.
-    // è®¡ç®—ä¸‹æ²‰ç‡ã€‚
+    // ¼ÆËãÏÂ³ÁÂÊ¡£
     float sink_rate;
     Vector3f vel;
     if (ahrs.get_velocity_NED(vel)) {
@@ -608,7 +608,7 @@ void Plane::update_alt()
     }
 
     // low pass the sink rate to take some of the noise out
-    // ä¸‹æ²‰ç‡ä½¿ç”¨ä½é€šæ»¤æ³¢å™¨æ¶ˆé™¤ä¸€äº›å™ªå£°
+    // ÏÂ³ÁÂÊÊ¹ÓÃµÍÍ¨ÂË²¨Æ÷Ïû³ıÒ»Ğ©ÔëÉù
     auto_state.sink_rate = 0.8f * auto_state.sink_rate + 0.2f*sink_rate;
 #if PARACHUTE == ENABLED
     parachute.set_sink_rate(auto_state.sink_rate);
@@ -637,7 +637,7 @@ void Plane::update_alt()
             // ensure we do the initial climb in RTL. We add an extra
             // 10m in the demanded height to push TECS to climb
             // quickly
-        	// ç¡®ä¿æˆ‘ä»¬åœ¨RTLä¸­è¿›è¡Œäº†åˆå§‹çˆ¬å¡ã€‚ æˆ‘ä»¬åœ¨è¦æ±‚çš„é«˜åº¦ä¸Šå¢åŠ äº†10mï¼Œä»¥æ¨åŠ¨TECSå¿«é€Ÿçˆ¬å‡
+        	// È·±£ÎÒÃÇÔÚRTLÖĞ½øĞĞÁË³õÊ¼ÅÀÆÂ¡£ ÎÒÃÇÔÚÒªÇóµÄ¸ß¶ÈÉÏÔö¼ÓÁË10m£¬ÒÔÍÆ¶¯TECS¿ìËÙÅÀÉı
             target_alt = MAX(target_alt, prev_WP_loc.alt + (g2.rtl_climb_min+10)*100);
         }
 
@@ -655,12 +655,12 @@ void Plane::update_alt()
 
 /*
   recalculate the flight_stage
-  é‡æ–°è®¡ç®—é£è¡Œé˜¶æ®µ
+  ÖØĞÂ¼ÆËã·ÉĞĞ½×¶Î
  */
 void Plane::update_flight_stage(void)
 {
     // Update the speed & height controller states
-	// æ›´æ–°é€Ÿåº¦å’Œé«˜åº¦æ§åˆ¶å™¨çŠ¶æ€
+	// ¸üĞÂËÙ¶ÈºÍ¸ß¶È¿ØÖÆÆ÷×´Ì¬
     if (auto_throttle_mode && !throttle_suppressed) {        
         if (control_mode == &mode_auto) {
             if (quadplane.in_vtol_auto()) {
@@ -670,7 +670,7 @@ void Plane::update_flight_stage(void)
             } else if (mission.get_current_nav_cmd().id == MAV_CMD_NAV_LAND) {
                 if (landing.is_commanded_go_around() || flight_stage == AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND) {
                     // abort mode is sticky, it must complete while executing NAV_LAND
-                	// ä¸­æ­¢æ¨¡å¼ä¸ºç²˜æ»æ¨¡å¼ï¼Œå¿…é¡»åœ¨æ‰§è¡ŒNAV LANDæ—¶å®Œæˆ
+                	// ÖĞÖ¹Ä£Ê½ÎªÕ³ÖÍÄ£Ê½£¬±ØĞëÔÚÖ´ĞĞNAV LANDÊ±Íê³É
                     set_flight_stage(AP_Vehicle::FixedWing::FLIGHT_ABORT_LAND);
                 } else if (landing.get_abort_throttle_enable() && get_throttle_input() >= 90 &&
                            landing.request_go_around()) {
@@ -688,7 +688,7 @@ void Plane::update_flight_stage(void)
             // If not in AUTO then assume normal operation for normal TECS operation.
             // This prevents TECS from being stuck in the wrong stage if you switch from
             // AUTO to, say, FBWB during a landing, an aborted landing or takeoff.
-        	// å¦‚æœä¸åœ¨AUTOæ¨¡å¼ä¸­ï¼Œåˆ™å‡å®šæ­£å¸¸è¿è¡Œä»¥è¿›è¡Œæ­£å¸¸çš„TECSæ“ä½œã€‚ å¦‚æœåœ¨ç€é™†ï¼Œä¸­æ­¢ç€é™†æˆ–èµ·é£æœŸé—´ä»AUTOåˆ‡æ¢ä¸ºFBWBï¼Œè¿™å¯ä»¥é˜²æ­¢TECSåœç•™åœ¨é”™è¯¯çš„é˜¶æ®µã€‚
+        	// Èç¹û²»ÔÚAUTOÄ£Ê½ÖĞ£¬Ôò¼Ù¶¨Õı³£ÔËĞĞÒÔ½øĞĞÕı³£µÄTECS²Ù×÷¡£ Èç¹ûÔÚ×ÅÂ½£¬ÖĞÖ¹×ÅÂ½»òÆğ·ÉÆÚ¼ä´ÓAUTOÇĞ»»ÎªFBWB£¬Õâ¿ÉÒÔ·ÀÖ¹TECSÍ£ÁôÔÚ´íÎóµÄ½×¶Î¡£
             set_flight_stage(AP_Vehicle::FixedWing::FLIGHT_NORMAL);
         }
     } else if (quadplane.in_vtol_mode() ||
@@ -706,8 +706,8 @@ void Plane::update_flight_stage(void)
     If land_DisarmDelay is enabled (non-zero), check for a landing then auto-disarm after time expires
 
     only called from AP_Landing, when the landing library is ready to disarm
-    å¦‚æœå¯ç”¨äº†é™†åœ°è§£é”å»¶è¿Ÿï¼ˆéé›¶ï¼‰ï¼Œè¯·æ£€æŸ¥ç€é™†æƒ…å†µï¼Œç„¶ååœ¨æ—¶é—´åˆ°æœŸåè‡ªåŠ¨è§£é”
-	ä»…åœ¨ç€é™†åº“å‡†å¤‡è§£é”æ—¶æ‰ä»APç™»é™†è°ƒç”¨
+    Èç¹ûÆôÓÃÁËÂ½µØ½âËøÑÓ³Ù£¨·ÇÁã£©£¬Çë¼ì²é×ÅÂ½Çé¿ö£¬È»ºóÔÚÊ±¼äµ½ÆÚºó×Ô¶¯½âËø
+	½öÔÚ×ÅÂ½¿â×¼±¸½âËøÊ±²Å´ÓAPµÇÂ½µ÷ÓÃ
  */
 void Plane::disarm_if_autoland_complete()
 {
@@ -716,7 +716,7 @@ void Plane::disarm_if_autoland_complete()
         arming.arming_required() != AP_Arming::Required::NO &&
         arming.is_armed()) {
         /* we have auto disarm enabled. See if enough time has passed
-         æˆ‘ä»¬å¯ç”¨äº†è‡ªåŠ¨è§£é”ã€‚ æŸ¥çœ‹æ˜¯å¦å·²ç»è¿‡å»äº†è¶³å¤Ÿçš„æ—¶é—´ */
+         ÎÒÃÇÆôÓÃÁË×Ô¶¯½âËø¡£ ²é¿´ÊÇ·ñÒÑ¾­¹ıÈ¥ÁË×ã¹»µÄÊ±¼ä */
         if (millis() - auto_state.last_flying_ms >= landing.get_disarm_delay()*1000UL) {
             if (arming.disarm()) {
                 gcs().send_text(MAV_SEVERITY_INFO,"Auto disarmed");
@@ -729,7 +729,7 @@ void Plane::disarm_if_autoland_complete()
 
 /*
   the height above field elevation that we pass to TECS
-  æˆ‘ä»¬ä¼ é€’ç»™TECSçš„åœºé«˜ä»¥ä¸Šçš„é«˜åº¦
+  ÎÒÃÇ´«µİ¸øTECSµÄ³¡¸ßÒÔÉÏµÄ¸ß¶È
  */
 float Plane::tecs_hgt_afe(void)
 {
@@ -738,7 +738,7 @@ float Plane::tecs_hgt_afe(void)
       the ground when in landing, which means that TECS gets the
       rangefinder information and thus can know when the flare is
       coming.
-      åœ¨ç€é™†æ—¶å°†é«˜äºåœ°é¢æ ‡é«˜çš„é«˜åº¦ä½œä¸ºåœ°é¢ä¸Šæ–¹çš„é«˜åº¦ä¼ é€’ï¼Œè¿™æ„å‘³ç€TECSå¯ä»¥è·å–æµ‹è·ä»ªä¿¡æ¯ï¼Œä»è€Œå¯ä»¥çŸ¥é“è€€æ–‘ä½•æ—¶æ¥ä¸´ã€‚
+      ÔÚ×ÅÂ½Ê±½«¸ßÓÚµØÃæ±ê¸ßµÄ¸ß¶È×÷ÎªµØÃæÉÏ·½µÄ¸ß¶È´«µİ£¬ÕâÒâÎ¶×ÅTECS¿ÉÒÔ»ñÈ¡²â¾àÒÇĞÅÏ¢£¬´Ó¶ø¿ÉÒÔÖªµÀÒ«°ßºÎÊ±À´ÁÙ¡£
     */
     float hgt_afe;
     if (flight_stage == AP_Vehicle::FixedWing::FLIGHT_LAND) {
@@ -747,7 +747,7 @@ float Plane::tecs_hgt_afe(void)
     } else {
         // when in normal flight we pass the hgt_afe as relative
         // altitude to home
-    	// åœ¨æ­£å¸¸é£è¡Œä¸­ï¼Œæˆ‘ä»¬å°†hgt_afeä½œä¸ºç›¸å¯¹é«˜åº¦è¿”èˆª
+    	// ÔÚÕı³£·ÉĞĞÖĞ£¬ÎÒÃÇ½«hgt_afe×÷ÎªÏà¶Ô¸ß¶È·µº½
         hgt_afe = relative_altitude;
     }
     return hgt_afe;
