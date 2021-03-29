@@ -1,5 +1,5 @@
 /// @file	AC_PID.cpp
-/// @brief	Generic PID algorithm
+/// @brief	Generic PID algorithm	Õ®”√PIDÀ„∑®
 
 #include <AP_Math/AP_Math.h>
 #include "AC_PID.h"
@@ -58,7 +58,6 @@ const AP_Param::GroupInfo AC_PID::var_info[] = {
 
     AP_GROUPEND
 };
-
 // Constructor
 AC_PID::AC_PID(float initial_p, float initial_i, float initial_d, float initial_ff, float initial_imax, float initial_filt_T_hz, float initial_filt_E_hz, float initial_filt_D_hz, float dt) :
     _dt(dt),
