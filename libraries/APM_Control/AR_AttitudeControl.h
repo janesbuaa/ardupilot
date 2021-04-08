@@ -45,6 +45,7 @@
 #define AR_ATTCONTROL_STOP_SPEED_DEFAULT    0.1f
 
 
+// ×ËÌ¬¿ØÖÆ
 class AR_AttitudeControl {
 public:
 

@@ -22,6 +22,7 @@
 #include <AP_WheelEncoder/AP_WheelEncoder.h>
 
 // winch rate control default gains
+// 绞车速度控制默认增益
 #define AP_WINCH_POS_P      1.00f
 #define AP_WINCH_RATE_P     1.00f
 #define AP_WINCH_RATE_I     0.50f
